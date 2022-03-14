@@ -18,5 +18,11 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create()->each(function ($user) {
             Post::factory(random_int(2, 5))->create(['user_id' => $user]);
         });
+
+        User::first()->update([
+            'name' => '自分',
+            'email' => 'test@test.com',
+            'password' => bcrypt('hogehoge'),
+        ]);
     }
 }
