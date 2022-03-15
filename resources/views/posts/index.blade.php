@@ -4,6 +4,21 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                
+                @auth
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            @include('inc.error')
+                            <form action="{{ route('posts.store') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="2" name="text" placeholder="好きな話題を投稿してみよう">{{ old('text') }}</textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">投稿する</button>
+                            </form>
+                        </div>
+                    </div>
+                @endauth
                 @foreach ($posts as $post)
                     <div class="card mb-4">
                         <div class="card-header">
@@ -18,7 +33,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                                {!! nl2br(e( $post->text )) !!}
+                                {!! nl2br(e($post->text)) !!}
                             </p>
                         </div>
                         <div class="card-footer text-muted">
