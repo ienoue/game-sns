@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                
+
+                {{-- 投稿フォーム --}}
                 @auth
                     <div class="card mb-4">
                         <div class="card-body">
@@ -19,20 +20,79 @@
                         </div>
                     </div>
                 @endauth
+                {{-- /投稿フォーム --}}
+
+                {{-- 投稿内容一覧 --}}
                 @foreach ($posts as $post)
                     <div class="card mb-4">
                         <div class="card-header">
-                            <div class="d-flex">
-                                <div class="fw-bold pe-2">
-                                    {{ $post->user->name }}
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex">
+                                    <div class="fw-bold pe-2">
+                                        {{ $post->user->name }}
+                                    </div>
+                                    <div class="fw-light text-muted" id="test">
+                                        {{ $post->created_at }}
+                                    </div>
                                 </div>
-                                <div class="fw-light text-muted">
-                                    {{ $post->created_at }}
-                                </div>
+                                @if (Auth::id() === $post->user_id)
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            設定
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#modalEdit_{{ $post->id }}">記事編集</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item text-danger" href="#">記事削除</a></li>
+                                        </ul>
+                                    </div>
+
+                                    {{-- モーダル --}}
+                                    <div class="modal fade" id="modalEdit_{{ $post->id }}" tabindex="-1"
+                                        aria-labelledby="modalEditLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalEditLabel">編集</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="alert alert-danger d-none">
+                                                        <ul id="formErr_{{ $post->id }}" class="mb-0">
+                                                        </ul>
+                                                    </div>
+                                                    <form id="formEdit_{{ $post->id }}" onsubmit="return false"
+                                                        method="POST"
+                                                        action="{{ route('posts.update', ['post' => $post->id]) }}">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <textarea class="form-control" rows="3" name="text"
+                                                                placeholder="好きな話題を投稿してみよう">{{ $post->text ?? old('text') }}</textarea>
+                                                        </div>
+                                                    </form>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">閉じる</button>
+                                                        <button type="button" class="btn btn-primary btn-edit"
+                                                            data-post-id="{{ $post->id }}">更新する
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- /モーダル --}}
+                                @endif
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">
+                            <p class="card-text" id="postText_{{ $post->id }}">
                                 {!! nl2br(e($post->text)) !!}
                             </p>
                         </div>
@@ -41,6 +101,8 @@
                         </div>
                     </div>
                 @endforeach
+                {{-- /投稿内容一覧 --}}
+                
             </div>
         </div>
     </div>
