@@ -60,7 +60,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         //
     }
@@ -72,9 +72,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->fill($request->all());
+        $post->save();
+        $status = 'success';
+        $text = $request->text;
+        $id = $post->id;
+        return response()->json(compact('status', 'text', 'id'));
     }
 
     /**
