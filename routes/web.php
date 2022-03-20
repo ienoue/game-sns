@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
-Route::resource('/posts', PostController::class)->except(['index', 'create', 'edit'])->middleware('auth');
+Route::resource('/posts', PostController::class)->except(['index', 'create', 'edit', 'show'])->middleware('auth');
+Route::resource('/posts', PostController::class)->only(['show']);
 
 Auth::routes();
 
