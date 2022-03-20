@@ -47,11 +47,12 @@
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item text-danger" href="#">記事削除</a></li>
+                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#modalDelete_{{ $post->id }}">記事削除</a></li>
                                         </ul>
                                     </div>
 
-                                    {{-- モーダル --}}
+                                    {{-- 編集用モーダル --}}
                                     <div class="modal fade" id="modalEdit_{{ $post->id }}" tabindex="-1"
                                         aria-labelledby="modalEditLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -76,18 +77,49 @@
                                                                 placeholder="好きな話題を投稿してみよう">{{ $post->text ?? old('text') }}</textarea>
                                                         </div>
                                                     </form>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">閉じる</button>
-                                                        <button type="button" class="btn btn-primary btn-edit"
-                                                            data-post-id="{{ $post->id }}">更新する
-                                                        </button>
-                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">閉じる</button>
+                                                    <button type="button" class="btn btn-primary btn-edit"
+                                                        data-post-id="{{ $post->id }}">更新する
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- /モーダル --}}
+                                    {{-- /編集用モーダル --}}
+
+                                    {{-- 削除用モーダル --}}
+                                    <div class="modal fade" id="modalDelete_{{ $post->id }}" tabindex="-1"
+                                        aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalDeleteLabel">確認</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+
+                                                <form method="POST" action="{{ route('posts.destroy', ['post' => $post]) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="modal-body">
+                                                        投稿を削除します。よろしいですか？
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">閉じる</button>
+                                                        <button type="submit" class="btn btn-danger"
+                                                            data-post-id="{{ $post->id }}">削除する
+                                                        </button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- /削除用モーダル --}}
                                 @endif
                             </div>
                         </div>
@@ -102,7 +134,7 @@
                     </div>
                 @endforeach
                 {{-- /投稿内容一覧 --}}
-                
+
             </div>
         </div>
     </div>
