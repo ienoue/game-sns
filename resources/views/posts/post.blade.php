@@ -81,8 +81,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                                    <button type="submit" class="btn btn-danger"
-                                        data-post-id="{{ $post->id }}">削除する
+                                    <button type="submit" class="btn btn-danger">削除する
                                     </button>
                                 </div>
                             </form>
