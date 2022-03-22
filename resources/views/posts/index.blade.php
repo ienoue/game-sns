@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('javascript')
+    @include('inc.transform')
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -15,6 +19,9 @@
                                 <div class="mb-3">
                                     <textarea class="form-control" rows="2" name="text" placeholder="好きな話題を投稿してみよう">{{ old('text') }}</textarea>
                                 </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}" placeholder="タグを5個まで入力できます">
+                                </div>
                                 <button type="submit" class="btn btn-primary">投稿する</button>
                             </form>
                         </div>
@@ -24,7 +31,7 @@
 
                 {{-- 投稿内容一覧 --}}
                 @foreach ($posts as $post)
-                    @include('posts.post', ['useStretchedLink' => true])
+                    @include('posts.post', ['stretchedLink' => true, 'charLimit' => true])
                 @endforeach
                 {{-- /投稿内容一覧 --}}
 

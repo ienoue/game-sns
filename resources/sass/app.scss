@@ -6,3 +6,29 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import '~@yaireo/tagify/src/tagify';
+
+
+.customLook {
+    --tag-inset-shadow-size   : 1.5em;
+}
+
+.mw-200px {
+    max-width: 200px;
+}
+
+.row-5 {
+    max-height: calc( 1.5em * 5 );
+    line-height: 1.5;
+    display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 5;
+	overflow: hidden;
+}
+
+.elipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

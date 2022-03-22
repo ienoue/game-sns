@@ -26,6 +26,7 @@ class PostRequest extends FormRequest
     {
         return [
             'text' => 'required|max:300',
+            'tags' => 'json|regex:/^[^\s\/]+$/u|nullable|max:20'
         ];
     }
 
@@ -33,6 +34,19 @@ class PostRequest extends FormRequest
     {
         return [
             'text' => '本文',
+            'tags' => 'タグ'
         ];
+    }
+
+    public function passedValidation()
+    {
+        $tags = collect(json_decode($this->tags))
+            ->slice(0, 5)
+            ->map(function ($tag) {
+                return $tag->value;
+            });
+        $this->merge([
+            'tags' => $tags,
+        ]);
     }
 }

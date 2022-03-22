@@ -6,16 +6,16 @@
                     {{ $post->user->name }}
                 </div>
                 <div class="fw-light text-muted" id="test">
-                    {{ $post->created_at }}
+                    {{ $post->updated_at }}
                 </div>
             </div>
             @if (Auth::id() === $post->user_id)
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="postSetting"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         設定
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <ul class="dropdown-menu" aria-labelledby="postSetting">
                         <li><a class="dropdown-item" data-bs-toggle="modal"
                                 data-bs-target="#modalEdit_{{ $post->id }}">記事編集</a></li>
                         <li>
@@ -48,6 +48,10 @@
                                     <div class="mb-3">
                                         <textarea class="form-control" rows="3" name="text"
                                             placeholder="好きな話題を投稿してみよう">{{ $post->text ?? old('text') }}</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control customLook" name="tags"
+                                            value="{{ $post->tags->implode('name', ', ') }}" placeholder="タグを5個まで入力できます">
                                     </div>
                                 </form>
                             </div>
@@ -93,11 +97,23 @@
             @endif
         </div>
     </div>
-    <div class="card-body position-relative">
-        <p class="card-text mb-0" id="postText_{{ $post->id }}">
-            {!! nl2br(e($post->text)) !!}
-        </p>
-        <a @class(['stretched-link' => $useStretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
+    <div class="card-body">
+        <div class="card-text position-relative">
+            <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
+            <p @class(['card-text', 'text-truncate', 'row-5' => $charLimit]) class="" id="postText_{{ $post->id }}">
+                {!! nl2br(e($post->text)) !!}
+            </p>
+        </div>
+        <div id="postTag_{{ $post->id }}" class="card-text">
+            @if ($post->tags->count() >= 1)
+                <div class="mt-2">
+                    @foreach ($post->tags as $tag)
+                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px" href="#"
+                            role="button">{{ $tag->name }}</a>
+                    @endforeach
+                </div>
+            @endif
+        </div>
     </div>
     <div class="card-footer text-muted">
         いいね
