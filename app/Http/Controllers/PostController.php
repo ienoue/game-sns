@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -13,7 +16,7 @@ class PostController extends Controller
     {
         $this->authorizeResource(Post::class, 'post');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +24,17 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->sortByDesc('created_at');
-        return view('posts.index', compact('posts'));
+        $posts = Post::all()->sortByDesc('updated_at');
+
+        $tags = Tag::join('post_tag', 'tags.id', '=', 'post_tag.tag_id')
+            ->select('tags.name', DB::raw('count(*)'))
+            // ->whereDate('post_tag.created_at', '>=', $diffYear)
+            ->groupBy('tags.name')
+            ->orderBy(DB::raw('count(*)'), 'desc')
+            ->take(50)
+            ->get();
+
+        return view('posts.index', compact('posts', 'tags'));
     }
 
     /**
@@ -46,6 +58,12 @@ class PostController extends Controller
         $post->fill($request->all());
         $post->user_id = $request->user()->id;
         $post->save();
+
+        $request->tags->each(function ($tagName) use ($post) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $post->tags()->attach($tag);
+        });
+
         return redirect()->route('posts.index');
     }
 
@@ -82,10 +100,18 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->save();
+
+        $post->tags()->detach();
+        $request->tags->each(function ($tagName) use ($post) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $post->tags()->attach($tag);
+        });
+
         $status = 'success';
         $text = $request->text;
         $id = $post->id;
-        return response()->json(compact('status', 'text', 'id'));
+        $tags = $request->tags;
+        return response()->json(compact('status', 'text', 'id', 'tags'));
     }
 
     /**

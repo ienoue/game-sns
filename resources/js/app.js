@@ -1,5 +1,8 @@
 require('./bootstrap');
-require('./editpost');
+import { Modal } from "bootstrap";
+window.Modal = Modal;
+window.Tagify = require('@yaireo/tagify');
 
-import * as bootstrap from 'bootstrap';
-window.bootstrap = bootstrap;
+require('./ajaxSetup');
+require('./editpost');
+require('./tag');

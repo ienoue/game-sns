@@ -1,10 +1,3 @@
-//csrf対策
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
 $(function () {
     $('.btn-edit').on("click", function (event) {
         event.preventDefault();
@@ -12,6 +5,7 @@ $(function () {
         const id = $btn.data('post-id');
         const $form = $(`#formEdit_${id}`);
         const $err = $(`#formErr_${id}`);
+        const $tag = $(`#postTag_${id}`);
         $btn.attr('disabled', true);
 
         $.ajax({
@@ -29,12 +23,23 @@ $(function () {
                 //text()だとサニタイズされるが改行されない為に、以下の方法で改行した
                 postText = $('<dummy>').text(data.text).html().replace(/\n/g, '<br>');
                 $(`#postText_${data.id}`).empty().html(postText);
+
+                //タグを追加
+                $tag.empty();
+                if (data.tags?.length) {
+                    $container = $('<div>').addClass('pt-2').appendTo($tag);
+                    $.each(data.tags, function (i, tag) {
+                        $('<a>').text(tag).addClass('btn btn-outline-secondary btn-sm lh-1 me-1').appendTo($container);
+                    });
+                }
+
+                //モーダルを閉じる
                 const elm = document.getElementById(`modalEdit_${data.id}`);
-                const modal = bootstrap.Modal.getOrCreateInstance(elm);
+                const modal = Modal.getOrCreateInstance(elm);
                 modal.hide();
             })
             .fail((jqXHR) => {
-                if(jqXHR.responseJSON.errors) {
+                if (jqXHR.responseJSON.errors) {
                     //バリデーションエラー発生時の処理
                     $.each(jqXHR.responseJSON.errors, (index, val) => {
                         test = $('<li>').text(val).appendTo($err);

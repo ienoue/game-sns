@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -15,8 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create()->each(function ($user) {
-            Post::factory(random_int(2, 5))->create(['user_id' => $user]);
+        Tag::factory(10)->create();
+        $tags = Tag::all();
+
+        User::factory(10)->create()->each(function ($user) use ($tags) {
+            Post::factory(rand(2, 5))->create(['user_id' => $user])->each(function ($post) use ($tags) {
+                $post->tags()->attach($tags->random(rand(0, 3))->pluck('id')->toArray());
+            });
         });
 
         User::first()->update([
