@@ -108,7 +108,7 @@
             @if ($post->tags->count() >= 1)
                 <div class="mt-2">
                     @foreach ($post->tags as $tag)
-                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px" href="#"
+                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px" href="{{ route('search', ['tag' => $tag->name ]) }}"
                             role="button">{{ $tag->name }}</a>
                     @endforeach
                 </div>
