@@ -15,13 +15,7 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        $tags = Tag::join('post_tag', 'tags.id', '=', 'post_tag.tag_id')
-        ->select('tags.name', DB::raw('count(*)'))
-        // ->whereDate('post_tag.created_at', '>=', $diffYear)
-        ->groupBy('tags.name')
-        ->orderBy(DB::raw('count(*)'), 'desc')
-        ->take(50)
-        ->get();
+        $tags = Tag::ranking(50);
 
         $tag = $request->tag;
         if(!$tag) {

@@ -26,13 +26,7 @@ class PostController extends Controller
     {
         $posts = Post::all()->sortByDesc('updated_at');
 
-        $tags = Tag::join('post_tag', 'tags.id', '=', 'post_tag.tag_id')
-            ->select('tags.name', DB::raw('count(*)'))
-            // ->whereDate('post_tag.created_at', '>=', $diffYear)
-            ->groupBy('tags.name')
-            ->orderBy(DB::raw('count(*)'), 'desc')
-            ->take(50)
-            ->get();
+        $tags = Tag::ranking(50);
 
         return view('posts.index', compact('posts', 'tags'));
     }
@@ -58,11 +52,7 @@ class PostController extends Controller
         $post->fill($request->all());
         $post->user_id = $request->user()->id;
         $post->save();
-
-        $request->tags->each(function ($tagName) use ($post) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $post->tags()->attach($tag);
-        });
+        $request->storeTags($post);
 
         return redirect()->route('posts.index');
     }
@@ -101,13 +91,8 @@ class PostController extends Controller
         $post->fill($request->all());
         $post->save();
 
-        $post->tags()->detach();
-        $request->tags->each(function ($tagName) use ($post) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $post->tags()->attach($tag);
-        });
+        $request->storeTags($post);
 
-        $status = 'success';
         $text = $request->text;
         $id = $post->id;
         $tags = $request->tags;

@@ -4,7 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-
+use App\Models\Post;
+use App\Models\Tag;
 
 class PostRequest extends FormRequest
 {
@@ -64,5 +65,21 @@ class PostRequest extends FormRequest
         $this->merge([
             'tags' => $tags,
         ]);
+    }
+
+    /**
+     * 引数のPostモデルとリクエストのタグとの間の中間テーブルを作成
+     */
+    public function storeTags(Post $post)
+    {
+        $data = $this->validated();
+        //validatedはpassedValidation実行前の値なので実行後の値で上書き
+        $data['tags'] = $this->tags;
+
+        $post->tags()->detach();
+        $data['tags']->each(function ($tagName) use ($post) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $post->tags()->attach($tag);
+        });
     }
 }
