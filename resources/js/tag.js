@@ -4,7 +4,7 @@ const tagifyArr = $('input[name=tags]').map((index, elm) => {
         maxTags: 5,
         // originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(','),
         delimiters: "　| ",
-        pattern: /^[^\s\/]+$/,
+        pattern: /^[^\s]+$/,
         dropdown: {
             enabled: 0,
             maxItems: 30,
