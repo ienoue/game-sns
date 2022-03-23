@@ -96,7 +96,7 @@ class PostController extends Controller
         $text = $request->text;
         $id = $post->id;
         $tags = $request->tags;
-        return response()->json(compact('status', 'text', 'id', 'tags'));
+        return response()->json(compact('text', 'id', 'tags'));
     }
 
     /**
