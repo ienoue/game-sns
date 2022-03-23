@@ -4,5 +4,5 @@ window.Modal = Modal;
 window.Tagify = require('@yaireo/tagify');
 
 require('./ajaxSetup');
-require('./editpost');
 require('./tag');
+require('./editpost');
