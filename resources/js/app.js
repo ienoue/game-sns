@@ -5,4 +5,4 @@ window.Tagify = require('@yaireo/tagify');
 
 require('./ajaxSetup');
 require('./tag');
-require('./editpost');
+require('./editPost');
