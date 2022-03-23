@@ -14,19 +14,25 @@ class Tag extends Model
         'name',
     ];
 
+    /**
+     * 関連するPostモデルを更新日時が新しい順に返す
+     */
     public function posts()
     {
         return $this->belongsToMany(Post::class)->withTimestamps()->latest('updated_at');
     }
 
-    public static function ranking($count)
+    /**
+     * タグ名を投稿に使用されている数が多い順に返す
+     */
+    public static function ranking($limit)
     {
         return Tag::join('post_tag', 'tags.id', '=', 'post_tag.tag_id')
             ->select('tags.name', DB::raw('count(*)'))
             // ->whereDate('post_tag.created_at', '>=', $diffYear)
             ->groupBy('tags.name')
             ->orderBy(DB::raw('count(*)'), 'desc')
-            ->take(50)
+            ->take($limit)
             ->get();
     }
 }

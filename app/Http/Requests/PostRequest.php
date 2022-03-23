@@ -19,6 +19,9 @@ class PostRequest extends FormRequest
         return true;
     }
 
+    /**
+     * JSON形式の文字列を2次元配列に変換
+     */
     protected function getValidatorInstance(): Validator
     {
         $this->merge([
@@ -55,6 +58,9 @@ class PostRequest extends FormRequest
         ];
     }
 
+    /**
+     * 2次元配列を1次元配列に変換
+     */
     public function passedValidation()
     {
         $tags = collect($this->tags_as_array)
@@ -68,7 +74,7 @@ class PostRequest extends FormRequest
     }
 
     /**
-     * 引数のPostモデルとリクエストのタグとの間の中間テーブルを作成
+     * 引数のPostモデルとPOST送信されたタグのリストとの間に中間テーブルを作成
      */
     public function storeTags(Post $post)
     {
