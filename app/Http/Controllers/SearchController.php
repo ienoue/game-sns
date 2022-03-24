@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SearchRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,17 +14,10 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(SearchRequest $request)
     {
         $tags = Tag::ranking(50);
-
-        $tag = $request->tag;
-        if(!$tag) {
-            return redirect()->route('posts.index');
-        }
-
-        $tag = Tag::where('name', $tag)->first();
-
+        $tag = Tag::where('name', $request->tag)->first();
         return view('search.index', compact('tags', 'tag'));
     }
 }
