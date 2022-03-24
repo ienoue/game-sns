@@ -22,4 +22,17 @@ class Post extends Model
     {
         return $this->belongsToMany(Tag::class)->withTimestamps();
     }
+
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
+    }
+
+    public function isLikedby(?User $user)
+    {
+        if (!$user) {
+            return false;
+        }
+        return $this->likes->where('id', $user->id)->isNotEmpty();
+    }
 }

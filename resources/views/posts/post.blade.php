@@ -100,7 +100,7 @@
     <div class="card-body">
         <div class="card-text position-relative">
             <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
-            <p @class(['card-text', 'text-truncate', 'row-5' => $charLimit]) class="" id="postText_{{ $post->id }}">
+            <p @class(['card-text', 'text-truncate', 'row-5' => $charLimit]) id="postText_{{ $post->id }}">
                 {!! nl2br(e($post->text)) !!}
             </p>
         </div>
@@ -115,7 +115,8 @@
             @endif
         </div>
     </div>
-    <div class="card-footer text-muted">
-        いいね
+    <div class="card-footer text-muted d-flex align-items-baseline">
+        <i @class(['fa-solid', 'fa-heart', 'me-2', 'text-danger' => $post->isLikedBy(Auth::user())])></i>
+        <p class="card-text">{{ $post->likes->count() }} いいね</p>
     </div>
 </div>
