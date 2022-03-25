@@ -1,23 +1,22 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-@import '~@yaireo/tagify/src/tagify';
+@import "~@yaireo/tagify/src/tagify";
 
 // Font Awesome
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-@import '~@fortawesome/fontawesome-free/scss/brands';
-
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 .customLook {
-    --tag-inset-shadow-size   : 1.5em;
+    --tag-inset-shadow-size: 1.5em;
 }
 
 .mw-200px {
@@ -25,16 +24,25 @@
 }
 
 .row-5 {
-    max-height: calc( 1.5em * 5 );
+    max-height: calc(1.5em * 5);
     line-height: 1.5;
     display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 5;
-	overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
 }
 
 .elipsis {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.text-red {
+    color: #e53e3e;
+}
+
+.btn-like:focus {
+    outline: none;
+    box-shadow: none;
 }

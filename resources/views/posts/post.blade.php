@@ -51,7 +51,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <input type="text" class="form-control customLook" name="tags"
-                                            value="{{ $post->tags->implode('name', ', ') }}" placeholder="タグを5個まで入力できます">
+                                            value="{{ $post->tags->implode('name', ', ') }}"
+                                            placeholder="タグを5個まで入力できます">
                                     </div>
                                 </form>
                             </div>
@@ -100,7 +101,11 @@
     <div class="card-body">
         <div class="card-text position-relative">
             <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
-            <p @class(['card-text', 'text-truncate', 'row-5' => $charLimit]) id="postText_{{ $post->id }}">
+            <p @class([
+                'card-text',
+                'text-truncate',
+                'row-5' => $charLimit,
+            ]) id="postText_{{ $post->id }}">
                 {!! nl2br(e($post->text)) !!}
             </p>
         </div>
@@ -108,7 +113,8 @@
             @if ($post->tags->count() >= 1)
                 <div class="mt-2">
                     @foreach ($post->tags as $tag)
-                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px" href="{{ route('search', ['tag' => $tag->name ]) }}"
+                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px"
+                            href="{{ route('search', ['tag' => $tag->name]) }}"
                             role="button">{{ $tag->name }}</a>
                     @endforeach
                 </div>
@@ -116,7 +122,15 @@
         </div>
     </div>
     <div class="card-footer text-muted d-flex align-items-baseline">
-        <i @class(['fa-solid', 'fa-heart', 'me-2', 'text-danger' => $post->isLikedBy(Auth::user())])></i>
-        <p class="card-text">{{ $post->likes->count() }} いいね</p>
+        <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
+            @cannot('toggle-like', $post) disabled @endcannot>
+            <i @class([
+                'fa-solid',
+                'fa-heart',
+                'me-2',
+                'text-red' => $post->isLikedBy(Auth::user()),
+            ])></i>
+        </button>
+        <p class="card-text" id="likecount_{{ $post->id }}">{{ $post->likes->count() }} いいね</p>
     </div>
 </div>

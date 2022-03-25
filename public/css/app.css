@@ -22124,3 +22124,12 @@ readers do not read off random characters that represent icons */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.text-red {
+  color: #e53e3e;
+}
+
+.btn-like:focus {
+  outline: none;
+  box-shadow: none;
+}

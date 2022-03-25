@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
 
         $users= User::all();
         Post::all()->each(function ($post) use ($users) {
-            //likesテーブルのレコードをランダムに作成
-            $post->likes()->attach($users->random(rand(2, 5))->pluck('id')->toArray());
+            //自身の投稿以外に対してlikesテーブルのレコードをランダムに作成
+            $post->likes()->attach($users->except($post->user_id)->random(rand(2, 5))->pluck('id')->toArray());
         });
 
         

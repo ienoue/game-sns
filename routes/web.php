@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::resource('/posts', PostController::class)->except(['index', 'create', 'ed
 Route::resource('/posts', PostController::class)->only(['show']);
 
 Route::get('/Search', [SearchController::class, 'index'])->name('search');
+
+Route::post('/like/{post}', [LikeController::class, 'toggle'])->name('like')->middleware('auth');
 
 Auth::routes();
 
