@@ -6,3 +6,4 @@ window.Tagify = require('@yaireo/tagify');
 require('./ajaxSetup');
 require('./tag');
 require('./editPost');
+require('./like');

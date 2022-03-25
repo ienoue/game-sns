@@ -17,3 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     .autoload({
         "jquery": ['$', 'window.jQuery'],
     });
+
+if (mix.inProduction()) {
+    mix.version();
+}
