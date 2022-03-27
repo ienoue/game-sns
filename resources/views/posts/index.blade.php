@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-    @include('inc.transform')
+    @include('inc.transformToJs')
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
 
                 {{-- 投稿内容一覧 --}}
                 @foreach ($posts as $post)
-                    @include('posts.post', ['stretchedLink' => true, 'charLimit' => true])
+                    @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
                 @endforeach
                 {{-- /投稿内容一覧 --}}
 

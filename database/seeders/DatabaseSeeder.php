@@ -18,17 +18,21 @@ class DatabaseSeeder extends Seeder
     {
         Tag::factory(10)->create();
         $tags = Tag::all();
-        User::factory(10)->create()->each(function ($user) use ($tags) {
+        User::factory(5)->create()->each(function ($user) use ($tags) {
             Post::factory(rand(2, 5))->create(['user_id' => $user])->each(function ($post) use ($tags) {
                 //post_tagテーブルのレコードをランダムに作成
                 $post->tags()->attach($tags->random(rand(0, 3))->pluck('id')->toArray());
             });
         });
 
-        $users= User::all();
+        $users = User::all();
+        $users->each(function ($user) use ($users) {
+            $user->followers()->attach($users->except($user->id)->random(rand(2, 4))->pluck('id')->toArray());
+        });
+
         Post::all()->each(function ($post) use ($users) {
             //自身の投稿以外に対してlikesテーブルのレコードをランダムに作成
-            $post->likes()->attach($users->except($post->user_id)->random(rand(2, 5))->pluck('id')->toArray());
+            $post->likes()->attach($users->except($post->user_id)->random(rand(2, 4))->pluck('id')->toArray());
         });
 
         

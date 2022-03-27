@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\DB;
 class SearchController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * タグで記事を絞り込んで一覧表示する
      *
      * @return \Illuminate\Http\Response
      */
     public function index(SearchRequest $request)
     {
-        $tags = Tag::ranking(50);
         $tag = Tag::where('name', $request->tag)->first();
-        return view('search.index', compact('tags', 'tag'));
+        return view('search.index', compact('tag'));
     }
 }

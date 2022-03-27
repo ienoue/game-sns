@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -41,4 +42,47 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'likes')->withTimestamps()->latest('updated_at');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id')->withTimestamps()->latest('updated_at');
+    }
+
+    public function followees()
+    {
+        return $this->belongsToMany(User::class, 'follows','follower_id', 'followee_id')->withTimestamps()->latest('updated_at');
+    }
+
+    public function isFollowedBy(?User $user)
+    {
+        if (!$user) {
+            return false;
+        }
+
+        return $this->followers->where('id', $user->id)->isNotEmpty();
+    }
+
+    public function buttonState() {
+        if ($this->isFollowedBy(Auth::user())) {
+            $btnVisual = 'btn-primary';
+            $icon = 'fa-user-check';
+            $btnText = 'フォロー中';
+        } else {
+            $btnVisual = 'btn-outline-primary';
+            $icon = 'fa-user-plus';
+            $btnText = 'フォローする';
+        }
+        
+        return compact('btnVisual', 'icon', 'btnText');
+    }
 }
