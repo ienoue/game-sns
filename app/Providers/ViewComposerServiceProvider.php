@@ -25,6 +25,6 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['posts.index', 'users.likes', 'users.index', 'search.index'], TagComposer::class);
+        View::composer(['posts.index', 'users.likes', 'users.index', 'search.index', 'posts.show'], TagComposer::class);
     }
 }

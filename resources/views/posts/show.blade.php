@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('javascript')
+    @include('inc.transformToJs')
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
