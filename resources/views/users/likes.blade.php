@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('javascript')
-    @include('inc.transform')
+    @include('inc.transformToJs')
 @endsection
 
 @section('content')
