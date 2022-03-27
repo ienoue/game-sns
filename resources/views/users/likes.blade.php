@@ -10,7 +10,9 @@
             <div class="col-md-8">
 
                 {{-- ユーザ情報 --}}
-                @include('inc.userInfo')
+                @include('inc.userInfo', [
+                    'buttonState' => $user->buttonState(),
+                ])
                 {{-- /ユーザ情報 --}}
 
                 {{-- タブ --}}
