@@ -1,3 +1,6 @@
+/**
+ * フォロー登録・解除処理
+ */
 $(function () {
     $('.btn-follow').on("click", function (event) {
         event.preventDefault();

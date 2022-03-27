@@ -30,5 +30,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('toggle-like', function (User $user, Post $post) {
             return $user->id !== $post->user_id;
         });
+
+        Gate::define('toggle-follow', function (User $user, User $target) {
+            return $user->id !== $target->id;
+        });
     }
 }

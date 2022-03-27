@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class SearchController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * タグで記事を絞り込んで一覧表示する
      *
      * @return \Illuminate\Http\Response
      */

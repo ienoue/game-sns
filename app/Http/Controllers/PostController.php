@@ -18,7 +18,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 投稿を一覧表示
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,17 +30,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * 投稿を新規保存
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -56,7 +46,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 投稿を詳細表示
      *
      * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
@@ -66,19 +56,9 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
+     * 投稿を更新
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Post $post
@@ -98,7 +78,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 投稿を削除
      *
      * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response

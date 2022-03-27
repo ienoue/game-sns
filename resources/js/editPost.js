@@ -1,3 +1,6 @@
+/**
+ * 投稿内容更新処理
+ */
 $(function () {
     $('.btn-edit').on("click", function (event) {
         event.preventDefault();
@@ -21,6 +24,7 @@ $(function () {
             })
             .done((data) => {
                 //text()だとサニタイズされるが改行されない為に、以下の方法で改行した
+                //投稿内容を更新
                 postText = $('<dummy>').text(data.text).html().replace(/\n/g, '<br>');
                 $(`#postText_${data.id}`).empty().html(postText);
 

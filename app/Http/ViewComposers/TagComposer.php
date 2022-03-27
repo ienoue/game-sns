@@ -7,6 +7,11 @@ use Illuminate\View\View;
 
 class TagComposer
 {
+    /**
+     * よく使用されているタグをビューに紐付ける
+     *
+     * @param View $view
+     */
     public function compose(View $view)
     {
         $tags = Tag::ranking(50);

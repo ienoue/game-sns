@@ -1,3 +1,6 @@
+/**
+ * いいね登録・解除処理
+ */
 $(function () {
     $('.btn-like').on("click", function (event) {
         event.preventDefault();
