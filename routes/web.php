@@ -31,7 +31,7 @@ Route::post('/follow/{name}', [FollowController::class, 'toggle'])->name('follow
 Auth::routes();
 
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/{name}', [UserController::class, 'show'])->name('show');
+    Route::get('/{name}', [UserController::class, 'index'])->name('index');
     Route::get('/{name}/likes', [UserController::class, 'likes'])->name('likes');
 });
 

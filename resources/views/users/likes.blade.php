@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <ul class="nav nav-pills nav-fill">
                             <li class="nav-item">
-                                <a class="nav-link text-reset" href="{{ route('users.show', ['name' => $user->name]) }}">投稿</a>
+                                <a class="nav-link text-reset" href="{{ route('users.index', ['name' => $user->name]) }}">投稿</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="{{ route('users.likes', ['name' => $user->name]) }}">いいね</a>

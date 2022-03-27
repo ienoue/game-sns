@@ -65,7 +65,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <li>
                                         <a class="dropdown-item"
-                                            href="{{ route('users.show', ['name' => Auth::user()->name]) }}">マイページ</a>
+                                            href="{{ route('users.index', ['name' => Auth::user()->name]) }}">マイページ</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"

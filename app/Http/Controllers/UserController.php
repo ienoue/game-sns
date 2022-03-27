@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function show(string $name)
+    public function index(string $name)
     {
         $tags = Tag::ranking(50);
         $user = User::where('name', $name)->first();
@@ -17,7 +17,7 @@ class UserController extends Controller
         }
         $posts = $user->posts;
 
-        return view('users.show', compact('tags', 'user', 'posts'));
+        return view('users.index', compact('tags', 'user', 'posts'));
     }
 
     public function likes(string $name)

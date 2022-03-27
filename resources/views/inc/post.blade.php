@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex">
                 <div class="fw-bold pe-2">
-                    <a class="text-reset text-decoration-none" href="{{ route('users.show', ['name' => $post->user->name]) }}">{{ $post->user->name }}</a>
+                    <a class="text-reset text-decoration-none" href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}</a>
                 </div>
                 <div class="fw-light text-muted" id="test">
                     {{ $post->updated_at }}
