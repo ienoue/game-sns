@@ -4,7 +4,7 @@ $(function () {
         const $btn = $(this);
         const id = $btn.data('post-id');
         const $count = $(`#likecount_${id}`);
-        const $icon = $btn.children('i').removeClass('text-red');
+        const $icon = $btn.children('i');
         $btn.attr('disabled', true);
 
         $.ajax({

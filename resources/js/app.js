@@ -7,3 +7,4 @@ require('./ajaxSetup');
 require('./tag');
 require('./editPost');
 require('./like');
+require('./follow');
