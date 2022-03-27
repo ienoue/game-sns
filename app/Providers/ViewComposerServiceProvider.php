@@ -25,6 +25,6 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('users/show', FollowComposer::class);
+        View::composer('users/*', FollowComposer::class);
     }
 }

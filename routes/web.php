@@ -32,6 +32,7 @@ Auth::routes();
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', [UserController::class, 'show'])->name('show');
+    Route::get('/{name}/likes', [UserController::class, 'likes'])->name('likes');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
