@@ -29,7 +29,7 @@
                 {{-- 投稿内容一覧 --}}
                 @if ($tag)
                     @foreach ($tag->posts as $post)
-                        @include('posts.post', ['stretchedLink' => true, 'charLimit' => true])
+                        @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
                     @endforeach
                 @endif
                 {{-- /投稿内容一覧 --}}

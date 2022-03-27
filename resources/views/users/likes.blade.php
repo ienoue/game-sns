@@ -57,7 +57,7 @@
 
                 {{-- いいねした投稿内容一覧 --}}
                 @foreach ($posts as $post)
-                    @include('posts.post', ['stretchedLink' => true, 'charLimit' => true])
+                    @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
                 @endforeach
                 {{-- /いいねした投稿内容一覧 --}}
 
