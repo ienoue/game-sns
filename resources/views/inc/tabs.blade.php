@@ -29,6 +29,22 @@
                     'active' => $monstersPage,
                 ]) href="#" tabindex="-1" aria-disabled="true">モンスター</a>
             </li>
+            <li class="nav-item">
+                <a @class([
+                    'nav-link',
+                    'text-reset' => !$followeePage,
+                    'active' => $followeePage,
+                ]) href="{{ route('users.followees', ['name' => $user->name]) }}"
+                    tabindex="-1" aria-disabled="true">フォロー中</a>
+            </li>
+            <li class="nav-item">
+                <a @class([
+                    'nav-link',
+                    'text-reset' => !$followerPage,
+                    'active' => $followerPage,
+                ]) href="{{ route('users.followers', ['name' => $user->name]) }}"
+                    tabindex="-1" aria-disabled="true">フォロワー</a>
+            </li>
         </ul>
     </div>
 </div>

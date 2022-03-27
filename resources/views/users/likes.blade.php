@@ -14,7 +14,14 @@
                 {{-- /ユーザ情報 --}}
 
                 {{-- タブ --}}
-                @include('inc.tabs', ['postsPage' => false, 'likesPage' => true, 'battlesPage' => false, 'monstersPage' => false])
+                @include('inc.tabs', [
+                    'postsPage' => false,
+                    'likesPage' => true,
+                    'battlesPage' => false,
+                    'monstersPage' => false,
+                    'followeePage' => false,
+                    'followerPage' => false,
+                ])
                 {{-- /タブ --}}
 
                 {{-- いいねした投稿内容一覧 --}}

@@ -16,8 +16,6 @@ class FollowController extends Controller
         {
             return abort('404', 'Cannot follow yourself.');
         }
-        throw new \Exception("エラーだよ");
-
         if($user->isFollowedBy(Auth::user())) {
             $this->unFollow($user);
             $visual = 'btn btn-follow btn-outline-primary';

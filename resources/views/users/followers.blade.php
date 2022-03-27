@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('javascript')
-    @include('inc.transformToJs')
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -15,20 +11,23 @@
 
                 {{-- タブ --}}
                 @include('inc.tabs', [
-                    'postsPage' => true,
+                    'postsPage' => false,
                     'likesPage' => false,
                     'battlesPage' => false,
                     'monstersPage' => false,
                     'followeePage' => false,
-                    'followerPage' => false,
-                ])
-                {{-- /タブ --}}
+                    'followerPage' => true,
+                ]) {{-- /タブ --}}
 
-                {{-- 投稿内容一覧 --}}
-                @foreach ($posts as $post)
-                    @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
+                {{-- フォロワー一覧 --}}
+                @foreach ($followers as $user)
+                    @include('inc.userFollow', [
+                        'stretchedLink' => true,
+                        'charLimit' => true,
+                        'buttonState' => $user->buttonState($user),
+                    ])
                 @endforeach
-                {{-- /投稿内容一覧 --}}
+                {{-- /フォロワー一覧 --}}
 
             </div>
         </div>
