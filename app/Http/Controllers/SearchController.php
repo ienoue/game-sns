@@ -16,8 +16,7 @@ class SearchController extends Controller
      */
     public function index(SearchRequest $request)
     {
-        $tags = Tag::ranking(50);
         $tag = Tag::where('name', $request->tag)->first();
-        return view('search.index', compact('tags', 'tag'));
+        return view('search.index', compact('tag'));
     }
 }

@@ -26,9 +26,7 @@ class PostController extends Controller
     {
         $posts = Post::all()->sortByDesc('updated_at');
 
-        $tags = Tag::ranking(50);
-
-        return view('posts.index', compact('posts', 'tags'));
+        return view('posts.index', compact('posts'));
     }
 
     /**

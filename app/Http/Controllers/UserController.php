@@ -10,26 +10,24 @@ class UserController extends Controller
 {
     public function index(string $name)
     {
-        $tags = Tag::ranking(50);
         $user = User::where('name', $name)->first();
         if(!$user) {
             return redirect()->route('posts.index');
         }
         $posts = $user->posts;
 
-        return view('users.index', compact('tags', 'user', 'posts'));
+        return view('users.index', compact('user', 'posts'));
     }
 
     public function likes(string $name)
     {
-        $tags = Tag::ranking(50);
         $user = User::where('name', $name)->first();
         if(!$user) {
             return redirect()->route('posts.index');
         }
         $posts = $user->likes;
 
-        return view('users.likes', compact('tags', 'user', 'posts'));
+        return view('users.likes', compact('user', 'posts'));
     }
 
     public function followers(string $name)
