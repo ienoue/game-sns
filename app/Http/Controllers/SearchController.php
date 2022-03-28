@@ -16,7 +16,7 @@ class SearchController extends Controller
      */
     public function index(SearchRequest $request)
     {
-        $tag = Tag::where('name', $request->tag)->first();
+        $tag = Tag::where('name', $request->tag)->first()->load('posts.likes', 'posts.user', 'posts.tags');
         return view('search.index', compact('tag'));
     }
 }

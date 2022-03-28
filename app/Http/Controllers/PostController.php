@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->sortByDesc('updated_at');
+        $posts = Post::all()->sortByDesc('updated_at')->load('likes', 'tags', 'user');
 
         return view('posts.index', compact('posts'));
     }

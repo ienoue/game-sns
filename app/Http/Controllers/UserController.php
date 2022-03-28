@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+            ?->load('posts.tags', 'posts.user', 'posts.likes');
         if (!$user) {
             return redirect()->route('posts.index');
         }
@@ -33,7 +34,8 @@ class UserController extends Controller
      */
     public function likes(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+            ?->load('likes.tags', 'likes.likes', 'likes.user');
         if (!$user) {
             return redirect()->route('posts.index');
         }
@@ -50,7 +52,8 @@ class UserController extends Controller
      */
     public function followers(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+            ?->load('followers.followers');
         if (!$user) {
             return redirect()->route('posts.index');
         }
@@ -67,7 +70,8 @@ class UserController extends Controller
      */
     public function followees(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+            ?->load('followees.followers');
         if (!$user) {
             return redirect()->route('posts.index');
         }
