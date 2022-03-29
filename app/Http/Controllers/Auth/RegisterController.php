@@ -50,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $messages = [
-            'name.regex' => '名前は英数字、ひらがな、カタカナ、漢字、スペースのみが使用できます',
+            'name.regex' => '英数字、ひらがな、カタカナ、漢字のみ使用できます。',
         ];
 
         return Validator::make($data, [
