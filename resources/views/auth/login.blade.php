@@ -17,13 +17,14 @@
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                         name="email" value="{{ old('email') }}" required autocomplete="email"
                                         placeholder="email">
-                                    <label for="email">{{ __('Email Address') }}</label>
+                                    <label for="email">
+                                        @error('email')
+                                            {{ $message }}
+                                        @else
+                                            {{ __('Email Address') }}
+                                        @enderror
+                                    </label>
                                 </div>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
 
                             <div class="mb-3">
@@ -31,13 +32,14 @@
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="current-password" placeholder="password">
-                                    <label for="password">{{ __('Password') }}</label>
+                                    <label for="password">
+                                        @error('password')
+                                            {{ $message }}
+                                        @else
+                                            {{ __('Password') }}
+                                        @enderror
+                                    </label>
                                 </div>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
 
                             <div class="mb-3">
