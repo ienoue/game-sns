@@ -28,14 +28,15 @@ Route::post('/like/{post}', [LikeController::class, 'toggle'])->name('like')->mi
 
 Route::post('/follow/{name}', [FollowController::class, 'toggle'])->name('follow')->middleware('auth');
 
-Auth::routes();
+Auth::routes([
+    'reset'    => false,  // パスワードリセット用のルート
+]);
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', [UserController::class, 'index'])->name('index');
     Route::get('/{name}/likes', [UserController::class, 'likes'])->name('likes');
     Route::get('/{name}/followers', [UserController::class, 'followers'])->name('followers');
     Route::get('/{name}/followees', [UserController::class, 'followees'])->name('followees');
-
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
