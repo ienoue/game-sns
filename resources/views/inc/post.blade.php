@@ -13,18 +13,28 @@
             </div>
             @if (Auth::id() === $post->user_id)
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="postSetting"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        設定
+                    <button class="btn btn-outline-secondary rounded-circle p-0" style="width:1.5rem;height:1.5rem;"
+                        type="button" id="postSetting" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="postSetting">
-                        <li><a class="dropdown-item" data-bs-toggle="modal"
-                                data-bs-target="#modalEdit_{{ $post->id }}">記事編集</a></li>
+                        <li>
+                            <a class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#modalEdit_{{ $post->id }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                記事編集
+                            </a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete_{{ $post->id }}">記事削除</a></li>
+                        <li>
+                            <a class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete_{{ $post->id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                                記事削除
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -113,9 +123,9 @@
         </div>
         <div id="postTag_{{ $post->id }}" class="card-text">
             @if ($post->tags->count() >= 1)
-                <div class="mt-2">
+                <div class="mt-3">
                     @foreach ($post->tags as $tag)
-                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px"
+                        <a class="btn btn-outline-secondary rounded-pill btn-sm py-0 me-2 mb-1 text-truncate mw-200px"
                             href="{{ route('search', ['tag' => $tag->name]) }}"
                             role="button">{{ $tag->name }}</a>
                     @endforeach
@@ -127,12 +137,14 @@
         <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
             <i @class([
-                'fa-solid',
+                $post->isLikedBy(Auth::user()) ? 'fa-solid' : 'fa-regular',
                 'fa-heart',
-                'me-2',
                 'text-red' => $post->isLikedBy(Auth::user()),
             ])></i>
+            <span class="ms-2" id="likecount_{{ $post->id }}">
+                {{ $post->likes->count() }}
+            </span>
         </button>
-        <p class="card-text" id="likecount_{{ $post->id }}">{{ $post->likes->count() }} いいね</p>
+
     </div>
 </div>

@@ -29,7 +29,7 @@ $(function () {
             .fail((jqXHR) => {
                 $btn.addClass(oldBtnClass);
                 $icon.addClass(oldIconClass);
-                console.log(jqXHR);
+                console.log(jqXHR.status + ': 通信に失敗しました。');
             });
     });
 })
