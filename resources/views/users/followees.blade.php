@@ -22,11 +22,13 @@
                 ]) {{-- /タブ --}}
 
                 {{-- フォロワー一覧 --}}
-                @foreach ($followees as $usr)
-                    @include('inc.userFollow', [
-                        'buttonState' => $usr->buttonState(),
-                    ])
-                @endforeach
+                <ul class="list-group">
+                    @foreach ($followees as $usr)
+                        @include('inc.userFollow', [
+                            'buttonState' => $usr->buttonState(),
+                        ])
+                    @endforeach
+                </ul>
                 {{-- /フォロワー一覧 --}}
 
             </div>

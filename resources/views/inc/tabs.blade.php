@@ -21,7 +21,7 @@
                     いいね
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a @class([
                     'nav-link',
                     'text-reset' => !$battlesPage,
@@ -40,7 +40,7 @@
                     <i class="fa-solid fa-dragon fa-fw"></i>
                     モンスター
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a @class([
                     'nav-link',
@@ -49,7 +49,7 @@
                 ]) href="{{ route('users.followees', ['name' => $user->name]) }}"
                     tabindex="-1" aria-disabled="true">
                     <i class="fa-solid fa-users fa-fw"></i>
-                    フォロー中
+                    フォロー中<span class="ms-1">{{ $user->followees->count() }}</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -60,7 +60,7 @@
                 ]) href="{{ route('users.followers', ['name' => $user->name]) }}"
                     tabindex="-1" aria-disabled="true">
                     <i class="fa-solid fa-user fa-fw"></i>
-                    フォロワー
+                    フォロワー<span class="ms-1">{{ $user->followers->count() }}</span>
                 </a>
             </li>
         </ul>

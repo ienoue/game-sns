@@ -75,14 +75,12 @@ class User extends Authenticatable
     public function buttonState() {
         if ($this->isFollowedBy(Auth::user())) {
             $btnVisual = 'btn-primary';
-            $icon = 'fa-user-check';
             $btnText = 'フォロー中';
         } else {
             $btnVisual = 'btn-outline-primary';
-            $icon = 'fa-user-plus';
             $btnText = 'フォローする';
         }
         
-        return compact('btnVisual', 'icon', 'btnText');
+        return compact('btnVisual', 'btnText');
     }
 }
