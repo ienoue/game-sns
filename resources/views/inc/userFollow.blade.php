@@ -5,7 +5,7 @@
             {{ $usr->name }}
         </a>
         @if (Auth::check() && Auth::id() !== $usr->id)
-            <button type="button" class="btn btn-follow rounded-pill {{ $buttonState['btnVisual'] }}"
+            <button type="button" class="{{ $buttonState['btnVisual'] }}"
                 data-user-name="{{ $usr->name }}">
                 <span>{{ $buttonState['btnText'] }}</span>
             </button>

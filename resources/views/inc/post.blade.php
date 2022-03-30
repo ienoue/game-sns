@@ -2,12 +2,13 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex">
-                <div class="fw-bold pe-2">
+                <div class="fw-bold me-3">
                     <a class="text-reset text-decoration-none"
                         href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
                     </a>
                 </div>
                 <div class="fw-light text-muted" id="test">
+                    <i class="fa-regular fa-clock fa-fw"></i>
                     {{ $post->updated_at }}
                 </div>
             </div>
