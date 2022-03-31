@@ -25,9 +25,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
+
+                {{-- タイトルロゴ --}}
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/logo.png" alt="" width="84" height="30">
                 </a>
+                {{-- /タイトルロゴ --}}
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -35,10 +39,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -56,33 +56,27 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="{{ route('users.index', ['name' => Auth::user()->name]) }}">
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    マイページ
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="{{ route('users.index', ['name' => Auth::user()->name]) }}">
-                                            <i class="fa-solid fa-user fa-fw"></i>
-                                            マイページ
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                            <i class="fa-solid fa-right-from-bracket fa-fw"></i>
-                                            {{ __('Logout') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    class="d-none">
-                                    @csrf
-                                </form>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <i class="fa-solid fa-right-from-bracket fa-fw"></i>
+                                    {{ __('Logout') }}
+                                </a>
+                            </li>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+
                         @endguest
+
                     </ul>
                 </div>
             </div>
