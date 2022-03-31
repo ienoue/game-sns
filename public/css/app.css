@@ -22119,12 +22119,6 @@ readers do not read off random characters that represent icons */
   overflow: hidden;
 }
 
-.elipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .text-red {
   color: #e53e3e;
 }

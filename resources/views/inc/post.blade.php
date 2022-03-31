@@ -116,6 +116,7 @@
             <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
             <p @class([
                 'card-text',
+                'text-wrap',
                 'text-truncate',
                 'row-5' => $charLimit,
             ]) id="postText_{{ $post->id }}">
