@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public function buttonState() {
         if ($this->isFollowedBy(Auth::user())) {
-            $btnVisual = 'btn btn-follow btn-primary rounded-pill';
+            $btnVisual = 'btn btn-follow btn-primary rounded-pill text-white';
             $btnText = 'フォロー中';
         } else {
             $btnVisual = 'btn btn-follow btn-outline-primary rounded-pill';

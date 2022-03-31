@@ -71,7 +71,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary btn-edit"
+                                <button type="button" class="btn btn-primary btn-edit text-white"
                                     data-post-id="{{ $post->id }}">更新する
                                 </button>
                             </div>

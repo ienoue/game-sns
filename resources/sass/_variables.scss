@@ -2,6 +2,22 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 $font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$headings-line-height: 1.5;
+$line-height-base: 1.65;
+
+// メインカラー
+$primary: #4285F4;
+
+// 本文色
+$gray-900: #546e7a;
+
+// ボタンの角
+$border-radius: 0.125rem ;
+$border-radius-sm: 0.125rem;
+$border-radius-lg: 0.125rem;
+$border-radius-pill: 50rem;
+
+// モーダルのパディング
+$modal-inner-padding: 1.5rem;
