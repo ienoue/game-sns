@@ -26,7 +26,8 @@ class FollowController extends Controller
             $this->follow($user);
         }
 
-        $state = User::where('name', $name)->first()->buttonState();
+        $user->refresh();
+        $state = $user->buttonState();
 
         return [
             'name' => $name,
