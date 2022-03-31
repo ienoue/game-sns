@@ -16,7 +16,6 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -65,11 +64,15 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <li>
                                         <a class="dropdown-item"
-                                            href="{{ route('users.index', ['name' => Auth::user()->name]) }}">マイページ</a>
+                                            href="{{ route('users.index', ['name' => Auth::user()->name]) }}">
+                                            <i class="fa-solid fa-user fa-fw"></i>
+                                            マイページ
+                                        </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                            <i class="fa-solid fa-right-from-bracket fa-fw"></i>
                                             {{ __('Logout') }}
                                         </a>
                                     </li>

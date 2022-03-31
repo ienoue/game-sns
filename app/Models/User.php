@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class)->latest('updated_at');
     }
 
     public function likes()
@@ -74,15 +74,13 @@ class User extends Authenticatable
 
     public function buttonState() {
         if ($this->isFollowedBy(Auth::user())) {
-            $btnVisual = 'btn-primary';
-            $icon = 'fa-user-check';
+            $btnVisual = 'btn btn-follow btn-primary rounded-pill text-white';
             $btnText = 'フォロー中';
         } else {
-            $btnVisual = 'btn-outline-primary';
-            $icon = 'fa-user-plus';
+            $btnVisual = 'btn btn-follow btn-outline-primary rounded-pill';
             $btnText = 'フォローする';
         }
         
-        return compact('btnVisual', 'icon', 'btnText');
+        return compact('btnVisual', 'btnText');
     }
 }

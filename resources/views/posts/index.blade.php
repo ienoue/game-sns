@@ -22,7 +22,7 @@
                                 <div class="mb-3">
                                     <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}" placeholder="タグを5個まで入力できます">
                                 </div>
-                                <button type="submit" class="btn btn-primary">投稿する</button>
+                                <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する</button>
                             </form>
                         </div>
                     </div>

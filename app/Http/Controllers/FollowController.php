@@ -22,21 +22,17 @@ class FollowController extends Controller
 
         if ($user->isFollowedBy(Auth::user())) {
             $this->unFollow($user);
-            $visual = 'btn btn-follow btn-outline-primary';
-            $icon = 'fa-solid fa-user-plus';
-            $text = 'フォローする';
         } else {
             $this->follow($user);
-            $visual = 'btn btn-follow btn-primary';
-            $icon = 'fa-solid fa-user-check';
-            $text = 'フォロー中';
         }
+
+        $user->refresh();
+        $state = $user->buttonState();
 
         return [
             'name' => $name,
-            'visual' => $visual,
-            'icon' => $icon,
-            'text' => $text,
+            'visual' => $state['btnVisual'],
+            'text' => $state['btnText'],
         ];
     }
 

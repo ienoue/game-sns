@@ -2,29 +2,40 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex">
-                <div class="fw-bold pe-2">
+                <div class="fw-bold me-3">
                     <a class="text-reset text-decoration-none"
                         href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
                     </a>
                 </div>
                 <div class="fw-light text-muted" id="test">
+                    <i class="fa-regular fa-clock fa-fw"></i>
                     {{ $post->updated_at }}
                 </div>
             </div>
             @if (Auth::id() === $post->user_id)
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="postSetting"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        設定
+                    <button class="btn btn-outline-secondary rounded-circle p-0" style="width:1.5rem;height:1.5rem;"
+                        type="button" id="postSetting" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="postSetting">
-                        <li><a class="dropdown-item" data-bs-toggle="modal"
-                                data-bs-target="#modalEdit_{{ $post->id }}">記事編集</a></li>
+                        <li>
+                            <a class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#modalEdit_{{ $post->id }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                記事編集
+                            </a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
-                                data-bs-target="#modalDelete_{{ $post->id }}">記事削除</a></li>
+                        <li>
+                            <a class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#modalDelete_{{ $post->id }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                                記事削除
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -60,7 +71,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary btn-edit"
+                                <button type="button" class="btn btn-primary btn-edit text-white"
                                     data-post-id="{{ $post->id }}">更新する
                                 </button>
                             </div>
@@ -105,6 +116,7 @@
             <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
             <p @class([
                 'card-text',
+                'text-wrap',
                 'text-truncate',
                 'row-5' => $charLimit,
             ]) id="postText_{{ $post->id }}">
@@ -113,9 +125,9 @@
         </div>
         <div id="postTag_{{ $post->id }}" class="card-text">
             @if ($post->tags->count() >= 1)
-                <div class="mt-2">
+                <div class="mt-3">
                     @foreach ($post->tags as $tag)
-                        <a class="btn btn-outline-secondary btn-sm lh-1 me-1 mb-1 text-truncate mw-200px"
+                        <a class="btn btn-outline-secondary rounded-pill btn-sm py-0 me-2 mb-1 text-truncate mw-200px"
                             href="{{ route('search', ['tag' => $tag->name]) }}"
                             role="button">{{ $tag->name }}</a>
                     @endforeach
@@ -127,12 +139,14 @@
         <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
             <i @class([
-                'fa-solid',
+                $post->isLikedBy(Auth::user()) ? 'fa-solid' : 'fa-regular',
                 'fa-heart',
-                'me-2',
                 'text-red' => $post->isLikedBy(Auth::user()),
             ])></i>
+            <span class="ms-2" id="likecount_{{ $post->id }}">
+                {{ $post->likes->count() }}
+            </span>
         </button>
-        <p class="card-text" id="likecount_{{ $post->id }}">{{ $post->likes->count() }} いいね</p>
+
     </div>
 </div>

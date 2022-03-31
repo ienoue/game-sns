@@ -1,5 +1,5 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
+// @import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
 @import "variables";
@@ -15,14 +15,18 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
+
+// Tagify用
 .customLook {
     --tag-inset-shadow-size: 1.5em;
 }
 
+// タグ幅
 .mw-200px {
     max-width: 200px;
 }
 
+// 投稿の表示行制限
 .row-5 {
     max-height: calc(1.5em * 5);
     line-height: 1.5;
@@ -32,17 +36,14 @@
     overflow: hidden;
 }
 
-.elipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
+// いいねボタン色
 .text-red {
-    color: #e53e3e;
+    color: $red;
 }
 
+// いいねボタンの枠を消す
 .btn-like:focus {
     outline: none;
     box-shadow: none;
 }
+
