@@ -40,10 +40,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <!-- Right Side Of Navbar -->
+                    <!-- ナビバーの右部分 -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+
                         @guest
+                            <!-- 認証 -->
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -55,6 +56,7 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
+                            {{-- /認証 --}}
                         @else
                             <li class="nav-item">
                                 <a class="nav-link"
@@ -74,10 +76,11 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-
                         @endguest
 
                     </ul>
+                    <!-- /ナビバーの右部分 -->
+
                 </div>
             </div>
         </nav>

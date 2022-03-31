@@ -2,6 +2,7 @@
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex">
+                {{-- ユーザ情報 --}}
                 <div class="fw-bold me-3">
                     <a class="text-reset text-decoration-none"
                         href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
@@ -11,7 +12,10 @@
                     <i class="fa-regular fa-clock fa-fw"></i>
                     {{ $post->updated_at }}
                 </div>
+                {{-- /ユーザ情報 --}}
             </div>
+
+            {{-- 記事編集メニュー --}}
             @if (Auth::id() === $post->user_id)
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary rounded-circle p-0" style="width:1.5rem;height:1.5rem;"
@@ -38,6 +42,7 @@
                         </li>
                     </ul>
                 </div>
+                {{-- /記事編集メニュー --}}
 
                 {{-- 編集用モーダル --}}
                 <div class="modal fade" id="modalEdit_{{ $post->id }}" tabindex="-1"
@@ -112,6 +117,8 @@
         </div>
     </div>
     <div class="card-body">
+
+        {{-- 投稿内容 --}}
         <div class="card-text position-relative">
             <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
             <p @class([
@@ -123,6 +130,9 @@
                 {!! nl2br(e($post->text)) !!}
             </p>
         </div>
+        {{-- /投稿内容 --}}
+
+        {{-- タグ --}}
         <div id="postTag_{{ $post->id }}" class="card-text">
             @if ($post->tags->count() >= 1)
                 <div class="mt-3">
@@ -134,8 +144,11 @@
                 </div>
             @endif
         </div>
+        {{-- /タグ --}}
+
     </div>
     <div class="card-footer text-muted d-flex align-items-baseline">
+        {{-- いいねボタン --}}
         <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
             <i @class([
@@ -147,6 +160,7 @@
                 {{ $post->likes->count() }}
             </span>
         </button>
+        {{-- /いいねボタン --}}
 
     </div>
 </div>
