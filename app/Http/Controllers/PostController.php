@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use App\Models\Tag;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -24,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->sortByDesc('updated_at')->load('likes', 'tags', 'user');
+        $posts = Post::with(['likes', 'tags', 'user'])->orderByDesc('updated_at')->paginate(10);
 
         return view('posts.index', compact('posts'));
     }

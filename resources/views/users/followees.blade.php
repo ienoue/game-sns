@@ -22,7 +22,7 @@
                 ]) {{-- /タブ --}}
 
                 {{-- フォロワー一覧 --}}
-                <ul class="list-group">
+                <ul class="list-group mb-3">
                     @foreach ($followees as $usr)
                         @include('inc.userFollow', [
                             'buttonState' => $usr->buttonState(),
@@ -30,6 +30,10 @@
                     @endforeach
                 </ul>
                 {{-- /フォロワー一覧 --}}
+
+                {{-- ページネーション --}}
+                {{ $followees->links() }}
+                {{-- /ページネーション --}}
 
             </div>
         </div>

@@ -28,11 +28,15 @@
 
                 {{-- 投稿内容一覧 --}}
                 @if ($tag)
-                    @foreach ($tag->posts as $post)
+                    @foreach ($posts as $post)
                         @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
                     @endforeach
                 @endif
                 {{-- /投稿内容一覧 --}}
+
+                {{-- ページネーション --}}
+                {{ $posts->appends(['tag' => $tag->name ])->links() }}
+                {{-- /ページネーション --}}
 
             </div>
         </div>

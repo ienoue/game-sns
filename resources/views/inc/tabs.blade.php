@@ -1,3 +1,4 @@
+{{-- マイページタブ --}}
 <ul class="nav nav-pills nav-fill mb-4">
     <li class="nav-item">
         <a @class([
@@ -62,3 +63,4 @@
         </a>
     </li>
 </ul>
+{{-- /マイページタブ --}}
