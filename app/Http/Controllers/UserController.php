@@ -16,12 +16,15 @@ class UserController extends Controller
      */
     public function index(string $name)
     {
-        $user = User::where('name', $name)->first()
-            ?->load('posts.tags', 'posts.user', 'posts.likes');
+        // paginateを使用するために途中でposts()とする必要があるので以下はEagerロードが効かない
+        // $user = User::where('name', $name)->first()
+        //     ?->load('posts.tags', 'posts.user', 'posts.likes');
+
+        $user = User::where('name', $name)->first();
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->posts;
+        $posts = $user->posts()->with('tags', 'user', 'likes')->paginate(10);
 
         return view('users.index', compact('user', 'posts'));
     }
@@ -34,12 +37,12 @@ class UserController extends Controller
      */
     public function likes(string $name)
     {
-        $user = User::where('name', $name)->first()
-            ?->load('likes.tags', 'likes.likes', 'likes.user');
+        $user = User::where('name', $name)->first();
+
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->likes;
+        $posts = $user->likes()->with('tags', 'user', 'likes')->paginate(10);
 
         return view('users.likes', compact('user', 'posts'));
     }
@@ -52,12 +55,13 @@ class UserController extends Controller
      */
     public function followers(string $name)
     {
-        $user = User::where('name', $name)->first()
-            ?->load('followers.followers');
+        $user = User::where('name', $name)->first();
+
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $followers = $user->followers;
+
+        $followers = $user->followers()->with('followers')->paginate(10);
 
         return view('users.followers', compact('user', 'followers'));
     }
@@ -70,12 +74,12 @@ class UserController extends Controller
      */
     public function followees(string $name)
     {
-        $user = User::where('name', $name)->first()
-            ?->load('followees.followers');
+        $user = User::where('name', $name)->first();
+
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $followees = $user->followees;
+        $followees = $user->followees()->with('followers')->paginate(10);
 
         return view('users.followees', compact('user', 'followees'));
     }
