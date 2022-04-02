@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
         $this->merge([
             'tags_as_array' => json_decode($this->tags, true),
         ]);
-
+        
         return parent::getValidatorInstance();
     }
 
@@ -41,9 +41,8 @@ class PostRequest extends FormRequest
         return [
             'text' => 'required|string|max:300',
             'tags' => 'json|nullable',
-            'tags_as_array' => 'array|nullable',
-            // max:5が動作していないことに注意
-            'tags_as_array.*' => 'array|array:value|max:5',
+            'tags_as_array' => 'array|nullable|max:5',
+            'tags_as_array.*' => 'array|array:value',
             'tags_as_array.*.value' => 'string|max:20|regex:/^[^\s]+$/u',
         ];
     }
