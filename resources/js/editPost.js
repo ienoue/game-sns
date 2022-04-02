@@ -27,13 +27,13 @@ $(function () {
                 //投稿内容を更新
                 postText = $('<dummy>').text(data.text).html().replace(/\n/g, '<br>');
                 $(`#postText_${data.id}`).empty().html(postText);
-
+                
                 //タグを追加
                 $tag.empty();
                 if (data.tags?.length) {
                     $container = $('<div>').addClass('pt-2').appendTo($tag);
                     $.each(data.tags, function (i, tag) {
-                        $('<a>').text(tag).addClass('btn btn-outline-secondary btn-sm lh-1 me-1').appendTo($container);
+                        $('<a>').text(tag).addClass(data.visual).appendTo($container);
                     });
                 }
 

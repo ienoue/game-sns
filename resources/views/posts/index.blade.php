@@ -20,9 +20,11 @@
                                     <textarea class="form-control" rows="2" name="text" placeholder="好きな話題を投稿してみよう">{{ old('text') }}</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}" placeholder="タグを5個まで入力できます">
+                                    <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}"
+                                        placeholder="タグを5個まで入力できます">
                                 </div>
-                                <button type="submit" class="btn btn-primary text-white"><i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する</button>
+                                <button type="submit" class="btn btn-primary text-white"><i
+                                        class="fa-solid fa-pen-to-square fa-fw"></i>投稿する</button>
                             </form>
                         </div>
                     </div>
@@ -31,7 +33,11 @@
 
                 {{-- 投稿内容一覧 --}}
                 @foreach ($posts as $post)
-                    @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
+                    @include('inc.post', [
+                        'stretchedLink' => true,
+                        'charLimit' => true,
+                        'likeBtn' => $post->likeBtnState(),
+                    ])
                 @endforeach
                 {{-- /投稿内容一覧 --}}
 

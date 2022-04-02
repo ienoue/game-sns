@@ -53,16 +53,25 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'likes')->withTimestamps()->latest('updated_at');
     }
 
+    /**
+     * このユーザをフォローしているユーザを返す
+     */
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id')->withTimestamps()->latest('updated_at');
     }
 
+    /**
+     * このユーザがフォローしているユーザを返す
+     */
     public function followees()
     {
-        return $this->belongsToMany(User::class, 'follows','follower_id', 'followee_id')->withTimestamps()->latest('updated_at');
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id')->withTimestamps()->latest('updated_at');
     }
 
+    /**
+     * 引数のユーザによってフォローされているかどうかを返す
+     */
     public function isFollowedBy(?User $user)
     {
         if (!$user) {
@@ -72,7 +81,11 @@ class User extends Authenticatable
         return $this->followers->where('id', $user->id)->isNotEmpty();
     }
 
-    public function buttonState() {
+    /**
+     * フォローボタンの要素の値とClass属性の値を返す
+     */
+    public function followBtnState()
+    {
         if ($this->isFollowedBy(Auth::user())) {
             $btnVisual = 'btn btn-follow btn-primary rounded-pill text-white';
             $btnText = 'フォロー中';
@@ -80,7 +93,7 @@ class User extends Authenticatable
             $btnVisual = 'btn btn-follow btn-outline-primary rounded-pill';
             $btnText = 'フォローする';
         }
-        
+
         return compact('btnVisual', 'btnText');
     }
 }

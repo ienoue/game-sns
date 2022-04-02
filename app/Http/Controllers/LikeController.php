@@ -30,9 +30,13 @@ class LikeController extends Controller
             $count++;
         }
 
+        $post->refresh();
+        $state = $post->likeBtnState();
+
         return [
             'isLiked' => $isLiked,
             'count' => $count,
+            'visual' => $state['btnVisual'],
         ];
     }
 

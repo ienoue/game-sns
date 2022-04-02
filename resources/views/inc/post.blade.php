@@ -137,7 +137,7 @@
             @if ($post->tags->count() >= 1)
                 <div class="mt-3">
                     @foreach ($post->tags as $tag)
-                        <a class="btn btn-outline-secondary rounded-pill btn-sm py-0 me-2 mb-1 text-truncate mw-200px"
+                        <a class="{{ App\Models\Tag::tagBtnState()['btnVisual'] }}"
                             href="{{ route('search', ['tag' => $tag->name]) }}"
                             role="button">{{ $tag->name }}</a>
                     @endforeach
@@ -151,11 +151,7 @@
         {{-- いいねボタン --}}
         <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
-            <i @class([
-                $post->isLikedBy(Auth::user()) ? 'fa-solid' : 'fa-regular',
-                'fa-heart',
-                'text-red' => $post->isLikedBy(Auth::user()),
-            ])></i>
+            <i class="{{ $likeBtn['btnVisual'] }}"></i>
             <span class="ms-2" id="likecount_{{ $post->id }}">
                 {{ $post->likes->count() }}
             </span>
