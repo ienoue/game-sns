@@ -16,9 +16,9 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => Post::factory(),
-            'text' => preg_replace("/。/", "。\n\n", $this->faker->realText(150)),
-            'created_at' => $this->faker->dateTimeBetween('-10days', '-7days'),
-            'updated_at' => $this->faker->dateTimeBetween('-6days', '0days'),
+            'text' => preg_replace("/。/", "。\n", $this->faker->realText($this->faker->numberBetween(30, 200), 5)),
+            'created_at' => $this->faker->dateTimeBetween('-30days', '-15days'),
+            'updated_at' => $this->faker->dateTimeBetween('-14days', '0days'),
         ];
     }
 }
