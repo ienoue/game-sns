@@ -18,7 +18,11 @@ class SearchController extends Controller
     {
         // $tag = Tag::where('name', $request->tag)->first()->load('posts.likes', 'posts.user', 'posts.tags');
         $tag = Tag::where('name', $request->tag)->first();
-        $posts = $tag->posts()->with('tags', 'user', 'likes')->paginate(10);
+        if ($tag) {
+            $posts = $tag->posts()->with('tags', 'user', 'likes')->paginate(10);
+        } else {
+            $posts = null;
+        }
         return view('search.index', compact('tag', 'posts'));
     }
 }
