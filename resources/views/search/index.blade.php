@@ -35,7 +35,9 @@
                 {{-- /投稿内容一覧 --}}
 
                 {{-- ページネーション --}}
-                {{ $posts->appends(['tag' => $tag->name ])->links() }}
+                @if ($tag)
+                    {{ $posts->appends(['tag' => $tag->name])->links() }}
+                @endif
                 {{-- /ページネーション --}}
 
             </div>
