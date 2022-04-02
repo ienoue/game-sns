@@ -17,17 +17,12 @@ $(function () {
             dataType: 'json',
         })
             .always(() => {
-                $icon.removeClass('text-red fa-solid fa-regular');
+                $icon.removeClass();
                 $btn.attr('disabled', false);
             })
             .done((data) => {
-                if (data.isLiked === 'true') {
-                    $icon.addClass('text-red fa-solid');
-                } else {
-                    $icon.addClass('fa-regular');
-                }
-                const cnt = data.count;
-                $count.text(`${cnt}`);
+                $icon.addClass(data.visual);
+                $count.text(data.count);
             })
             .fail((jqXHR) => {
                 $icon.addClass(oldIconClass);

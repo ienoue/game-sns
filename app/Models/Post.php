@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -34,5 +35,15 @@ class Post extends Model
             return false;
         }
         return $this->likes->where('id', $user->id)->isNotEmpty();
+    }
+
+    public function likeBtnState() {
+        if ($this->isLikedby(Auth::user())) {
+            $btnVisual = 'fa-solid fa-heart text-red';
+        } else {
+            $btnVisual = 'fa-regular fa-heart';
+        }
+        
+        return compact('btnVisual');
     }
 }

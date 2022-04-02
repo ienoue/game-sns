@@ -28,7 +28,11 @@
 
                 {{-- いいねした投稿内容一覧 --}}
                 @foreach ($posts as $post)
-                    @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
+                    @include('inc.post', [
+                        'stretchedLink' => true,
+                        'charLimit' => true,
+                        'likeBtn' => $post->likeBtnState(),
+                    ])
                 @endforeach
                 {{-- /いいねした投稿内容一覧 --}}
 

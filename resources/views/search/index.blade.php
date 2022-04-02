@@ -29,7 +29,11 @@
                 {{-- 投稿内容一覧 --}}
                 @if ($tag)
                     @foreach ($posts as $post)
-                        @include('inc.post', ['stretchedLink' => true, 'charLimit' => true])
+                        @include('inc.post', [
+                            'stretchedLink' => true,
+                            'charLimit' => true,
+                            'likeBtn' => $post->likeBtnState(),
+                        ])
                     @endforeach
                 @endif
                 {{-- /投稿内容一覧 --}}

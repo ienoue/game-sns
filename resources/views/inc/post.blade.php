@@ -151,11 +151,7 @@
         {{-- いいねボタン --}}
         <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
-            <i @class([
-                $post->isLikedBy(Auth::user()) ? 'fa-solid' : 'fa-regular',
-                'fa-heart',
-                'text-red' => $post->isLikedBy(Auth::user()),
-            ])></i>
+            <i class="{{ $likeBtn['btnVisual'] }}"></i>
             <span class="ms-2" id="likecount_{{ $post->id }}">
                 {{ $post->likes->count() }}
             </span>
