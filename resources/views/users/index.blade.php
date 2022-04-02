@@ -11,7 +11,7 @@
 
                 {{-- ユーザ情報 --}}
                 @include('inc.userInfo', [
-                    'buttonState' => $user->buttonState(),
+                    'followBtn' => $user->followBtnState(),
                 ])
                 {{-- /ユーザ情報 --}}
 
