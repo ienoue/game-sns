@@ -14,7 +14,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->realText($this->faker->numberBetween(10, 15)),
+            'name' => preg_replace('/[。、「」]/u', '', $this->faker->unique()->realText($this->faker->numberBetween(10, 15), 5)),
             'created_at' => $this->faker->dateTimeBetween('-10days', '0days'),
         ];
     }

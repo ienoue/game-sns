@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 
         
         User::first()->update([
-            'name' => '自分',
+            'name' => 'Guests User',
             'email' => 'test@test.com',
             'password' => bcrypt('hogehoge'),
         ]);
