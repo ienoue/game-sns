@@ -29,6 +29,9 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'likes')->withTimestamps();
     }
 
+    /**
+     * 引数のユーザによっていいねされているかどうかを返す
+     */
     public function isLikedby(?User $user)
     {
         if (!$user) {
@@ -37,13 +40,17 @@ class Post extends Model
         return $this->likes->where('id', $user->id)->isNotEmpty();
     }
 
-    public function likeBtnState() {
+    /**
+     * いいねボタンのClass属性の値を返す
+     */
+    public function likeBtnState()
+    {
         if ($this->isLikedby(Auth::user())) {
             $btnVisual = 'fa-solid fa-heart text-red';
         } else {
             $btnVisual = 'fa-regular fa-heart';
         }
-        
+
         return compact('btnVisual');
     }
 }

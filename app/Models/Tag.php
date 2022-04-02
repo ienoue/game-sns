@@ -37,7 +37,7 @@ class Tag extends Model
     }
 
     /**
-     * タグボタンのClass要素の値を返す
+     * 投稿タグのClass属性の値を返す
      */
     public static function tagBtnState()
     {
