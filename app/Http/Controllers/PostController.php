@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -67,10 +68,13 @@ class PostController extends Controller
 
         $request->storeTags($post);
 
-        $text = $request->text;
-        $id = $post->id;
-        $tags = $request->tags;
-        return response()->json(compact('text', 'id', 'tags'));
+
+        return [
+            'text' => $request->text,
+            'id' => $post->id,
+            'tags' => $request->tags,
+            'visual' => Tag::tagBtnState()['btnVisual'],
+        ];
     }
 
     /**

@@ -35,4 +35,13 @@ class Tag extends Model
             ->take($limit)
             ->get();
     }
+
+    /**
+     * タグボタンのClass要素の値を返す
+     */
+    public static function tagBtnState()
+    {
+        $btnVisual = 'btn btn-outline-secondary rounded-pill btn-sm py-0 me-2 mb-1 text-truncate mw-200px';
+        return compact('btnVisual');
+    }
 }
