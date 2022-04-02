@@ -32,9 +32,9 @@ SNSを使ってもなかなか人と繋がれない、SNSでいいねが貰え�
 * PHP 8.0.13
 * Laravel 8.83.4
 * MariaDB 10.4.22
-* Jquery 3.6.0
-* tagify 4.9.8
-* bootstrap: 5.1.3
+* jQuery 3.6.0
+* Tagify 4.9.8
+* Bootstrap: 5.1.3
 
 
 # 機能一覧
