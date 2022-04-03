@@ -86,6 +86,10 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts.index');
+        // 直前にアクセスしたURLが記事詳細画面かどうか
+        if (app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName() === 'posts.show') {
+            return redirect()->route('posts.index');
+        }
+        return back();
     }
 }
