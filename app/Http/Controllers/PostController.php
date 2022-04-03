@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['likes', 'tags', 'user'])->orderByDesc('updated_at')->paginate(10);
+        $posts = Post::with(['likes', 'tags', 'user'])->orderByDesc('updated_at')->paginate(10)->onEachSide(0);
 
         return view('posts.index', compact('posts'));
     }
