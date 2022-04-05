@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'likes')->withTimestamps()->latest('updated_at');
     }
 
+    public function monsters()
+    {
+        return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps()->latest('updated_at');
+    }
+
     /**
      * このユーザをフォローしているユーザを返す
      */

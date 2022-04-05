@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Monster;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -15,6 +16,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'monster_id' => Monster::inRandomOrder()->first(),
             'name' => $this->faker->unique()->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),

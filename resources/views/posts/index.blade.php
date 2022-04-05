@@ -9,6 +9,17 @@
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-8">
 
+                {{-- ガチャ --}}
+                @auth
+                    <div class="card mb-4 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">ガチャ</h5>
+                            <a href="{{ route('gacha.index') }}" class="btn btn-primary text-white">本日あと３回</a>
+                        </div>
+                    </div>
+                @endauth
+                {{-- /ガチャ --}}
+
                 {{-- 投稿フォーム --}}
                 @auth
                     <div class="card mb-4">

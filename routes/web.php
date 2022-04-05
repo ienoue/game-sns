@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\GachaController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchController;
@@ -39,4 +40,5 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/followees', [UserController::class, 'followees'])->name('followees');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/gacha', [GachaController::class, 'index'])->name('gacha.index');
+Route::get('/gacha/result', [GachaController::class, 'result'])->name('gacha.result');
