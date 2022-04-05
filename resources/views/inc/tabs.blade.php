@@ -23,6 +23,17 @@
         いいね
     </a>
 
+    <li class="nav-item">
+        <a @class([
+            'nav-link',
+            'text-reset' => !$monstersPage,
+            'active' => $monstersPage,
+        ]) href="{{ route('users.monsters', ['name' => $user->name]) }}" tabindex="-1" aria-disabled="true">
+            <i class="fa-solid fa-dragon fa-fw"></i>
+            モンスター
+        </a>
+    </li>
+
     <a @class([
         'nav-link',
         'flex-sm-fill' ,

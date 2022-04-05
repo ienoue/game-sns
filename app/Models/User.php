@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'monster_id'
     ];
 
     /**
@@ -52,10 +53,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes')->withTimestamps()->latest('updated_at');
     }
+    
+    public function partner()
+    {
+        return $this->belongsTo(Monster::class, 'monster_id');
+    }
 
     public function monsters()
     {
-        return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps()->latest('updated_at');
+        return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps()->latest('pivot_updated_at');
     }
 
     /**

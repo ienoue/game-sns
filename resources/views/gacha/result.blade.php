@@ -29,14 +29,19 @@
                             </li>
                         </ul>
                         <div class="d-flex" role="group" aria-label="gacha">
-                            <a role="button" class="btn btn-primary text-white flex-fill me-3" href="#">
-                                相棒に設定
-                            </a>
+                            <form action="{{ route('monsters.update', ['monster' => $monster]) }}" method="POST">
+                                @method('PATCH')
+                                @csrf
+                                <button type="submit" class="btn btn-primary text-white flex-fill me-3" href="#">
+                                    相棒に設定
+                                </button>
+                            </form>
                             <a role="button" class="btn btn-primary text-white flex-fill me-3"
                                 href="{{ route('gacha.index') }}">
                                 次のガチャ
                             </a>
-                            <a role="button" class="btn btn-primary text-white flex-fill" href="{{ route('posts.index') }}">
+                            <a role="button" class="btn btn-primary text-white flex-fill"
+                                href="{{ route('posts.index') }}">
                                 ホーム
                             </a>
                         </div>

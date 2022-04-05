@@ -83,4 +83,21 @@ class UserController extends Controller
 
         return view('users.followees', compact('user', 'followees'));
     }
+
+    /**
+     * 特定ユーザのモンスター一覧を表示
+     *
+     * @param  String  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function monsters(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if (!$user) {
+            return redirect()->route('posts.index');
+        }
+        $monsters = $user->monsters()->paginate(10)->onEachSide(0);
+        return view('users.monsters', compact('user', 'monsters'));
+    }
 }
