@@ -5,28 +5,45 @@ namespace App\Http\Controllers;
 use App\Models\Monster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 use function PHPSTORM_META\type;
 
 class GachaController extends Controller
 {
     /**
-     * 投稿を一覧表示
+     * ガチャ準備ページを表示
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        if (!Gate::allows('gacha')) {
+            return view('gacha.error');
+        }
         return view('gacha.index');
     }
 
+    /**
+     * ガチャ結果を表示
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function result()
     {
+        if (!Gate::allows('gacha')) {
+            return view('gacha.error');
+        }
         $monster = $this->randWeighted(Monster::all());
-        Auth::user()->monsters()->attach($monster);
+        $user = Auth::user();
+        $user->monsters()->attach($monster);
+        $user->refresh();
         return view('gacha.result', compact('monster'));
     }
 
+    /**
+     * 重み付きの抽選を行う
+     */
     public function randWeighted($entries)
     {
         $sum = $entries->sum(function ($entry) {

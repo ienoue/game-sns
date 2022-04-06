@@ -36,10 +36,15 @@
                                     相棒に設定
                                 </button>
                             </form>
-                            <a role="button" class="btn btn-primary text-white flex-fill me-3"
-                                href="{{ route('gacha.index') }}">
-                                次のガチャ
-                            </a>
+                            <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
+                                @class([
+                                    'btn',
+                                    'btn-primary',
+                                    'text-white',
+                                    'flex-fill',
+                                    ' me-3',
+                                    'disabled' => $remainingGachaCount <= 0,
+                                ])>次のガチャ</a>
                             <a role="button" class="btn btn-primary text-white flex-fill"
                                 href="{{ route('posts.index') }}">
                                 ホーム

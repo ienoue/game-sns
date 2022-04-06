@@ -42,7 +42,11 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/monsters', [UserController::class, 'monsters'])->name('monsters');
 });
 
-Route::get('/gacha', [GachaController::class, 'index'])->name('gacha.index');
-Route::get('/gacha/result', [GachaController::class, 'result'])->name('gacha.result');
+Route::prefix('gacha')->name('gacha.')->middleware('auth')->group(function () {
+    Route::get('/', [GachaController::class, 'index'])->name('index');
+    Route::get('/result', [GachaController::class, 'result'])->name('result');
+});
+
+
 
 Route::resource('/monsters', MonsterController::class)->only(['update', 'destroy']);

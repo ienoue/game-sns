@@ -27,12 +27,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // いいねが行えるかどうか
         Gate::define('toggle-like', function (User $user, Post $post) {
             return $user->id !== $post->user_id;
         });
 
+        // フォローが行えるかどうか
         Gate::define('toggle-follow', function (User $user, User $target) {
             return $user->id !== $target->id;
+        });
+
+        // ガチャが出来るかどうか
+        Gate::define('gacha', function (User $user) {
+            return $user->remainingGachaCount() > 0;
         });
     }
 }

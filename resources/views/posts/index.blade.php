@@ -14,7 +14,13 @@
                     <div class="card mb-4 text-center">
                         <div class="card-body">
                             <h5 class="card-title">ガチャ</h5>
-                            <a href="{{ route('gacha.index') }}" class="btn btn-primary text-white">本日あと３回</a>
+                            <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
+                                @class([
+                                    'btn',
+                                    'btn-primary',
+                                    'text-white',
+                                    'disabled' => $remainingGachaCount <= 0,
+                                ])>本日あと{{ $remainingGachaCount }}回</a>
                         </div>
                     </div>
                 @endauth

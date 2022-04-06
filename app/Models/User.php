@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $gachaLimit = 3;
 
     /**
      * The attributes that are mass assignable.
@@ -53,7 +56,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes')->withTimestamps()->latest('updated_at');
     }
-    
+
     public function partner()
     {
         return $this->belongsTo(Monster::class, 'monster_id');
@@ -106,5 +109,21 @@ class User extends Authenticatable
         }
 
         return compact('btnVisual', 'btnText');
+    }
+
+    /**
+     * 本日の残りガチャ回数を返す
+     */
+    public function remainingGachaCount()
+    {
+        $count = $this->monsters->filter(function ($monster) {
+            return $monster->pivot->updated_at->isToday();
+        })->count();
+
+        // ユーザ新規作成時に選ばれるモンスターはカウントしない
+        if ($this->created_at->isToday()) {
+            $count -= 1;
+        }
+        return $this->gachaLimit - $count;
     }
 }
