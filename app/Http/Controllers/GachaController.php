@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-use function PHPSTORM_META\type;
-
 class GachaController extends Controller
 {
     /**
@@ -27,9 +25,10 @@ class GachaController extends Controller
     /**
      * ガチャ結果を表示
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function result()
+    public function result(Request $request)
     {
         if (!Gate::allows('gacha')) {
             return view('gacha.error');
@@ -38,6 +37,7 @@ class GachaController extends Controller
         $user = Auth::user();
         $user->monsters()->attach($monster);
         $user->refresh();
+        $request->session()->regenerateToken();
         return view('gacha.result', compact('monster'));
     }
 

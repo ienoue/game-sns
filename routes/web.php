@@ -44,7 +44,7 @@ Route::prefix('users')->name('users.')->group(function () {
 
 Route::prefix('gacha')->name('gacha.')->middleware('auth')->group(function () {
     Route::get('/', [GachaController::class, 'index'])->name('index');
-    Route::get('/result', [GachaController::class, 'result'])->name('result');
+    Route::post('/', [GachaController::class, 'result']);
 });
 
 

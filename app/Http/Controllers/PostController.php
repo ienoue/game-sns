@@ -39,7 +39,7 @@ class PostController extends Controller
         $post->user_id = $request->user()->id;
         $post->save();
         $request->storeTags($post);
-
+        $request->session()->regenerateToken();
         return redirect()->route('posts.index');
     }
 
@@ -66,9 +66,7 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->save();
-
         $request->storeTags($post);
-
 
         return [
             'text' => $request->text,
@@ -91,6 +89,7 @@ class PostController extends Controller
         if (app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName() === 'posts.show') {
             return redirect()->route('posts.index');
         }
+        
         return back();
     }
 }
