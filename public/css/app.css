@@ -22103,6 +22103,11 @@ readers do not read off random characters that represent icons */
 
 .customLook {
   --tag-inset-shadow-size: 1.5em;
+  --tags-focus-border-color: #a1c2fa;
+}
+
+.tagify.tagify--focus {
+  box-shadow: 0 0 0 0.25rem rgba(66, 133, 244, 0.25);
 }
 
 .mw-200px {

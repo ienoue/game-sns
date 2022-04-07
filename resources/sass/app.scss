@@ -7,6 +7,7 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 
+// Tagify
 @import "~@yaireo/tagify/src/tagify";
 
 // Font Awesome
@@ -15,9 +16,15 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
+
 // Tagify用
 .customLook {
     --tag-inset-shadow-size: 1.5em;
+    --tags-focus-border-color: #a1c2fa;
+}
+
+.tagify.tagify--focus {
+    box-shadow: 0 0 0 0.25rem rgba(66, 133, 244, 0.25);
 }
 
 // タグ幅
@@ -46,6 +53,7 @@
     box-shadow: none;
 }
 
+// 揺れるアニメーション
 .poyopoyo {
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
@@ -67,6 +75,7 @@
     }
 }
 
+// Bootstrapボタン
 .btn-outline-primary:hover {
     color: #fff;
 }
