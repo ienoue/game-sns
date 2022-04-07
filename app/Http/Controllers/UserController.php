@@ -24,7 +24,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->posts()->with('tags', 'user', 'likes')->paginate(10)->onEachSide(0);
+        $posts = $user->posts()->with('tags', 'user', 'likes')->paginate(10)->onEachSide(2);
 
         return view('users.index', compact('user', 'posts'));
     }
@@ -42,7 +42,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->likes()->with('tags', 'user', 'likes')->paginate(10)->onEachSide(0);
+        $posts = $user->likes()->with('tags', 'user', 'likes')->paginate(10)->onEachSide(2);
 
         return view('users.likes', compact('user', 'posts'));
     }
@@ -61,7 +61,7 @@ class UserController extends Controller
             return redirect()->route('posts.index');
         }
 
-        $followers = $user->followers()->with('followers')->paginate(10)->onEachSide(0);
+        $followers = $user->followers()->with('followers')->paginate(10)->onEachSide(2);
 
         return view('users.followers', compact('user', 'followers'));
     }
@@ -79,7 +79,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $followees = $user->followees()->with('followers')->paginate(10)->onEachSide(0);
+        $followees = $user->followees()->with('followers')->paginate(10)->onEachSide(2);
 
         return view('users.followees', compact('user', 'followees'));
     }
@@ -97,7 +97,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $monsters = $user->monsters()->paginate(10)->onEachSide(0);
+        $monsters = $user->monsters()->paginate(10)->onEachSide(2);
         return view('users.monsters', compact('user', 'monsters'));
     }
 }

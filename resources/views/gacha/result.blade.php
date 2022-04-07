@@ -42,7 +42,7 @@
                         <ul class="pagination justify-content-center">
                             <li>
                                 <a class="btn page-link flex-fill rounded-pill"
-                                    href="{{ route('users.index', ['name' => Auth::user()->name]) }}">ガチャ履歴
+                                    href="{{ route('users.monsters', ['name' => Auth::user()->name]) }}">ガチャ履歴
                                 </a>
                             </li>
                             <li class="mx-4">

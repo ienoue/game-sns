@@ -14,8 +14,6 @@
                                 <img src="/images/treasure_box.png" class="img-fluid poyopoyo" alt="ガチャ">
                             </a>
                         </form>
-                        <h4 class="card-title fw-bold mb-5">クリック!</h4>
-
                     </div>
                 </div>
             </div>
