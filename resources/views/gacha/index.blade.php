@@ -1,3 +1,4 @@
+{{-- ガチャ準備 --}}
 @extends('layouts.app')
 
 @section('content')

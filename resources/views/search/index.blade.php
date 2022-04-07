@@ -32,7 +32,7 @@
                         @include('inc.post', [
                             'stretchedLink' => true,
                             'charLimit' => true,
-                            'likeBtn' => $post->likeBtnState(),
+                            'likeBtn' => $post->likeBtnStatus(),
                         ])
                     @endforeach
                 @endif

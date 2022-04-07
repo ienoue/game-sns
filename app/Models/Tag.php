@@ -39,7 +39,7 @@ class Tag extends Model
     /**
      * 投稿タグのClass属性の値を返す
      */
-    public static function tagBtnState()
+    public static function tagBtnStatus()
     {
         $btnVisual = 'btn btn-outline-secondary rounded-pill btn-sm py-0 me-2 mb-1 text-truncate mw-200px';
         return compact('btnVisual');

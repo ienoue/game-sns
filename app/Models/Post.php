@@ -43,7 +43,7 @@ class Post extends Model
     /**
      * いいねボタンのClass属性の値を返す
      */
-    public function likeBtnState()
+    public function likeBtnStatus()
     {
         if ($this->isLikedby(Auth::user())) {
             $btnVisual = 'fa-solid fa-heart text-red';

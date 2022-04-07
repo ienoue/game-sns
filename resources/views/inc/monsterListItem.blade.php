@@ -1,3 +1,4 @@
+{{-- モンスタ一覧 --}}
 <li class="list-group-item">
     <div class="d-flex justify-content-between align-items-center p-2">
         <div>
@@ -11,3 +12,4 @@
         </button>
     </div>
 </li>
+{{-- /モンスタ一覧 --}}

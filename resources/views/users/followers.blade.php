@@ -7,7 +7,7 @@
 
                 {{-- ユーザ情報 --}}
                 @include('inc.userInfo', [
-                    'followBtn' => $user->followBtnState(),
+                    'followBtn' => $user->followBtnStatus(),
                 ])
                 {{-- /ユーザ情報 --}}
 
@@ -24,8 +24,8 @@
                 {{-- フォロワー一覧 --}}
                 <ul class="list-group mb-3">
                     @foreach ($followers as $usr)
-                        @include('inc.userFollow', [
-                            'followBtn' => $usr->followBtnState(),
+                        @include('inc.followListItem', [
+                            'followBtn' => $usr->followBtnStatus(),
                         ])
                     @endforeach
                 </ul>

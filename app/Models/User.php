@@ -98,7 +98,7 @@ class User extends Authenticatable
     /**
      * フォローボタンの要素とClass属性の値を返す
      */
-    public function followBtnState()
+    public function followBtnStatus()
     {
         if ($this->isFollowedBy(Auth::user())) {
             $btnVisual = 'btn btn-follow btn-primary rounded-pill text-white';
@@ -122,7 +122,7 @@ class User extends Authenticatable
     /**
      * 引数のMonsterモデルに対応する相棒ボタンの要素とClass属性の値を返す
      */
-    public function partnerBtnState(Monster $monster)
+    public function partnerBtnStatus(Monster $monster)
     {
         $btn = $this->partnerBtnData();
         if ($this->isPartner($monster)) {

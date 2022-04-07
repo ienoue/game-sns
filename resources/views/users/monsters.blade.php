@@ -7,7 +7,7 @@
 
                 {{-- ユーザ情報 --}}
                 @include('inc.userInfo', [
-                    'followBtn' => $user->followBtnState(),
+                    'followBtn' => $user->followBtnStatus(),
                 ])
                 {{-- /ユーザ情報 --}}
 
@@ -25,7 +25,7 @@
                 <ul class="list-group mb-3">
                     @foreach ($monsters as $monster)
                         @include('inc.monsterListItem', [
-                            'partnerBtn' => $user->partnerBtnState($monster),
+                            'partnerBtn' => $user->partnerBtnStatus($monster),
                         ])
                     @endforeach
                 </ul>

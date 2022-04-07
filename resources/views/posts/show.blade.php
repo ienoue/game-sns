@@ -12,7 +12,7 @@
                 @include('inc.post', [
                     'stretchedLink' => false,
                     'charLimit' => false,
-                    'likeBtn' => $post->likeBtnState(),
+                    'likeBtn' => $post->likeBtnStatus(),
                 ])
                 {{-- /投稿内容 --}}
             </div>

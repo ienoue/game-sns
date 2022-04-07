@@ -11,7 +11,7 @@
 
                 {{-- ユーザ情報 --}}
                 @include('inc.userInfo', [
-                    'followBtn' => $user->followBtnState(),
+                    'followBtn' => $user->followBtnStatus(),
                 ])
                 {{-- /ユーザ情報 --}}
 
@@ -31,7 +31,7 @@
                     @include('inc.post', [
                         'stretchedLink' => true,
                         'charLimit' => true,
-                        'likeBtn' => $post->likeBtnState(),
+                        'likeBtn' => $post->likeBtnStatus(),
                     ])
                 @endforeach
                 {{-- /投稿内容一覧 --}}

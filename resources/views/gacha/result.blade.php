@@ -1,3 +1,4 @@
+{{-- ガチャ結果 --}}
 @extends('layouts.app')
 
 @section('content')
@@ -14,14 +15,19 @@
                                 <span class="align-middle d-inline-block fs-5">{{ $monster->name }}</span>
                             </div>
 
+                            {{-- 相棒ボタン --}}
                             <button type="button" class="{{ $partnerBtn['btnVisual'] }}"
                                 data-monster-id="{{ $monster->id }}" {{ $partnerBtn['btnDisabled'] }}>
                                 <span>{{ $partnerBtn['btnText'] }}</span>
                             </button>
+                            {{-- /相棒ボタン --}}
                         </div>
 
+                        {{-- モンスター画像 --}}
                         <img src="{{ $monster->picture_path }}" class="img-fluid img-fluid rounded mb-3" alt="モンスター">
+                        {{-- /モンスター画像 --}}
 
+                        {{-- モンスター情報 --}}
                         <ul class="list-group list-group-flush text-center mb-3">
                             <li class="list-group-item">
                                 <div class="">攻撃力</div>
@@ -30,7 +36,9 @@
                                 </div>
                             </li>
                         </ul>
+                        {{-- /モンスター情報 --}}
 
+                        {{-- 操作ボタン --}}
                         <ul class="pagination justify-content-center">
                             <li>
                                 <a class="btn page-link flex-fill rounded-pill"
@@ -56,6 +64,8 @@
                                 </a>
                             </li>
                         </ul>
+                        {{-- /操作ボタン --}}
+
                     </div>
                 </div>
             </div>

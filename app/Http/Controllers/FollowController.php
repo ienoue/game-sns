@@ -27,7 +27,7 @@ class FollowController extends Controller
         }
 
         $user->refresh();
-        $state = $user->followBtnState();
+        $state = $user->followBtnStatus();
 
         return [
             'name' => $name,

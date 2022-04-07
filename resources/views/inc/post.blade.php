@@ -1,3 +1,4 @@
+{{-- 投稿 --}}
 <div class="card mb-4">
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
@@ -137,7 +138,7 @@
             @if ($post->tags->count() >= 1)
                 <div class="mt-3">
                     @foreach ($post->tags as $tag)
-                        <a class="{{ App\Models\Tag::tagBtnState()['btnVisual'] }}"
+                        <a class="{{ App\Models\Tag::tagBtnStatus()['btnVisual'] }}"
                             href="{{ route('search', ['tag' => $tag->name]) }}"
                             role="button">{{ $tag->name }}</a>
                     @endforeach
@@ -160,3 +161,4 @@
 
     </div>
 </div>
+{{-- /投稿 --}}

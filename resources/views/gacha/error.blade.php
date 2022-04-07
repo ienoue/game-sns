@@ -1,3 +1,4 @@
+{{-- ガチャ終了ページ --}}
 @extends('layouts.app')
 
 @section('content')
