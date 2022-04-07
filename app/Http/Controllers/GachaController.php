@@ -38,7 +38,8 @@ class GachaController extends Controller
         $user->monsters()->attach($monster);
         $user->refresh();
         $request->session()->regenerateToken();
-        return view('gacha.result', compact('monster'));
+        $partnerBtn = $user->partnerBtnState($monster);
+        return view('gacha.result', compact('monster', 'partnerBtn'));
     }
 
     /**

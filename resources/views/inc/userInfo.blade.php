@@ -15,6 +15,6 @@
         </div>
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">相棒モンスター {{ $user->partner->name }}</li>
+        <li class="list-group-item">相棒モンスター <span id="partner-name">{{ $user->partner->name }}</span></li>
     </ul>
 </div>

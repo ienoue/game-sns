@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Monster;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MonsterController extends Controller
 {
@@ -69,10 +70,20 @@ class MonsterController extends Controller
      */
     public function update(Request $request, Monster $monster)
     {
+        abort_if(!Gate::allows('editMonster', $monster), 403);
+
         $user = $request->user();
         $user->monster_id = $monster->id;
         $user->save();
-        return redirect()->route('gacha.index');
+
+        $btn = $user->partnerBtnData();
+
+        return [
+            'name' => $monster->name,
+            'id' => $monster->id,
+            'active' => $btn['active'],
+            'inactive' => $btn['inactive'],
+        ];
     }
 
     /**

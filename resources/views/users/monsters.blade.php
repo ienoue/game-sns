@@ -24,10 +24,9 @@
                 {{-- モンスター一覧 --}}
                 <ul class="list-group mb-3">
                     @foreach ($monsters as $monster)
-                        <li class="list-group-item">
-                            <div>{{ $monster->name }}</div>
-                            <div>{{ $monster->pivot->updated_at }}</div>
-                        </li>
+                        @include('inc.monsterListItem', [
+                            'partnerBtn' => $user->partnerBtnState($monster),
+                        ])
                     @endforeach
                 </ul>
                 {{-- /モンスター一覧 --}}
