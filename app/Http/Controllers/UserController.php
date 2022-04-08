@@ -90,14 +90,16 @@ class UserController extends Controller
      * @param  String  $post
      * @return \Illuminate\Http\Response
      */
-    public function monsters(string $name)
+    public function monsters(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $monsters = $user->monsters()->paginate(10)->onEachSide(2);
-        return view('users.monsters', compact('user', 'monsters'));
+        $sort = $request->sort;
+
+        $monsters = $user->monstersSortedBy($sort)->paginate(10)->onEachSide(2);
+        return view('users.monsters', compact('user', 'monsters', 'sort'));
     }
 }

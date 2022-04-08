@@ -16,7 +16,6 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
-
 // Tagify用
 .customLook {
     --tag-inset-shadow-size: 1.5em;
@@ -78,4 +77,10 @@
 // Bootstrapボタン
 .btn-outline-primary:hover {
     color: #fff;
+}
+
+//テーブルヘッダーの線
+.table > :not(:first-child) {
+    border-top-width: $border-width;
+    border-top-color: $border-color;
 }

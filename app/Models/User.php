@@ -64,7 +64,28 @@ class User extends Authenticatable
 
     public function monsters()
     {
-        return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps()->latest('pivot_updated_at');
+        return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps();
+    }
+
+    /**
+     * このユーザが保持しているモンスターを指定したカラムでソートする
+     */
+    public function monstersSortedBy(?String $sort)
+    {
+        $monster = $this->monsters();
+
+        switch ($sort) {
+            case 'name':
+                return $monster->orderBy('name', 'asc');
+            case 'attack':
+                return $monster->orderBy('attack', 'desc');
+            case 'rarity':
+                return $monster->orderBy('rarity_id', 'desc');
+            case 'updated':
+                return $monster->latest('pivot_updated_at');
+            default:
+                return $monster->latest('pivot_updated_at');
+        }
     }
 
     /**
@@ -139,12 +160,12 @@ class User extends Authenticatable
     {
         return [
             'active' => [
-                'btnVisual' => 'btn btn-partner btn-primary rounded-pill text-white',
-                'btnText' => '相棒モンスター',
+                'btnVisual' => 'btn btn-partner btn-primary rounded-pill text-white text-truncate',
+                'btnText' => '相棒',
                 'btnDisabled' => 'disabled',
             ],
             'inactive' => [
-                'btnVisual' => 'btn btn-partner btn-outline-primary rounded-pill',
+                'btnVisual' => 'btn btn-partner btn-outline-primary rounded-pill text-truncate',
                 'btnText' => '相棒にする',
                 'btnDisabled' => '',
             ]

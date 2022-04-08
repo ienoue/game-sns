@@ -22,17 +22,39 @@
                 ]) {{-- /タブ --}}
 
                 {{-- モンスター一覧 --}}
-                <ul class="list-group mb-3">
-                    @foreach ($monsters as $monster)
-                        @include('inc.monsterListItem', [
-                            'partnerBtn' => $user->partnerBtnStatus($monster),
-                        ])
-                    @endforeach
-                </ul>
+                <div class="table-responsive">
+                    <table class="table bg-white border align-middle text-nowrap">
+                        <thead>
+                            <tr>
+                                <th scope="col"><a
+                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'name']) }}">名前</a>
+                                </th>
+                                <th scope="col"><a
+                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'rarity']) }}">レア</a>
+                                </th>
+                                <th scope="col"><a
+                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'attack']) }}">攻撃力</a>
+                                </th>
+                                <th scope="col"><a
+                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'updated']) }}">取得日</a>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($monsters as $monster)
+                                @include('inc.monsterListItem', [
+                                    'partnerBtn' => $user->partnerBtnStatus($monster),
+                                ])
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
                 {{-- /モンスター一覧 --}}
 
                 {{-- ページネーション --}}
-                {{ $monsters->links() }}
+                {{ $monsters->appends(['sort' => $sort])->links() }}
                 {{-- /ページネーション --}}
 
             </div>
