@@ -2,18 +2,24 @@
 <div class="card mb-4">
     <div class="card-header">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex">
-                {{-- ユーザ情報 --}}
-                <div class="fw-bold me-3">
-                    <a class="text-reset text-decoration-none"
-                        href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
-                    </a>
-                </div>
+            <div class="d-flex align-items-center">
+                {{-- モンスター画像 --}}
+                <img src="{{ $post->user->partner->small_image_path }}" class="img-fluid rounded-circle me-2"
+                    alt="モンスター" style="width:2rem;height:2rem;">
+                {{-- /モンスター画像 --}}
+
+                {{-- 名前 --}}
+                <a class="fw-bold text-reset text-decoration-none me-2"
+                    href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
+                </a>
+                {{-- /名前 --}}
+
+                {{-- 日付 --}}
                 <div class="fw-light text-muted" id="test">
                     <i class="fa-regular fa-clock fa-fw"></i>
                     {{ $post->updated_at }}
                 </div>
-                {{-- /ユーザ情報 --}}
+                {{-- /日付--}}
             </div>
 
             {{-- 記事編集メニュー --}}

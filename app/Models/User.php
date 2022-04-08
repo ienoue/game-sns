@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $gachaLimit = 3;
+    protected $gachaLimit = 100;
 
     /**
      * The attributes that are mass assignable.
@@ -68,7 +68,7 @@ class User extends Authenticatable
     }
 
     /**
-     * このユーザが保持しているモンスターを指定したカラムでソートする
+     * ユーザが保持しているモンスターを指定したカラムでソートする
      */
     public function monstersSortedBy(?String $sort)
     {

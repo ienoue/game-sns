@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         Tag::factory(10)->create();
         $tags = Tag::all();
-        $monster = Monster::factory(20)->create();
+        $monster = Monster::all();
 
         User::factory(20)->create()->each(function ($user) use ($monster) {
             Post::factory(rand(10, 15))->create(['user_id' => $user]);
-            $user->monsters()->attach($monster->random(rand(5, 10))->pluck('id')->toArray());
+            $user->monsters()->attach($monster->where('rarity_id', '<=', 2)->random(rand(5, 9))->pluck('id')->toArray());
         });
 
         $users = User::all();

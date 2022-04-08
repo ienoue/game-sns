@@ -24,7 +24,10 @@
                         </div>
 
                         {{-- モンスター画像 --}}
-                        <img src="{{ $monster->picture_path }}" class="img-fluid img-fluid rounded mb-3" alt="モンスター">
+                        <div class="text-center">
+                            <img src="{{ $monster->image_path }}" class="img-fluid rounded mb-3" alt="モンスター">
+                        </div>
+
                         {{-- /モンスター画像 --}}
 
                         {{-- モンスター情報 --}}

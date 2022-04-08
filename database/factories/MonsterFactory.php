@@ -17,7 +17,7 @@ class MonsterFactory extends Factory
         return [
             'name' => $this->faker->unique()->country(),
             'rarity_id' => Rarity::inRandomOrder()->first(),
-            'picture_path' => $this->faker->imageUrl(640, 480, 'monsters', true),
+            'image_path' => $this->faker->imageUrl(640, 480, 'monsters', true),
             'attack' => $this->faker->numberBetween(1000, 5000),
         ];
     }

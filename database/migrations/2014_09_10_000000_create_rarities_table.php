@@ -23,6 +23,7 @@ class CreateRaritiesTable extends Migration
 
         $rarities = [
             [
+                'id' => 1,
                 'name' => 'N',
                 'weight' => '40',
                 'rarity_rank' => '1',
@@ -30,6 +31,7 @@ class CreateRaritiesTable extends Migration
                 'updated_at' => now()
             ],
             [
+                'id' => 2,
                 'name' => 'R',
                 'weight' => '30',
                 'rarity_rank' => '2',
@@ -37,6 +39,7 @@ class CreateRaritiesTable extends Migration
                 'updated_at' => now()
             ],
             [
+                'id' => 3,
                 'name' => 'SR',
                 'weight' => '20',
                 'rarity_rank' => '3',
@@ -44,6 +47,7 @@ class CreateRaritiesTable extends Migration
                 'updated_at' => now()
             ],
             [
+                'id' => 4,
                 'name' => 'SSR',
                 'weight' => '10',
                 'rarity_rank' => '4',
