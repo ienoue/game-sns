@@ -1,11 +1,13 @@
 {{-- 投稿 --}}
 <div class="card mb-4">
-    <div class="card-header">
+    <div class="card-header bg-white">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 {{-- モンスター画像 --}}
-                <img src="{{ $post->user->partner->small_image_path }}" class="img-fluid rounded-circle me-2"
-                    alt="モンスター" style="width:2rem;height:2rem;">
+                <a href="{{ route('users.index', ['name' => $post->user->name]) }}">
+                    <img src="{{ $post->user->partner->small_image_path }}"
+                        class="img-fluid rounded-circle border me-2" alt="モンスター" style="width:2rem;height:2rem;">
+                </a>
                 {{-- /モンスター画像 --}}
 
                 {{-- 名前 --}}
@@ -19,7 +21,7 @@
                     <i class="fa-regular fa-clock fa-fw"></i>
                     {{ $post->updated_at }}
                 </div>
-                {{-- /日付--}}
+                {{-- /日付 --}}
             </div>
 
             {{-- 記事編集メニュー --}}
@@ -154,7 +156,7 @@
         {{-- /タグ --}}
 
     </div>
-    <div class="card-footer text-muted d-flex align-items-baseline">
+    <div class="card-footer text-muted d-flex align-items-baseline bg-white p-0">
         {{-- いいねボタン --}}
         <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>

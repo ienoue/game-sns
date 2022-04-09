@@ -23,9 +23,10 @@
 
                 {{-- モンスター一覧 --}}
                 <div class="table-responsive">
-                    <table class="table bg-white border align-middle text-nowrap">
+                    <table class="table bg-white border align-middle text-nowrap text-center">
                         <thead>
                             <tr>
+                                <th scope="col"></th>
                                 <th scope="col"><a
                                         href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'name']) }}">名前</a>
                                 </th>
@@ -38,7 +39,7 @@
                                 <th scope="col"><a
                                         href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'updated']) }}">取得日</a>
                                 </th>
-
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
