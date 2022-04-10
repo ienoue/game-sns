@@ -71,7 +71,7 @@ class PostController extends Controller
         return [
             'text' => $request->text,
             'id' => $post->id,
-            'tags' => $request->tags,
+            'tags' => $request->tagsWithLinks,
             'visual' => Tag::tagBtnStatus()['btnVisual'],
         ];
     }
