@@ -23,17 +23,17 @@ $(function () {
                 $btn.attr('disabled', false);
             })
             .done((data) => {
-                //text()だとサニタイズされるが改行されない為に、以下の方法で改行した
                 //投稿内容を更新
+                //text()だとサニタイズされるが改行されない為に、以下の方法で改行した
                 postText = $('<dummy>').text(data.text).html().replace(/\n/g, '<br>');
                 $(`#postText_${data.id}`).empty().html(postText);
                 
                 //タグを追加
                 $tag.empty();
                 if (data.tags?.length) {
-                    $container = $('<div>').addClass('mt-3').appendTo($tag);
+                    $container = $('<div>').addClass(data.containerVisual).appendTo($tag);
                     $.each(data.tags, function (i, tag) {
-                        $('<a>').text(tag.value).addClass(data.visual).attr('role', 'button').attr('href', tag.link).appendTo($container);
+                        $('<a>').text(tag.value).addClass(data.btnVisual).attr('role', 'button').attr('href', tag.link).appendTo($container);
                     });
                 }
 
