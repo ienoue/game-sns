@@ -1,4 +1,4 @@
-{{-- ガチャ結果 --}}
+{{-- モンスターを詳細表示 --}}
 @extends('layouts.app')
 
 @section('content')
@@ -16,10 +16,12 @@
                             </div>
 
                             {{-- 相棒ボタン --}}
-                            <button type="button" class="{{ $partnerBtn['btnVisual'] }}"
-                                data-monster-id="{{ $monster->id }}" {{ $partnerBtn['btnDisabled'] }}>
-                                <span>{{ $partnerBtn['btnText'] }}</span>
-                            </button>
+                            @if (Auth::check() && Auth::user()->hasMonster($monster))
+                                <button type="button" class="{{ $partnerBtn['btnVisual'] }}"
+                                    data-monster-id="{{ $monster->id }}" {{ $partnerBtn['btnDisabled'] }}>
+                                    <span>{{ $partnerBtn['btnText'] }}</span>
+                                </button>
+                            @endif
                             {{-- /相棒ボタン --}}
                         </div>
 
@@ -44,7 +46,7 @@
                         <ul class="pagination justify-content-center">
                             <li>
                                 <a class="btn page-link flex-fill rounded-pill"
-                                    href="{{ route('users.monsters', ['name' => Auth::user()->name]) }}">所有モンスター
+                                    href="{{ route('monsters.show', ['monster' => $monster->previous()]) }}">前のモンスター
                                 </a>
                             </li>
                             <li class="mx-4">
@@ -54,15 +56,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
-                                    @class([
-                                        'btn',
-                                        'page-link',
-                                        'rounded-pill',
-                                        'flex-fill',
-                                        'text-muted' => $remainingGachaCount <= 0,
-                                        'disabled' => $remainingGachaCount <= 0,
-                                    ])>次のガチャ
+                                <a class="btn page-link flex-fill rounded-pill"
+                                    href="{{ route('monsters.show', ['monster' => $monster->next()]) }}">次のモンスター
                                 </a>
                             </li>
                         </ul>

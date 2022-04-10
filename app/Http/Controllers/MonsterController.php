@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Monster;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class MonsterController extends Controller
@@ -40,14 +41,15 @@ class MonsterController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * モンスターを詳細表示
      *
-     * @param  int  $id
+     * @param  \App\Models\Monster $monster
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Monster $monster)
     {
-        //
+        $partnerBtn = Auth::user()?->partnerBtnStatus($monster);
+        return view('monsters.show', compact('monster', 'partnerBtn'));
     }
 
     /**

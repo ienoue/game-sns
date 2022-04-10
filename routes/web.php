@@ -48,5 +48,4 @@ Route::prefix('gacha')->middleware('auth')->group(function () {
 });
 
 
-
-Route::resource('/monsters', MonsterController::class)->only(['update', 'destroy']);
+Route::resource('/monsters', MonsterController::class)->only(['update', 'destroy', 'show']);
