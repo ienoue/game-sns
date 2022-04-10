@@ -2,7 +2,7 @@
 <tr>
     <td>
         <a href="{{ route('monsters.show', ['monster' => $monster]) }}">
-            <img src="{{ $monster->small_image_path }}" class="img-fluid rounded-circle border me-2" alt="モンスター"
+            <img src="{{ $monster->small_image_path }}" class="rounded-circle border me-2" alt="モンスター"
                 style="width:3rem;height:3rem;">
         </a>
     </td>

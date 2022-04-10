@@ -6,7 +6,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 {{-- モンスター画像 --}}
                 <a href="{{ route('monsters.show', ['monster' => $user->partner]) }}">
-                    <img src="{{ $user->partner->small_image_path }}" class="img-fluid rounded-circle border me-2"
+                    <img src="{{ $user->partner->small_image_path }}" class="rounded-circle border me-2"
                         alt="モンスター" style="width:3rem;height:3rem;">
                 </a>
                 {{-- /モンスター画像 --}}
