@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\GachaController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MonsterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
@@ -37,6 +39,13 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/likes', [UserController::class, 'likes'])->name('likes');
     Route::get('/{name}/followers', [UserController::class, 'followers'])->name('followers');
     Route::get('/{name}/followees', [UserController::class, 'followees'])->name('followees');
+    Route::get('/{name}/monsters', [UserController::class, 'monsters'])->name('monsters');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('gacha')->middleware('auth')->group(function () {
+    Route::get('/', [GachaController::class, 'index'])->name('gacha.index');
+    Route::post('/', [GachaController::class, 'result']);
+});
+
+
+Route::resource('/monsters', MonsterController::class)->only(['update', 'destroy', 'show']);

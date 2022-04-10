@@ -43,7 +43,7 @@ $(function () {
                 modal.hide();
             })
             .fail((jqXHR) => {
-                if (jqXHR.responseJSON.errors) {
+                if (jqXHR.responseJSON?.errors) {
                     //バリデーションエラー発生時の処理
                     $.each(jqXHR.responseJSON.errors, (index, val) => {
                         test = $('<li>').text(val).appendTo($err);

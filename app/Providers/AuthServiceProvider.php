@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Monster;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -27,12 +28,24 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // いいねが行えるかどうか
         Gate::define('toggle-like', function (User $user, Post $post) {
             return $user->id !== $post->user_id;
         });
 
+        // フォローが行えるかどうか
         Gate::define('toggle-follow', function (User $user, User $target) {
             return $user->id !== $target->id;
+        });
+
+        // ガチャが出来るかどうか
+        Gate::define('gacha', function (User $user) {
+            return $user->remainingGachaCount() > 0;
+        });
+
+        // モンスターを保持していて変更できるかどうか
+        Gate::define('editMonster', function (User $user, Monster $monster) {
+            return $user->hasMonster($monster);
         });
     }
 }

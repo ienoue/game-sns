@@ -31,7 +31,7 @@ class LikeController extends Controller
         }
 
         $post->refresh();
-        $state = $post->likeBtnState();
+        $state = $post->likeBtnStatus();
 
         return [
             'isLiked' => $isLiked,

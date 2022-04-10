@@ -38,4 +38,24 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
+     */
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+            return back()
+                ->withInput($request->except('_token'))
+                ->withErrors(['csrf' => ['トークンが無効です']]);
+        }
+
+        return parent::render($request, $exception);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -21,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['likes', 'tags', 'user'])->orderByDesc('updated_at')->paginate(10)->onEachSide(0);
+        $posts = Post::with(['likes', 'tags', 'user'])->orderByDesc('updated_at')->paginate(10)->onEachSide(2);
 
         return view('posts.index', compact('posts'));
     }
@@ -38,7 +39,7 @@ class PostController extends Controller
         $post->user_id = $request->user()->id;
         $post->save();
         $request->storeTags($post);
-
+        $request->session()->regenerateToken();
         return redirect()->route('posts.index');
     }
 
@@ -65,15 +66,13 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->save();
-
         $request->storeTags($post);
-
 
         return [
             'text' => $request->text,
             'id' => $post->id,
             'tags' => $request->tags,
-            'visual' => Tag::tagBtnState()['btnVisual'],
+            'visual' => Tag::tagBtnStatus()['btnVisual'],
         ];
     }
 
@@ -90,6 +89,7 @@ class PostController extends Controller
         if (app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName() === 'posts.show') {
             return redirect()->route('posts.index');
         }
+        
         return back();
     }
 }

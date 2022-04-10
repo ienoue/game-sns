@@ -3,7 +3,7 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill' ,
+        'flex-sm-fill',
         'text-sm-center',
         'text-reset' => !$postsPage,
         'active' => $postsPage,
@@ -14,7 +14,7 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill' ,
+        'flex-sm-fill',
         'text-sm-center',
         'text-reset' => !$likesPage,
         'active' => $likesPage,
@@ -25,7 +25,17 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill' ,
+        'text-reset' => !$monstersPage,
+        'active' => $monstersPage,
+    ]) href="{{ route('users.monsters', ['name' => $user->name]) }}" tabindex="-1"
+        aria-disabled="true">
+        <i class="fa-solid fa-dragon fa-fw"></i>
+        モンスター
+    </a>
+
+    <a @class([
+        'nav-link',
+        'flex-sm-fill',
         'text-sm-center',
         'text-reset' => !$followeePage,
         'active' => $followeePage,
@@ -37,7 +47,7 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill' ,
+        'flex-sm-fill',
         'text-sm-center',
         'text-reset' => !$followerPage,
         'active' => $followerPage,

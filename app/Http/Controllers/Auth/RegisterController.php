@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Monster;
+use App\Models\Rarity;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
@@ -69,10 +71,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $rarity = Rarity::orderBy('rarity_rank')->first();
+        $monster = Monster::whereBelongsTo($rarity)->get()->random();
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'monster_id' => $monster->id,
         ]);
+
+        $user->monsters()->attach($monster);
+
+        return $user;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,6 +14,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $gachaLimit = 100;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'monster_id'
     ];
 
     /**
@@ -53,6 +57,37 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class, 'likes')->withTimestamps()->latest('updated_at');
     }
 
+    public function partner()
+    {
+        return $this->belongsTo(Monster::class, 'monster_id');
+    }
+
+    public function monsters()
+    {
+        return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps();
+    }
+
+    /**
+     * ユーザが保持しているモンスターを指定したカラムでソートする
+     */
+    public function monstersSortedBy(?String $sort)
+    {
+        $monster = $this->monsters();
+
+        switch ($sort) {
+            case 'name':
+                return $monster->orderBy('name', 'asc');
+            case 'attack':
+                return $monster->orderBy('attack', 'desc');
+            case 'rarity':
+                return $monster->orderBy('rarity_id', 'desc');
+            case 'updated':
+                return $monster->latest('pivot_updated_at');
+            default:
+                return $monster->latest('pivot_updated_at');
+        }
+    }
+
     /**
      * このユーザをフォローしているユーザを返す
      */
@@ -82,9 +117,9 @@ class User extends Authenticatable
     }
 
     /**
-     * フォローボタンの要素の値とClass属性の値を返す
+     * フォローボタンの要素とClass属性の値を返す
      */
-    public function followBtnState()
+    public function followBtnStatus()
     {
         if ($this->isFollowedBy(Auth::user())) {
             $btnVisual = 'btn btn-follow btn-primary rounded-pill text-white';
@@ -95,5 +130,70 @@ class User extends Authenticatable
         }
 
         return compact('btnVisual', 'btnText');
+    }
+
+    /**
+     * 引数のMonsterモデルと相棒かどうかを返す
+     */
+    public function isPartner(Monster $monster)
+    {
+        return $this->partner()->is($monster);
+    }
+
+    /**
+     * 引数のMonsterモデルに対応する相棒ボタンの要素とClass属性の値を返す
+     */
+    public function partnerBtnStatus(Monster $monster)
+    {
+        $btn = $this->partnerBtnData();
+        if ($this->isPartner($monster)) {
+            return $btn['active'];
+        } else {
+            return $btn['inactive'];
+        }
+    }
+
+    /**
+     * 相棒ボタンの選択・未選択状態の値を返す
+     */
+    public function partnerBtnData()
+    {
+        return [
+            'active' => [
+                'btnVisual' => 'btn btn-partner btn-primary rounded-pill text-white text-truncate',
+                'btnText' => '相棒',
+                'btnDisabled' => 'disabled',
+            ],
+            'inactive' => [
+                'btnVisual' => 'btn btn-partner btn-outline-primary rounded-pill text-truncate',
+                'btnText' => '相棒にする',
+                'btnDisabled' => '',
+            ]
+        ];
+    }
+
+    /**
+     * 引数のMonsterモデルを保持しているかどうか
+     */
+    public function hasMonster(Monster $monster)
+    {
+        return $this->monsters->where('id', $monster->id)->isNotEmpty();
+    }
+
+
+    /**
+     * 本日の残りガチャ回数を返す
+     */
+    public function remainingGachaCount()
+    {
+        $count = $this->monsters->filter(function ($monster) {
+            return $monster->pivot->updated_at->isToday();
+        })->count();
+
+        // ユーザ新規作成時に選ばれるモンスターはカウントしない
+        if ($this->created_at->isToday()) {
+            $count -= 1;
+        }
+        return $this->gachaLimit - $count;
     }
 }

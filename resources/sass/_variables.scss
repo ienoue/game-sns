@@ -8,16 +8,24 @@ $headings-line-height: 1.5;
 $line-height-base: 1.65;
 
 // メインカラー
-$primary: #4285F4;
+$primary: #4285f4;
+// $secondary: #546e7a;
 
 // 本文色
-$gray-900: #546e7a;
+$body-color: #546e7a;
+$dropdown-link-color: #546e7a;
+$list-group-color: #546e7a;
+$kbd-bg: #546e7a;
 
 // ボタンの角
-$border-radius: 0.125rem ;
+$border-radius: 0.125rem;
 $border-radius-sm: 0.125rem;
 $border-radius-lg: 0.125rem;
 $border-radius-pill: 50rem;
 
 // モーダルのパディング
 $modal-inner-padding: 1.5rem;
+
+// テーブルのパディング
+$table-cell-padding-y: 0.75rem;
+$table-cell-padding-x: 0.5rem;

@@ -28,7 +28,7 @@
 
                 {{-- タイトルロゴ --}}
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/images/logo.png" alt="" width="84" height="30">
+                    <img src="/images/logo.png" alt="ロゴ" width="84" height="30">
                 </a>
                 {{-- /タイトルロゴ --}}
 
@@ -58,6 +58,13 @@
                             @endif
                             {{-- /認証 --}}
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="{{ route('gacha.index', ['name' => Auth::user()->name]) }}">
+                                    <i class="fa-solid fa-gem fa-fw"></i>
+                                    ガチャ
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link"
                                     href="{{ route('users.index', ['name' => Auth::user()->name]) }}">

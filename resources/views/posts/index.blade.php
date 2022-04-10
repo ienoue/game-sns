@@ -9,6 +9,33 @@
         <div class="row justify-content-center">
             <div class="col-md-9 col-lg-8">
 
+                {{-- ガチャ --}}
+                @auth
+                    <div class="card mb-4 text-center">
+                        <div class="card-body d-flex justify-content-around">
+                            <img src="/images/monsters/regular/fountain_guardian.png" class="img-fluid" alt="モンスター"
+                                style="width:5rem;height:5rem;">
+                            <div>
+                                <h5 class="card-title fw-bold mb-3">
+                                    <i class="fa-solid fa-gem fa-fw"></i>
+                                    ガチャ
+                                </h5>
+                                <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
+                                    @class([
+                                        'btn',
+                                        'btn-primary',
+                                        'text-white',
+                                        'disabled' => $remainingGachaCount <= 0,
+                                    ])>本日あと<span class="fw-bold mx-1">{{ $remainingGachaCount }}</span>回
+                                </a>
+                            </div>
+                            <img src="\images\monsters\regular\lightning.png" class="img-fluid" alt="モンスター"
+                                style="width:5rem;height:5rem;">
+                        </div>
+                    </div>
+                @endauth
+                {{-- /ガチャ --}}
+
                 {{-- 投稿フォーム --}}
                 @auth
                     <div class="card mb-4">
@@ -36,7 +63,7 @@
                     @include('inc.post', [
                         'stretchedLink' => true,
                         'charLimit' => true,
-                        'likeBtn' => $post->likeBtnState(),
+                        'likeBtn' => $post->likeBtnStatus(),
                     ])
                 @endforeach
                 {{-- /投稿内容一覧 --}}

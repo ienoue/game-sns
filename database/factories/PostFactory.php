@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -15,7 +15,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => Post::factory(),
+            'user_id' => User::factory(),
             'text' => preg_replace("/。/", "。\n", $this->faker->realText($this->faker->numberBetween(30, 200), 5)),
             'created_at' => $this->faker->dateTimeBetween('-30days', '-15days'),
             'updated_at' => $this->faker->dateTimeBetween('-14days', '0days'),
