@@ -6,7 +6,7 @@
                 {{-- モンスター画像 --}}
                 <a href="{{ route('monsters.show', ['monster' => $post->user->partner]) }}">
                     <img src="{{ $post->user->partner->small_image_path }}"
-                        class="img-fluid rounded-circle border me-2" alt="モンスター" style="width:2rem;height:2rem;">
+                        class="rounded-circle border me-2" alt="モンスター" style="width:2rem;height:2rem;">
                 </a>
                 {{-- /モンスター画像 --}}
 
