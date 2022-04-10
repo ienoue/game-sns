@@ -12,15 +12,25 @@
                 {{-- ガチャ --}}
                 @auth
                     <div class="card mb-4 text-center">
-                        <div class="card-body">
-                            <h5 class="card-title">ガチャ</h5>
-                            <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
-                                @class([
-                                    'btn',
-                                    'btn-primary',
-                                    'text-white',
-                                    'disabled' => $remainingGachaCount <= 0,
-                                ])>本日あと{{ $remainingGachaCount }}回</a>
+                        <div class="card-body d-flex justify-content-around">
+                            <img src="/images/monsters/regular/fountain_guardian.png" class="img-fluid" alt="モンスター"
+                                style="width:5rem;height:5rem;">
+                            <div>
+                                <h5 class="card-title fw-bold mb-3">
+                                    <i class="fa-solid fa-gem fa-fw"></i>
+                                    ガチャ
+                                </h5>
+                                <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
+                                    @class([
+                                        'btn',
+                                        'btn-primary',
+                                        'text-white',
+                                        'disabled' => $remainingGachaCount <= 0,
+                                    ])>本日あと<span class="fw-bold mx-1">{{ $remainingGachaCount }}</span>回
+                                </a>
+                            </div>
+                            <img src="\images\monsters\regular\lightning.png" class="img-fluid" alt="モンスター"
+                                style="width:5rem;height:5rem;">
                         </div>
                     </div>
                 @endauth

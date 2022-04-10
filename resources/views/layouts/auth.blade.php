@@ -4,7 +4,7 @@
     <div class="container">
         {{-- ブランドロゴ --}}
         <div class="mb-4">
-            <img class="d-block mx-auto" src="/images/logo.png" alt="" width="168" height="60">
+            <img class="d-block mx-auto" src="/images/logo.png" alt="ロゴ" width="168" height="60">
         </div>
         {{-- /ブランドロゴ --}}
 
