@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
         $this->merge([
             'tags_as_array' => json_decode($this->tags, true),
         ]);
-        
+
         return parent::getValidatorInstance();
     }
 
@@ -67,8 +67,14 @@ class PostRequest extends FormRequest
             ->map(function ($tag) {
                 return $tag['value'];
             });
+
+        $tagsWithLinks = $tags->map(function ($tag) {
+            return ['value' => $tag, 'link' => route('search', ['tag' => $tag])];
+        });
+
         $this->merge([
             'tags' => $tags,
+            'tagsWithLinks' => $tagsWithLinks,
         ]);
     }
 

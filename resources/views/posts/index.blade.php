@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-9 col-lg-8">
+            <div class="col-lg-8">
 
                 {{-- ガチャ --}}
                 @auth
@@ -19,6 +19,7 @@
                                 <h5 class="card-title fw-bold mb-3">
                                     <i class="fa-solid fa-gem fa-fw"></i>
                                     ガチャ
+                                    <i class="fa-solid fa-gem fa-fw"></i>
                                 </h5>
                                 <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
                                     @class([

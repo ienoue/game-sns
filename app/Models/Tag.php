@@ -41,7 +41,7 @@ class Tag extends Model
      */
     public static function tagBtnStatus()
     {
-        $btnVisual = 'btn btn-outline-secondary rounded-pill btn-sm py-0 me-2 mb-1 text-truncate mw-200px';
+        $btnVisual = 'btn btn-outline-secondary rounded-pill btn-sm py-0 me-1 mb-2 text-truncate mw-150px';
         return compact('btnVisual');
     }
 }

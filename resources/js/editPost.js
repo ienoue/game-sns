@@ -31,9 +31,9 @@ $(function () {
                 //タグを追加
                 $tag.empty();
                 if (data.tags?.length) {
-                    $container = $('<div>').addClass('pt-2').appendTo($tag);
+                    $container = $('<div>').addClass('mt-3').appendTo($tag);
                     $.each(data.tags, function (i, tag) {
-                        $('<a>').text(tag).addClass(data.visual).appendTo($container);
+                        $('<a>').text(tag.value).addClass(data.visual).attr('role', 'button').attr('href', tag.link).appendTo($container);
                     });
                 }
 

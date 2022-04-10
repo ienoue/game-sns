@@ -1,5 +1,5 @@
 {{-- マイページタブ --}}
-<nav class="nav nav-pills nav-fill flex-column flex-sm-row mb-4">
+<nav class="nav nav-pills nav-fill flex-column flex-lg-row mb-4">
 
     <a @class([
         'nav-link',

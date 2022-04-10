@@ -5,23 +5,24 @@
             <div class="d-flex align-items-center">
                 {{-- モンスター画像 --}}
                 <a href="{{ route('monsters.show', ['monster' => $post->user->partner]) }}">
-                    <img src="{{ $post->user->partner->small_image_path }}"
-                        class="rounded-circle border me-2" alt="モンスター" style="width:2rem;height:2rem;">
+                    <img src="{{ $post->user->partner->small_image_path }}" class="rounded-circle border me-2"
+                        alt="モンスター" style="width:2.5rem;height:2.5rem;">
                 </a>
                 {{-- /モンスター画像 --}}
 
-                {{-- 名前 --}}
-                <a class="fw-bold text-reset text-decoration-none me-2"
-                    href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
-                </a>
-                {{-- /名前 --}}
+                <div>
+                    {{-- 名前 --}}
+                    <a class="fw-bold text-reset text-decoration-none me-2"
+                        href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
+                    </a>
+                    {{-- /名前 --}}
 
-                {{-- 日付 --}}
-                <div class="fw-light text-muted" id="test">
-                    <i class="fa-regular fa-clock fa-fw"></i>
-                    {{ $post->updated_at }}
+                    {{-- 日付 --}}
+                    <div class="fw-light text-muted" id="test">
+                        {{ $post->updated_at }}
+                    </div>
+                    {{-- /日付 --}}
                 </div>
-                {{-- /日付 --}}
             </div>
 
             {{-- 記事編集メニュー --}}
