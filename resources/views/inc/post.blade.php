@@ -145,7 +145,7 @@
         {{-- タグ --}}
         <div id="postTag_{{ $post->id }}" class="card-text">
             @if ($post->tags->count() >= 1)
-                <div class="mt-3">
+                <div class="{{ App\Models\Tag::tagBtnStatus()['containerVisual'] }}">
                     @foreach ($post->tags as $tag)
                         <a class="{{ App\Models\Tag::tagBtnStatus()['btnVisual'] }}"
                             href="{{ route('search', ['tag' => $tag->name]) }}"
