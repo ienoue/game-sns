@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <input type="text" class="form-control customLook" name="tags"
-                                            value="{{ $post->tags->implode('name', ', ') }}"
+                                            value="{{ $post->tags->implode('name', ' ') }}"
                                             placeholder="タグを5個まで入力できます">
                                     </div>
                                 </form>
