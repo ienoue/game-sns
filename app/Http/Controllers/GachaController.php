@@ -33,7 +33,7 @@ class GachaController extends Controller
         if (!Gate::allows('gacha')) {
             return view('gacha.error');
         }
-        $monster = $this->randWeighted(Monster::all());
+        $monster = $this->randWeighted(Monster::with('rarity')->get());
         $user = Auth::user();
         $user->monsters()->attach($monster);
         $user->refresh();
