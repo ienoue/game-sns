@@ -33,8 +33,6 @@
 
 // 投稿の表示行制限
 .row-5 {
-    max-height: calc(1.5em * 5);
-    line-height: 1.5;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
