@@ -9,3 +9,4 @@ require('./editPost');
 require('./like');
 require('./follow');
 require('./partner');
+require('./disableSubmit.js');

@@ -27,7 +27,8 @@
                                         'btn-primary',
                                         'text-white',
                                         'disabled' => $remainingGachaCount <= 0,
-                                    ])>本日あと<span class="fw-bold mx-1">{{ $remainingGachaCount }}</span>回
+                                    ])>本日あと<span
+                                        class="fw-bold mx-1">{{ $remainingGachaCount }}</span>回
                                 </a>
                             </div>
                             <img src="\images\monsters\regular\lightning.png" class="img-fluid" alt="モンスター"
@@ -42,7 +43,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             @include('inc.error')
-                            <form action="{{ route('posts.store') }}" method="POST">
+                            <form action="{{ route('posts.store') }}" method="POST" id="formNewPost">
                                 @csrf
                                 <div class="mb-3">
                                     <textarea class="form-control" rows="2" name="text" placeholder="好きな話題を投稿してみよう">{{ old('text') }}</textarea>
@@ -51,8 +52,9 @@
                                     <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}"
                                         placeholder="タグを5個まで入力できます">
                                 </div>
-                                <button type="submit" class="btn btn-primary text-white"><i
-                                        class="fa-solid fa-pen-to-square fa-fw"></i>投稿する</button>
+                                <button type="submit" class="btn btn-primary text-white">
+                                    <i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する
+                                </button>
                             </form>
                         </div>
                     </div>

@@ -9,11 +9,12 @@
                 <div class="card">
                     <div class="card-body text-center">
                         @include('inc.error')
-                        <form name="gacha" action="{{ route('gacha.index') }}" method="POST">
+                        <form name="gacha" action="{{ route('gacha.index') }}" method="POST" id="formGacha">
                             @csrf
-                            <a href="javascript:gacha.submit()">
+                            <button type="submit" class="btn">
                                 <img src="/images/treasure_box.png" class="img-fluid poyopoyo" alt="ガチャ">
-                            </a>
+                            </button>
+
                         </form>
                     </div>
                 </div>
