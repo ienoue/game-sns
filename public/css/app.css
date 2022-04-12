@@ -22115,8 +22115,6 @@ readers do not read off random characters that represent icons */
 }
 
 .row-5 {
-  max-height: 7.5em;
-  line-height: 1.5;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
