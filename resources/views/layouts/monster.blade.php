@@ -16,10 +16,12 @@
                             </div>
 
                             {{-- 相棒ボタン --}}
-                            <button type="button" class="{{ $partnerBtn['btnVisual'] }}"
-                                data-monster-id="{{ $monster->id }}" {{ $partnerBtn['btnDisabled'] }}>
-                                <span>{{ $partnerBtn['btnText'] }}</span>
-                            </button>
+                            @if (Auth::check() && Auth::user()->hasMonster($monster))
+                                <button type="button" class="{{ $partnerBtn['btnVisual'] }}"
+                                    data-monster-id="{{ $monster->id }}" {{ $partnerBtn['btnDisabled'] }}>
+                                    <span>{{ $partnerBtn['btnText'] }}</span>
+                                </button>
+                            @endif
                             {{-- /相棒ボタン --}}
                         </div>
 
