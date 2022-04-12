@@ -22,7 +22,7 @@ $(function () {
                 $btn.removeClass();
                 $partnerName.text(data.name);
                 $btn.each(function () {
-                    $elm = $(this);
+                    const $elm = $(this);
                     if(data.id === $elm.data('monster-id')) {
                         $elm.addClass(data.active.btnVisual);
                         $elm.text(data.active.btnText);
