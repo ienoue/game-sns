@@ -14,9 +14,6 @@
     @yield('javascript')
     <script src="{{ mix('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
