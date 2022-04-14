@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps();
     }
 
+    public function battles()
+    {
+        return Battle::where('win_user_id', $this->id)->orWhere('defeat_user_id', $this->id)->latest('updated_at');
+    }
+
     /**
      * ユーザが保持しているモンスターを指定したカラムでソートする
      */

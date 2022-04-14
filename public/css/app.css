@@ -304,7 +304,7 @@ table {
 caption {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  color: #6c757d;
+  color: #adb5bd;
   text-align: left;
 }
 
@@ -2177,7 +2177,7 @@ progress {
 .form-text {
   margin-top: 0.25rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #adb5bd;
 }
 
 .form-control {
@@ -7770,7 +7770,7 @@ textarea.form-control-lg {
 
 .text-muted {
   --bs-text-opacity: 1;
-  color: #6c757d !important;
+  color: #adb5bd !important;
 }
 
 .text-black-50 {

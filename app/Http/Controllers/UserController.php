@@ -102,4 +102,22 @@ class UserController extends Controller
         $monsters = $user->monstersSortedBy($sort)->with('rarity')->paginate(10)->onEachSide(2);
         return view('users.monsters', compact('user', 'monsters', 'sort'));
     }
+
+    /**
+     * 特定ユーザの対戦履歴一覧を表示
+     *
+     * @param  String  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function battles(Request $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if (!$user) {
+            return redirect()->route('posts.index');
+        }
+
+        $battles = $user->battles()->paginate(10)->onEachSide(2);
+        return view('users.battles', compact('user', 'battles'));
+    }
 }

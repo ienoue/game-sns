@@ -8,7 +8,7 @@
         'text-reset' => !$postsPage,
         'active' => $postsPage,
     ]) href="{{ route('users.index', ['name' => $user->name]) }}">
-        <i class="fa-solid fa-pen fa-fw"></i>
+        <i class="fa-solid fa-pen-to-square fa-fw"></i>
         投稿
     </a>
 
@@ -21,6 +21,16 @@
     ]) href="{{ route('users.likes', ['name' => $user->name]) }}">
         <i class="fa-solid fa-heart fa-fw"></i>
         いいね
+    </a>
+
+    <a @class([
+        'nav-link',
+        'text-reset' => !$battlesPage,
+        'active' => $battlesPage,
+    ]) href="{{ route('users.battles', ['name' => $user->name]) }}" tabindex="-1"
+        aria-disabled="true">
+        <i class="fa-solid fa-fire fa-fw"></i>
+        対戦
     </a>
 
     <a @class([
