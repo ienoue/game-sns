@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserLiked;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,7 @@ class LikeController extends Controller
 
     /**
      * 対象の投稿にいいねを追加する
+     * また、UserLikedイベントを発火する
      *
      * @param  \App\Models\Post  $post
      */
@@ -49,6 +51,7 @@ class LikeController extends Controller
     {
         $post->likes()->detach(Auth::id());
         $post->likes()->attach(Auth::id());
+        event(new UserLiked($post));
     }
 
     /**

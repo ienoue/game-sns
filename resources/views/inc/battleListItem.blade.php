@@ -55,7 +55,10 @@
         </li>
 
         <div class="position-absolute top-50 start-50 translate-middle bg-white">
-            <i class="fa-solid fa-circle-arrow-down"></i>
+            <span class="fa-stack">
+                <i class="fa-regular fa-heart fa-stack-2x"></i>
+                <i class="fa-solid fa-arrow-down fa-stack-1x"></i>
+            </span>
         </div>
     </ul>
 </div>
