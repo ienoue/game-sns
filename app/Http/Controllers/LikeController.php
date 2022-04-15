@@ -21,13 +21,14 @@ class LikeController extends Controller
         abort_if(!Gate::allows('toggle-like', $post), 403);
 
         $count = $post->likes->count();
-        if ($post->isLikedby(Auth::user())) {
+        $user = Auth::user();
+        $isBattled = $user->isBattledWith($post);
+
+        if ($post->isLikedby($user)) {
             $this->unlike($post);
-            $isLiked = 'false';
             $count--;
         } else {
             $this->like($post);
-            $isLiked = 'true';
             $count++;
         }
 
@@ -35,9 +36,9 @@ class LikeController extends Controller
         $state = $post->likeBtnStatus();
 
         return [
-            'isLiked' => $isLiked,
             'count' => $count,
             'visual' => $state['btnVisual'],
+            'isWin' => !$isBattled ? $user->isWinFor($post) : '',
         ];
     }
 

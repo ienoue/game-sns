@@ -38,8 +38,7 @@ $(function () {
                 }
 
                 //モーダルを閉じる
-                const elm = document.getElementById(`modalEdit_${data.id}`);
-                const modal = Modal.getOrCreateInstance(elm);
+                const modal = Modal.getOrCreateInstance(`#modalEdit_${data.id}`);
                 modal.hide();
             })
             .fail((jqXHR) => {

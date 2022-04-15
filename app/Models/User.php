@@ -211,4 +211,12 @@ class User extends Authenticatable
     {
         return Battle::where('post_id', $post->id)->where('user_id', $this->id)->exists();
     }
+
+    /**
+     * 引数のPostモデルの対戦について勝利したかどうか
+     */
+    public function isWinFor(Post $post)
+    {
+        return Battle::where('post_id', $post->id)->where('win_user_id', $this->id)->exists();
+    }
 }

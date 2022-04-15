@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $tags = Tag::all();
         $monsters = Monster::all();
 
-        User::factory(4)->create()->each(function ($user) use ($monsters) {
+        User::factory(20)->create()->each(function ($user) use ($monsters) {
             Post::factory(rand(2, 3))->create(['user_id' => $user]);
             // gacha_resultsテーブルのレコードをランダムに作成
             $user->monsters()->attach($monsters->where('rarity_id', '<=', 2)->random(rand(5, 9))->pluck('id')->toArray());
