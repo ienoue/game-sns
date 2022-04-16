@@ -20220,7 +20220,7 @@ readers do not read off random characters that represent icons */
   color: #dc3545;
 }
 
-.btn-like:focus {
+.outline-0:focus {
   outline: none;
   box-shadow: none;
 }

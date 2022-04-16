@@ -25,7 +25,11 @@ class Battle extends Model
 
     public function post()
     {
-        return $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class)->withDefault([
+            'id' => null,
+            'user_id' => $this->user_id === $this->win_user_id ? $this->defeat_user_id : $this->win_user_id,
+            'text' => '削除されました。',
+        ]);
     }
 
     public function postUser()

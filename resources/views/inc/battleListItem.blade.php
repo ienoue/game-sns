@@ -1,7 +1,12 @@
 <div class="card mb-4 border-bottom-0">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
         <span class="text-muted">{{ $battle->created_at }}</span>
-        <a href="{{ route('posts.show', ['post' => $battle->post]) }}" class="text-decoration-none text-reset me-2">
+        <a role="button" href="{{ $battle->post->id ? route('posts.show', ['post' => $battle->post]) : '' }}"
+            @class([
+                'btn',
+                'outline-0',
+                'disabled' => !$battle->post->id,
+            ])>
             <i class="fa-solid fa-pen-to-square fa-fw"></i>
             投稿内容
         </a>

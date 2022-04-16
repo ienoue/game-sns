@@ -159,7 +159,7 @@
     </div>
     <div class="card-footer text-muted d-flex align-items-baseline bg-white p-0">
         {{-- いいねボタン --}}
-        <button type="button" class="text-muted btn btn-like" href="#" data-post-id="{{ $post->id }}"
+        <button type="button" class="text-muted btn btn-like outline-0" href="#" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
             <i class="{{ $likeBtn['btnVisual'] }}"></i>
             <span class="ms-2" id="likecount_{{ $post->id }}">
