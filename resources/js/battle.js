@@ -1,6 +1,8 @@
 /**
  *  Popoverプラグインのオプションを変更
  */
+import { Popover } from "bootstrap";
+
 Popover.Default.customClass = 'text-center fw-bold fs-5';
 Popover.Default.trigger = 'manual';
 Popover.Default.html = true;

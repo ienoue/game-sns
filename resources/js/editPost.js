@@ -1,6 +1,8 @@
 /**
  * 投稿内容更新処理
  */
+import { Modal } from "bootstrap";
+
 $(function () {
     $('.btn-edit').on("click", function (event) {
         event.preventDefault();
@@ -27,7 +29,7 @@ $(function () {
                 //text()だとサニタイズされるが改行されない為に、以下の方法で改行した
                 const postText = $('<dummy>').text(data.text).html().replace(/\n/g, '<br>');
                 $(`#postText_${data.id}`).empty().html(postText);
-                
+
                 //タグを追加
                 $tag.empty();
                 if (data.tags?.length) {
