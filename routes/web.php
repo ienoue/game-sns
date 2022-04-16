@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\GachaController;
 use App\Http\Controllers\LikeController;
@@ -33,6 +34,7 @@ Route::post('/follow/{name}', [FollowController::class, 'toggle'])->name('follow
 Auth::routes([
     'reset'    => false,  // パスワードリセット用のルート
 ]);
+Route::get('/login/guest', [LoginController::class, 'guestLogin'])->name('login.guest');
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', [UserController::class, 'index'])->name('index');
@@ -47,6 +49,5 @@ Route::prefix('gacha')->middleware('auth')->group(function () {
     Route::get('/', [GachaController::class, 'index'])->name('gacha.index');
     Route::post('/', [GachaController::class, 'result']);
 });
-
 
 Route::resource('/monsters', MonsterController::class)->only(['update', 'destroy', 'show']);

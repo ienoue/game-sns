@@ -42,15 +42,28 @@
 
                         @guest
                             <!-- 認証 -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login.guest') }}">
+                                    <i class="fa-solid fa-user-check fa-fw"></i>
+                                    ゲストログイン
+                                </a>
+                            </li>
+                            
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">
+                                        <i class="fa-solid fa-right-to-bracket fa-fw"></i>
+                                        {{ __('Login') }}
+                                    </a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                        <i class="fa-solid fa-user-plus fa-fw"></i>
+                                        {{ __('Register') }}
+                                    </a>
                                 </li>
                             @endif
                             {{-- /認証 --}}
