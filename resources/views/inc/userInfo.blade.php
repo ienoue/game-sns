@@ -38,6 +38,11 @@
                 </span>
             </a>
         </li>
+
+        <li class="list-group-item">
+            <span class="text-muted">対戦回数</span>
+            <span class="ms-2">{{ $user->battles()->count() }} 回</span>
+        </li>
     </ul>
 </div>
 {{-- /ユーザ情報 --}}
