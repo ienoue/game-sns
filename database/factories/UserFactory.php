@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Monster;
+use App\Models\Rarity;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -15,8 +16,11 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $rarity = Rarity::orderBy('rarity_rank')->first();
+        $monster = Monster::whereBelongsTo($rarity)->get()->random();
+
         return [
-            'monster_id' => Monster::inRandomOrder()->first(),
+            'monster_id' => $monster,
             'name' => $this->faker->unique()->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),

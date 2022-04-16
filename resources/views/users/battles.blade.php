@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('javascript')
-    @include('inc.transformToJs')
-@endsection
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -17,27 +13,23 @@
 
                 {{-- タブ --}}
                 @include('inc.tabs', [
-                    'postsPage' => true,
+                    'postsPage' => false,
                     'likesPage' => false,
-                    'battlesPage' => false,
+                    'battlesPage' => true,
                     'monstersPage' => false,
                     'followeePage' => false,
                     'followerPage' => false,
-                ])
-                {{-- /タブ --}}
+                ]) {{-- /タブ --}}
 
-                {{-- 投稿内容一覧 --}}
-                @foreach ($posts as $post)
-                    @include('inc.post', [
-                        'stretchedLink' => true,
-                        'charLimit' => true,
-                        'likeBtn' => $post->likeBtnStatus(),
-                    ])
+                {{-- 対戦履歴一覧 --}}
+                @foreach ($battles as $battle)
+                    @include('inc.battleListItem')
                 @endforeach
-                {{-- /投稿内容一覧 --}}
+
+                {{-- /モンスター一覧 --}}
 
                 {{-- ページネーション --}}
-                {{ $posts->links() }}
+                {{ $battles->links() }}
                 {{-- /ページネーション --}}
 
             </div>

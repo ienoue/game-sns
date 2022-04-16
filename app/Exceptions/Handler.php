@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
             return back()
                 ->withInput($request->except('_token'))
-                ->withErrors(['csrf' => ['トークンが無効です']]);
+                ->withErrors(['csrf' => ['セッションが切れました。もう一度送信をお願いします。']]);
         }
 
         return parent::render($request, $exception);

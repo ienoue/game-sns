@@ -7,7 +7,7 @@
         </a>
     </td>
     <td>
-        <a href="{{ route('monsters.show', ['monster' => $monster]) }}" class="text-reset text-decoration-none">
+        <a href="{{ route('monsters.show', ['monster' => $monster]) }}" class="text-reset text-decoration-none fw-bold">
             {{ $monster->name }}
         </a>
     </td>

@@ -42,8 +42,8 @@
     color: $red;
 }
 
-// いいねボタンの枠を消す
-.btn-like:focus {
+// ボタンの枠を消す
+.outline-0:focus {
     outline: none;
     box-shadow: none;
 }

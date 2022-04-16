@@ -22,6 +22,8 @@ $(function () {
                 $icon.removeClass();
                 $icon.addClass(data.visual);
                 $count.text(data.count);
+                // successAjaxイベントを発火
+                $btn.trigger('successAjax', data.isWin);
             })
             .fail((jqXHR) => {
                 console.log(jqXHR.status + ': 通信に失敗しました。');

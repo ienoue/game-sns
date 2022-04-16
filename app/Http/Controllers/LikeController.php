@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserLiked;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,13 +21,14 @@ class LikeController extends Controller
         abort_if(!Gate::allows('toggle-like', $post), 403);
 
         $count = $post->likes->count();
-        if ($post->isLikedby(Auth::user())) {
+        $user = Auth::user();
+        $isBattled = $user->isBattledWith($post);
+
+        if ($post->isLikedby($user)) {
             $this->unlike($post);
-            $isLiked = 'false';
             $count--;
         } else {
             $this->like($post);
-            $isLiked = 'true';
             $count++;
         }
 
@@ -34,14 +36,15 @@ class LikeController extends Controller
         $state = $post->likeBtnStatus();
 
         return [
-            'isLiked' => $isLiked,
             'count' => $count,
             'visual' => $state['btnVisual'],
+            'isWin' => !$isBattled ? $user->isWinFor($post) : '',
         ];
     }
 
     /**
      * 対象の投稿にいいねを追加する
+     * また、UserLikedイベントを発火する
      *
      * @param  \App\Models\Post  $post
      */
@@ -49,6 +52,7 @@ class LikeController extends Controller
     {
         $post->likes()->detach(Auth::id());
         $post->likes()->attach(Auth::id());
+        event(new UserLiked($post));
     }
 
     /**

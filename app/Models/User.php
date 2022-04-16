@@ -67,6 +67,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps();
     }
 
+    public function battles()
+    {
+        return Battle::where(function ($query) {
+            $query->where('win_user_id', $this->id)->orWhere('defeat_user_id', $this->id);
+        })->latest('updated_at');
+    }
+
     /**
      * ユーザが保持しているモンスターを指定したカラムでソートする
      */
@@ -195,5 +202,21 @@ class User extends Authenticatable
             $count -= 1;
         }
         return $this->gachaLimit - $count;
+    }
+
+    /**
+     * 引数のPostモデルに対して紐づけを既に行っているかどうか
+     */
+    public function isBattledWith(Post $post)
+    {
+        return Battle::where('post_id', $post->id)->where('user_id', $this->id)->exists();
+    }
+
+    /**
+     * 引数のPostモデルの対戦について勝利したかどうか
+     */
+    public function isWinFor(Post $post)
+    {
+        return Battle::where('post_id', $post->id)->where('win_user_id', $this->id)->exists();
     }
 }

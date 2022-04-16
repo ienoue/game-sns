@@ -30,12 +30,18 @@
 
     </div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item">相棒モンスター
+        <li class="list-group-item">
+            <span class="text-muted">相棒モンスター</span>
             <a href="{{ route('monsters.show', ['monster' => $user->partner]) }}" class="text-reset text-decoration-none">
                 <span id="partner-name" class="fw-bold ms-2">
                     {{ $user->partner->name }}
                 </span>
             </a>
+        </li>
+
+        <li class="list-group-item">
+            <span class="text-muted">対戦回数</span>
+            <span class="ms-2">{{ $user->battles()->count() }} 回</span>
         </li>
     </ul>
 </div>

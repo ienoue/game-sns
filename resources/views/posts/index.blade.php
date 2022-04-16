@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
 
                 {{-- ガチャ --}}
                 @auth
@@ -24,8 +24,7 @@
                                 <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
                                     @class([
                                         'btn',
-                                        'btn-primary',
-                                        'text-white',
+                                        'btn-outline-primary',
                                         'disabled' => $remainingGachaCount <= 0,
                                     ])>本日あと<span
                                         class="fw-bold mx-1">{{ $remainingGachaCount }}</span>回
