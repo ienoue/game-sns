@@ -117,7 +117,7 @@ class UserController extends Controller
             return redirect()->route('posts.index');
         }
 
-        $battles = $user->battles()->paginate(10)->onEachSide(2);
+        $battles = $user->battles()->with('postMonster', 'post.user', 'userMonster', 'user', 'winUser')->paginate(10)->onEachSide(2);
         return view('users.battles', compact('user', 'battles'));
     }
 }
