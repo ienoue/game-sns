@@ -23,7 +23,7 @@ $(function () {
                 $icon.addClass(data.visual);
                 $count.text(data.count);
                 // successAjaxイベントを発火
-                $btn.trigger('successAjax', data.isWin);
+                $btn.trigger('successAjax', data.hasWon);
             })
             .fail((jqXHR) => {
                 console.log(jqXHR.status + ': 通信に失敗しました。');

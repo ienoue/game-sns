@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Monster;
+use App\Models\Rarity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Database\Eloquent\Collection;
 
 class GachaController extends Controller
 {
@@ -19,7 +21,8 @@ class GachaController extends Controller
         if (!Gate::allows('gacha')) {
             return view('gacha.error');
         }
-        return view('gacha.index');
+        $hasWonYesterday = Auth::user()->hasWonYesterday();
+        return view('gacha.index', compact('hasWonYesterday'));
     }
 
     /**
@@ -33,8 +36,11 @@ class GachaController extends Controller
         if (!Gate::allows('gacha')) {
             return view('gacha.error');
         }
-        $monster = $this->randWeighted(Monster::with('rarity')->get());
+
         $user = Auth::user();
+        $n = $user->hasWonYesterday() ? 1 : 0;
+        $monster = $this->randWeighted(Monster::with('rarity')->get(), Rarity::nth($n));
+        
         $user->monsters()->attach($monster);
         $user->refresh();
         $request->session()->regenerateToken();
@@ -44,9 +50,17 @@ class GachaController extends Controller
 
     /**
      * 重み付きの抽選を行う
+     * 
+     * @param  \Illuminate\Database\Eloquent\Collection  $monsters
+     * @param  \App\Models\Rarity  $lowerLimit
+     * @return \App\Models\Monster
      */
-    public function randWeighted($entries)
+    public function randWeighted(Collection $monsters, Rarity $lowerLimit)
     {
+        $entries = $monsters->filter(function ($monster) use ($lowerLimit) {
+            return $monster->rarity->rarity_rank >= $lowerLimit->rarity_rank;
+        });
+
         $sum = $entries->sum(function ($entry) {
             return $entry->rarity->weight;
         });

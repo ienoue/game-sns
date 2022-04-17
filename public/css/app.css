@@ -20225,36 +20225,6 @@ readers do not read off random characters that represent icons */
   box-shadow: none;
 }
 
-.poyopoyo {
-  -webkit-animation-timing-function: ease-in-out;
-          animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-direction: alternate;
-          animation-direction: alternate;
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
-  -webkit-animation-name: poyopoyo;
-          animation-name: poyopoyo;
-}
-
-@-webkit-keyframes poyopoyo {
-  0%, 40%, 60%, 80% {
-    transform: scale(1);
-  }
-  50%, 70% {
-    transform: scale(0.95);
-  }
-}
-
-@keyframes poyopoyo {
-  0%, 40%, 60%, 80% {
-    transform: scale(1);
-  }
-  50%, 70% {
-    transform: scale(0.95);
-  }
-}
 .btn-outline-primary:hover {
   color: #fff;
 }

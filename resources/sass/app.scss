@@ -48,28 +48,6 @@
     box-shadow: none;
 }
 
-// 揺れるアニメーション
-.poyopoyo {
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-duration: 1.5s;
-    animation-name: poyopoyo;
-}
-
-@keyframes poyopoyo {
-    0%,
-    40%,
-    60%,
-    80% {
-        transform: scale(1);
-    }
-    50%,
-    70% {
-        transform: scale(0.95);
-    }
-}
-
 // Bootstrapボタン
 .btn-outline-primary:hover {
     color: #fff;
