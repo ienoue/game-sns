@@ -1,6 +1,9 @@
 <div class="card mb-4 border-bottom-0">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
+
         <span class="text-muted">{{ $battle->created_at }}</span>
+
+        {{-- 投稿内容へのリンク --}}
         <a role="button" href="{{ $battle->post->id ? route('posts.show', ['post' => $battle->post]) : '' }}"
             @class([
                 'btn',
@@ -10,6 +13,8 @@
             <i class="fa-solid fa-pen-to-square fa-fw"></i>
             投稿内容
         </a>
+        {{-- /投稿内容へのリンク --}}
+
     </div>
     <ul class="list-group list-group-flush position-relative">
 
@@ -30,9 +35,11 @@
                 </a>
                 {{-- /名前 --}}
 
+                {{-- 対戦結果 --}}
                 @if ($battle->user->is($battle->winUser))
                     <span class="badge bg-primary rounded-pill">WIN</span>
                 @endif
+                {{-- /対戦結果 --}}
             </div>
         </li>
 
@@ -53,9 +60,11 @@
                 </a>
                 {{-- /名前 --}}
 
+                {{-- 対戦結果 --}}
                 @if (!$battle->user->is($battle->winUser))
                     <span class="badge bg-primary rounded-pill">WIN</span>
                 @endif
+                {{-- /対戦結果 --}}
             </div>
         </li>
 

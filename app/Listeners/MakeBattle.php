@@ -22,7 +22,7 @@ class MakeBattle
     }
 
     /**
-     * Handle the event.
+     * 対戦結果からBattleモデルを作成する
      *
      * @param  \App\Events\UserLiked  $event
      * @return void
@@ -47,7 +47,8 @@ class MakeBattle
     }
 
     /**
-     * 対戦を行い、勝者のUserモデルを返す
+     * 対戦を行い、勝者となったUserモデルを返す
+     * アルゴリズムは重み付きの抽選
      */
     public function battle(Post $post)
     {

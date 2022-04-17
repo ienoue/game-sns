@@ -1,4 +1,4 @@
-{{-- モンスターを詳細表示 --}}
+{{-- モンスターの詳細情報表示 --}}
 @extends('layouts.monster')
 
 @section('link')

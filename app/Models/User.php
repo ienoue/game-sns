@@ -67,6 +67,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps();
     }
 
+    /**
+     * このUserに紐づくbattleモデルを全て返す
+     * 結果は対戦を仕掛けられた場合も含める
+     */
     public function battles()
     {
         return Battle::where(function ($query) {

@@ -21,6 +21,8 @@
                                     ガチャ
                                     <i class="fa-solid fa-gem fa-fw"></i>
                                 </h5>
+
+                                {{-- ガチャページへのリンク --}}
                                 <a role="button" href="{{ $remainingGachaCount > 0 ? route('gacha.index') : '' }}"
                                     @class([
                                         'btn',
@@ -29,6 +31,8 @@
                                     ])>本日あと<span
                                         class="fw-bold mx-1">{{ $remainingGachaCount }}</span>回
                                 </a>
+                                {{-- /ガチャページへのリンク --}}
+
                             </div>
                             <img src="\images\monsters\regular\lightning.png" class="img-fluid" alt="モンスター"
                                 style="width:5rem;height:5rem;">
@@ -44,13 +48,19 @@
                             @include('inc.error')
                             <form action="{{ route('posts.store') }}" method="POST" id="formNewPost">
                                 @csrf
+                                {{-- 入力欄：投稿内容 --}}
                                 <div class="mb-3">
                                     <textarea class="form-control" rows="2" name="text" placeholder="好きな話題を投稿してみよう">{{ old('text') }}</textarea>
                                 </div>
+                                {{-- /入力欄：投稿内容 --}}
+
+                                {{-- 入力欄：タグ --}}
                                 <div class="mb-3">
                                     <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}"
                                         placeholder="タグを5個まで入力できます">
                                 </div>
+                                {{-- /入力欄：タグ --}}
+
                                 <button type="submit" class="btn btn-primary text-white">
                                     <i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する
                                 </button>

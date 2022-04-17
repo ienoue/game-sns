@@ -25,8 +25,7 @@
                 @foreach ($battles as $battle)
                     @include('inc.battleListItem')
                 @endforeach
-
-                {{-- /モンスター一覧 --}}
+                {{-- /対戦履歴一覧 --}}
 
                 {{-- ページネーション --}}
                 {{ $battles->links() }}
