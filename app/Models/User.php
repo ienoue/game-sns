@@ -213,10 +213,22 @@ class User extends Authenticatable
     }
 
     /**
-     * 引数のPostモデルの対戦について勝利したかどうか
+     * 引数のPostモデルとの対戦について勝利したかどうか
      */
-    public function isWinFor(Post $post)
+    public function hasWonFor(Post $post)
     {
         return Battle::where('post_id', $post->id)->where('win_user_id', $this->id)->exists();
+    }
+
+    /**
+     * 昨日、このUserが仕掛けた対戦で１度でも勝利したかどうか
+     */
+    public function hasWonYesterday()
+    {
+        $date = Carbon::yesterday();
+        return Battle::where('user_id', $this->id)
+            ->where('win_user_id', $this->id)
+            ->whereDate('created_at', $date)
+            ->exists();
     }
 }

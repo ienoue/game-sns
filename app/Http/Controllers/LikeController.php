@@ -38,7 +38,7 @@ class LikeController extends Controller
         return [
             'count' => $count,
             'visual' => $state['btnVisual'],
-            'isWin' => !$isBattled ? $user->isWinFor($post) : '',
+            'hasWon' => !$isBattled ? $user->hasWonFor($post) : '',
         ];
     }
 

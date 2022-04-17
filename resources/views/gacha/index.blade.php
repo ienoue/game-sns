@@ -11,10 +11,16 @@
                         @include('inc.error')
                         <form name="gacha" action="{{ route('gacha.index') }}" method="POST" id="formGacha">
                             @csrf
-                            <button type="submit" class="btn">
-                                <img src="/images/treasure_box.png" class="img-fluid poyopoyo" alt="ガチャ">
+                            <button type="submit" class="btn position-relative">
+                                <img src="/images/treasure_box.png"
+                                    class="img-fluid {{ $hasWonYesterday ? 'fa-beat-fade' : 'fa-bounce' }}" alt="ガチャ">
+                                @if ($hasWonYesterday)
+                                    <span
+                                        class="position-absolute top-100 start-50 translate-middle-x badge bg-danger fs-6 opacity-75">
+                                        R以上確定 !
+                                    </span>
+                                @endif
                             </button>
-
                         </form>
                     </div>
                 </div>
