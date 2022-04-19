@@ -49,21 +49,23 @@
                             <form action="{{ route('posts.store') }}" method="POST" id="formNewPost">
                                 @csrf
                                 {{-- 入力欄：投稿内容 --}}
-                                <div class="mb-3">
+                                <div class="mb-2">
                                     <textarea class="form-control" rows="2" name="text" placeholder="好きな話題を投稿してみよう">{{ old('text') }}</textarea>
                                 </div>
                                 {{-- /入力欄：投稿内容 --}}
 
                                 {{-- 入力欄：タグ --}}
-                                <div class="mb-3">
+                                <div class="mb-2">
                                     <input type="text" class="form-control customLook" name="tags" value="{{ old('tags') }}"
                                         placeholder="タグを5個まで入力できます">
                                 </div>
                                 {{-- /入力欄：タグ --}}
 
-                                <button type="submit" class="btn btn-primary text-white">
-                                    <i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する
-                                </button>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary text-white">
+                                        <i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
