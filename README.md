@@ -64,7 +64,7 @@ SNSを使ってもなかなか人と繋がれない、SNSでいいねが貰え�
 
 # ER図
 
-![ER図](https://user-images.githubusercontent.com/39022092/163806950-0307da6b-9ae1-436d-8072-e50b2d186720.png)
+![ER図](https://user-images.githubusercontent.com/39022092/163937021-47dcad7a-985f-425d-b633-628f6724bfd9.png)
 
 # ワイヤーフレーム
 
