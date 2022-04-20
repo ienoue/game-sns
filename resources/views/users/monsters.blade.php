@@ -23,7 +23,7 @@
 
                 {{-- モンスター一覧 --}}
                 <div class="table-responsive">
-                    <table class="table bg-white border align-middle text-nowrap text-center">
+                    <table class="table bg-white border align-middle text-nowrap text-center table_border_radius">
                         <thead>
                             <tr>
                                 <th scope="col"></th>

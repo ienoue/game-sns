@@ -48,7 +48,7 @@
     box-shadow: none;
 }
 
-// Bootstrapボタン
+// 線ボタンのフォント色
 .btn-outline-primary:hover {
     color: #fff;
 }
@@ -57,4 +57,15 @@
 .table > :not(:first-child) {
     border-top-width: $border-width;
     border-top-color: $border-color;
+}
+
+//テーブルの丸み
+.table_border_radius {
+    border-radius: 0.25rem;
+    border-collapse: separate;
+}
+
+//デーブル最終列のボーダー
+.table_border_radius tr:last-child td {
+    border-bottom: none;
 }
