@@ -17,14 +17,24 @@ $dropdown-link-color: #546e7a;
 $list-group-color: #546e7a;
 $kbd-bg: #546e7a;
 
-// Muted（弱め）
+// フォントカラー Muted（弱め）
 $text-muted: #adb5bd;
 
-// ボタンの角
-$border-radius: 0.125rem;
-$border-radius-sm: 0.125rem;
-$border-radius-lg: 0.125rem;
-$border-radius-pill: 50rem;
+
+// ボタンの丸み
+$btn-border-radius:           50rem;
+$btn-border-radius-sm:        50rem;
+$btn-border-radius-lg:        50rem;
+
+// nabタブの丸み
+$nav-tabs-border-radius:            50rem;
+$nav-pills-border-radius:           50rem;
+
+// ページネーションの丸み
+$pagination-border-radius:          50rem;
+$pagination-border-radius-sm:       50rem;
+$pagination-border-radius-lg:       50rem;
+
 
 // モーダルのパディング
 // $modal-inner-padding: 1.5rem;
