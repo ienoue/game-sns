@@ -1,0 +1,102 @@
+{{-- コメント --}}
+<div class="d-flex justify-content-between align-items-center px-3 mb-1">
+    <div class="d-flex align-items-center">
+        
+        {{-- モンスター画像 --}}
+        <a href="{{ route('monsters.show', ['monster' => $comment->user->partner]) }}">
+            <img src="{{ $comment->user->partner->small_image_path }}" class="rounded-circle border me-2" alt="モンスター"
+                style="width:2.5rem;height:2.5rem;">
+        </a>
+        {{-- /モンスター画像 --}}
+
+        <div>
+            {{-- 名前 --}}
+            <a class="fw-bold text-reset text-decoration-none me-2"
+                href="{{ route('users.index', ['name' => $comment->user->name]) }}">{{ $comment->user->name }}
+            </a>
+            {{-- /名前 --}}
+
+            {{-- 日付 --}}
+            <div class="fw-light text-muted" id="test">
+                {{ $comment->updated_at }}
+            </div>
+            {{-- /日付 --}}
+        </div>
+    </div>
+
+    {{-- 記事編集メニュー --}}
+    @if (Auth::id() === $comment->user_id)
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary rounded-circle p-0" style="width:1.5rem;height:1.5rem;"
+                type="button" id="commentSetting" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-ellipsis"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="commentSetting">
+                <li>
+                    <a class="dropdown-item" data-bs-toggle="modal"
+                        data-bs-target="#modalCommentDelete_{{ $comment->id }}">
+                        <i class="fa-solid fa-trash-can"></i>
+                        コメント削除
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {{-- /記事編集メニュー --}}
+
+        {{-- 削除用モーダル --}}
+        <div class="modal fade" id="modalCommentDelete_{{ $comment->id }}" tabindex="-1"
+            aria-labelledby="modalCommentDeleteLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCommentDeleteLabel">確認</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+
+                    <form method="POST" {{-- action="{{ route('comments.destroy', ['comment' => $comment]) }}" --}}>
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-body">
+                            コメントを削除します。よろしいですか？
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                            <button type="submit" class="btn btn-danger">削除する
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        {{-- /削除用モーダル --}}
+    @endif
+</div>
+
+
+<div class="card mb-4 border-0 position-relative">
+
+    <div class="card-body">
+
+        {{-- コメント内容 --}}
+        <div class="card-text">
+            <p>
+                {!! nl2br(e($comment->text)) !!}
+            </p>
+        </div>
+        {{-- /コメント内容 --}}
+
+    </div>
+
+    {{-- 吹き出し画像 --}}
+    <svg width="4em" height="4em" viewBox="-16 -5 32 32"
+        class="position-absolute top-0 start-0 translate-middle mt-1 bi bi-caret-up-fill" fill="#fff"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+    </svg>
+    {{-- /吹き出し画像 --}}
+
+</div>
+{{-- /コメント --}}

@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,11 +15,13 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $post = Post::inRandomOrder()->first();
         return [
             'user_id' => User::inRandomOrder()->first(),
+            'post_id' => $post,
             'text' => preg_replace("/。/", "。\n", $this->faker->realText($this->faker->numberBetween(30, 200), 5)),
-            'created_at' => $this->faker->dateTimeBetween('-30days', '-15days'),
-            'updated_at' => $this->faker->dateTimeBetween('-14days', '0days'),
+            'created_at' => $this->faker->dateTimeBetween($post->updated_at, '0days'),
+            'updated_at' => $this->faker->dateTimeBetween($post->updated_at, '0days'),
         ];
     }
 }

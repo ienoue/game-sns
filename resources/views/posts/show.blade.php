@@ -15,6 +15,13 @@
                     'likeBtn' => $post->likeBtnStatus(),
                 ])
                 {{-- /投稿内容 --}}
+
+
+                @foreach ($post->comments as $comment)
+                    {{-- コメント --}}
+                    @include('inc.comment')
+                    {{-- /コメント --}}
+                @endforeach
             </div>
         </div>
     </div>
