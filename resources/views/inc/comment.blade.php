@@ -1,7 +1,7 @@
 {{-- コメント --}}
 <div class="d-flex justify-content-between align-items-center px-3 mb-1">
     <div class="d-flex align-items-center">
-        
+
         {{-- モンスター画像 --}}
         <a href="{{ route('monsters.show', ['monster' => $comment->user->partner]) }}">
             <img src="{{ $comment->user->partner->small_image_path }}" class="rounded-circle border me-2" alt="モンスター"
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    {{-- 記事編集メニュー --}}
+    {{-- コメント編集メニュー --}}
     @if (Auth::id() === $comment->user_id)
         <div class="dropdown">
             <button class="btn btn-outline-secondary rounded-circle p-0" style="width:1.5rem;height:1.5rem;"
@@ -41,7 +41,7 @@
                 </li>
             </ul>
         </div>
-        {{-- /記事編集メニュー --}}
+        {{-- /コメント編集メニュー --}}
 
         {{-- 削除用モーダル --}}
         <div class="modal fade" id="modalCommentDelete_{{ $comment->id }}" tabindex="-1"
@@ -78,15 +78,11 @@
 <div class="card mb-4 border-0 position-relative">
 
     <div class="card-body">
-
         {{-- コメント内容 --}}
-        <div class="card-text">
-            <p>
-                {!! nl2br(e($comment->text)) !!}
-            </p>
-        </div>
+        <p class="card-text">
+            {!! nl2br(e($comment->text)) !!}
+        </p>
         {{-- /コメント内容 --}}
-
     </div>
 
     {{-- 吹き出し画像 --}}

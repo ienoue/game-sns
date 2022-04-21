@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\GachaController;
 use App\Http\Controllers\LikeController;
@@ -58,4 +59,7 @@ Route::prefix('gacha')->middleware('auth')->group(function () {
 });
 
 // モンスター
-Route::resource('/monsters', MonsterController::class)->only(['update', 'destroy', 'show']);
+Route::resource('/monsters', MonsterController::class)->only(['update', 'show']);
+
+// コメント
+Route::resource('posts.comments', CommentController::class)->only(['store']);

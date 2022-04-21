@@ -3,7 +3,7 @@
 @section('title', 'ログイン')
 
 @section('form')
-    <form class="card-text mb-3" method="POST" action="{{ route('login') }}">
+    <form class="mb-3" method="POST" action="{{ route('login') }}">
         @csrf
         <div class="mb-3">
             <div class="form-floating">

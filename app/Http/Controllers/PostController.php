@@ -31,6 +31,7 @@ class PostController extends Controller
      * 投稿を新規保存
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request, Post $post)
