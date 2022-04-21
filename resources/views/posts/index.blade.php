@@ -8,6 +8,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9">
+                {{-- エラー表示 --}}
+                @include('inc.error')
+                {{-- /エラー表示 --}}
 
                 {{-- ガチャ --}}
                 @auth
@@ -45,7 +48,6 @@
                 @auth
                     <div class="card mb-4">
                         <div class="card-body">
-                            @include('inc.error')
                             <form action="{{ route('posts.store') }}" method="POST" id="formNewPost">
                                 @csrf
                                 {{-- 入力欄：投稿内容 --}}

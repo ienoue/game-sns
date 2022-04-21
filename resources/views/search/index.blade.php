@@ -8,6 +8,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9">
+                {{-- エラー表示 --}}
+                @include('inc.error')
+                {{-- /エラー表示 --}}
 
                 {{-- 検索ワード --}}
                 <div class="card mb-4">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post, Comment $comment)
+    public function store(CommentRequest $request, Post $post, Comment $comment)
     {
         $comment->fill($request->all());
         $comment->user_id = $request->user()->id;
