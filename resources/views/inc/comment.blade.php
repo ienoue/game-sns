@@ -54,7 +54,7 @@
                             aria-label="Close"></button>
                     </div>
 
-                    <form method="POST" {{-- action="{{ route('comments.destroy', ['comment' => $comment]) }}" --}}>
+                    <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment ]) }}">
                         @csrf
                         @method('DELETE')
                         <div class="modal-body">
@@ -86,7 +86,7 @@
     </div>
 
     {{-- 吹き出し画像 --}}
-    <svg width="4em" height="4em" viewBox="-16 -5 32 32"
+    <svg width="4.5em" height="4.5em" viewBox="-16 -5 32 32"
         class="position-absolute top-0 start-0 translate-middle mt-1 bi bi-caret-up-fill" fill="#fff"
         xmlns="http://www.w3.org/2000/svg">
         <path

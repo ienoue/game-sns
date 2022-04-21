@@ -12,11 +12,11 @@ class CommentController extends Controller
      * コメントを新規保存
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment $comment
      * @param  \App\Models\Post $post
+     * @param  \App\Models\Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Comment $comment, Post $post)
+    public function store(Request $request, Post $post, Comment $comment)
     {
         $comment->fill($request->all());
         $comment->user_id = $request->user()->id;
@@ -39,13 +39,14 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * コメントを削除
      *
-     * @param  int  $id
+     * @param  \App\Models\Comment $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return back();
     }
 }
