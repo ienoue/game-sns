@@ -11,7 +11,7 @@
                 {{-- エラー表示 --}}
                 @include('inc.error')
                 {{-- /エラー表示 --}}
-                
+
                 {{-- 投稿内容 --}}
                 @include('inc.post', [
                     'stretchedLink' => false,
@@ -20,12 +20,22 @@
                 ])
                 {{-- /投稿内容 --}}
 
+                <div class="mb-4 px-3 mb-1">
+                    <i class="fa-solid fa-comments fa-fw"></i>
+                    コメント
+                    <span class="mx-1 fw-bold">{{ $post->comments->count() }}</span>
+                    件
+                </div>
 
-                @foreach ($post->comments as $comment)
+                @foreach ($comments as $comment)
                     {{-- コメント --}}
                     @include('inc.comment')
                     {{-- /コメント --}}
                 @endforeach
+
+                {{-- ページネーション --}}
+                {{ $comments->links() }}
+                {{-- /ページネーション --}}
             </div>
         </div>
     </div>

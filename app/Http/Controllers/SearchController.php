@@ -19,7 +19,7 @@ class SearchController extends Controller
         // $tag = Tag::where('name', $request->tag)->first()->load('posts.likes', 'posts.user', 'posts.tags');
         $tag = Tag::where('name', $request->tag)->first();
         if ($tag) {
-            $posts = $tag->posts()->with('tags', 'likes', 'user.partner')->paginate(10)->onEachSide(2);
+            $posts = $tag->posts()->with('tags', 'likes', 'user.partner', 'comments')->paginate(10)->onEachSide(2);
         } else {
             $posts = null;
         }

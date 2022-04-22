@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['likes', 'tags', 'user', 'user.partner'])->orderByDesc('updated_at')->paginate(10)->onEachSide(2);
+        $posts = Post::with(['likes', 'tags', 'user', 'user.partner', 'comments'])->orderByDesc('updated_at')->paginate(10)->onEachSide(2);
 
         return view('posts.index', compact('posts'));
     }
@@ -52,7 +52,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        $comments = $post->comments()->with('user.partner')->paginate(10)->onEachSide(2);
+        return view('posts.show', compact('post', 'comments'));
     }
 
 

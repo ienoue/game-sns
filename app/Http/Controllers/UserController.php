@@ -24,7 +24,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->posts()->with('tags', 'user', 'likes')->paginate(10)->onEachSide(2);
+        $posts = $user->posts()->with('tags', 'user', 'likes', 'comments')->paginate(10)->onEachSide(2);
 
         return view('users.index', compact('user', 'posts'));
     }
@@ -42,7 +42,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->likes()->with('tags', 'user', 'likes', 'user.partner')->paginate(10)->onEachSide(2);
+        $posts = $user->likes()->with('tags', 'user', 'likes', 'user.partner', 'comments')->paginate(10)->onEachSide(2);
 
         return view('users.likes', compact('user', 'posts'));
     }
