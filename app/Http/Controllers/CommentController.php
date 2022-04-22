@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Comment::class, 'comment');
+    }
+
     /**
      * コメントを新規保存
      *

@@ -62,4 +62,4 @@ Route::prefix('gacha')->middleware('auth')->group(function () {
 Route::resource('/monsters', MonsterController::class)->only(['update', 'show']);
 
 // コメント
-Route::resource('posts.comments', CommentController::class)->only(['store', 'destroy'])->shallow();
+Route::resource('posts.comments', CommentController::class)->only(['store', 'destroy'])->shallow()->middleware('auth');
