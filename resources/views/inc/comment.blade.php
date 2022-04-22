@@ -34,6 +34,16 @@
             <ul class="dropdown-menu" aria-labelledby="commentSetting">
                 <li>
                     <a class="dropdown-item" data-bs-toggle="modal"
+                        data-bs-target="#modalCommentEdit_{{ $comment->id }}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        コメント編集
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a class="dropdown-item" data-bs-toggle="modal"
                         data-bs-target="#modalCommentDelete_{{ $comment->id }}">
                         <i class="fa-solid fa-trash-can"></i>
                         コメント削除
@@ -42,6 +52,35 @@
             </ul>
         </div>
         {{-- /コメント編集メニュー --}}
+
+        {{-- 編集用モーダル --}}
+        <div class="modal fade" id="modalCommentEdit_{{ $comment->id }}" tabindex="-1"
+            aria-labelledby="modalCommentEditLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCommentEditLabel">編集</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <form method="POST" action="{{ route('comments.update', ['comment' => $comment->id]) }}">
+                        @method('PATCH')
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" name="text"
+                                    placeholder="コメントを投稿してみよう">{{ $comment->text ?? old('text') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+                            <button type="submit" class="btn btn-primary text-white">更新する</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- /編集用モーダル --}}
 
         {{-- 削除用モーダル --}}
         <div class="modal fade" id="modalCommentDelete_{{ $comment->id }}" tabindex="-1"
@@ -54,7 +93,7 @@
                             aria-label="Close"></button>
                     </div>
 
-                    <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment ]) }}">
+                    <form method="POST" action="{{ route('comments.destroy', ['comment' => $comment]) }}">
                         @csrf
                         @method('DELETE')
                         <div class="modal-body">
@@ -75,7 +114,7 @@
 </div>
 
 
-<div class="card mb-4 border-0 position-relative">
+<div class="card mb-4 border-0 position-relative shadow-sm">
 
     <div class="card-body">
         {{-- コメント内容 --}}

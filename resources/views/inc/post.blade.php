@@ -191,10 +191,6 @@
                     <form method="POST" action="{{ route('posts.comments.store', ['post' => $post->id]) }}">
                         @csrf
                         <div class="modal-body">
-                            <div class="alert alert-danger d-none">
-                                <ul id="formErr_{{ $post->id }}" class="mb-0">
-                                </ul>
-                            </div>
                             <div class="mb-3">
                                 <textarea class="form-control" rows="3" name="text" placeholder="コメントを投稿してみよう">{{ old('text') }}</textarea>
                             </div>

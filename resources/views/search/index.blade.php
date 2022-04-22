@@ -14,7 +14,7 @@
 
                 {{-- 検索ワード --}}
                 <div class="card mb-4">
-                    <div class="card-header">
+                    <div class="card-header bg-white">
                         検索結果
                     </div>
                     <div class="card-body">
