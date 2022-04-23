@@ -21,8 +21,6 @@
                     'commentsPage' => false,
                     'battlesPage' => false,
                     'monstersPage' => true,
-                    'followeePage' => false,
-                    'followerPage' => false,
                 ]) {{-- /タブ --}}
 
                 {{-- モンスター一覧 --}}

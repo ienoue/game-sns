@@ -14,16 +14,12 @@
                 ])
                 {{-- /ユーザ情報 --}}
 
-                {{-- タブ --}}
-                @include('inc.tabs', [
-                    'postsPage' => false,
-                    'likesPage' => false,
-                    'commentsPage' => false,
-                    'battlesPage' => false,
-                    'monstersPage' => false,
+                {{-- フォロータブ --}}
+                @include('inc.followTabs', [
                     'followeePage' => true,
                     'followerPage' => false,
-                ]) {{-- /タブ --}}
+                ])
+                {{-- /フォロータブ --}}
 
                 {{-- フォロワー一覧 --}}
                 <ul class="list-group mb-3">

@@ -25,8 +25,6 @@
                     'commentsPage' => false,
                     'battlesPage' => false,
                     'monstersPage' => false,
-                    'followeePage' => false,
-                    'followerPage' => false,
                 ])
                 {{-- /タブ --}}
 
