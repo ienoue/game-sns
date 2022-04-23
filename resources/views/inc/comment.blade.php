@@ -116,7 +116,8 @@
 
 <div class="card mb-4 border-0 position-relative shadow-sm">
 
-    <div class="card-body">
+    <div class="card-body position-relative">
+        <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $comment->post]) }}"></a>
         {{-- コメント内容 --}}
         <p class="card-text">
             {!! nl2br(e($comment->text)) !!}

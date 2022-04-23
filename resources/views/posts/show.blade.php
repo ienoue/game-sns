@@ -29,7 +29,9 @@
 
                 @foreach ($comments as $comment)
                     {{-- コメント --}}
-                    @include('inc.comment')
+                    @include('inc.comment', [
+                        'stretchedLink' => false,
+                    ])
                     {{-- /コメント --}}
                 @endforeach
 

@@ -14,6 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // 一日のガチャ可能回数
     protected $gachaLimit = 100;
 
     /**
@@ -67,9 +68,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Monster::class, 'gacha_results')->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->latest('created_at');
+    }
+
     /**
      * このUserに紐づくbattleモデルを全て返す
-     * 結果は対戦を仕掛けられた場合も含める
+     * 結果は対戦を挑まれた場合も含める
      */
     public function battles()
     {
@@ -225,7 +231,7 @@ class User extends Authenticatable
     }
 
     /**
-     * 昨日、このUserが仕掛けた対戦で１度でも勝利したかどうか
+     * 昨日、このUserが挑んだ対戦で１度でも勝利したかどうか
      */
     public function hasWonYesterday()
     {

@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $comments = $post->comments()->with('user.partner')->paginate(10)->onEachSide(2);
+        $comments = $post->comments()->with('user.partner', 'post')->paginate(10)->onEachSide(2);
         return view('posts.show', compact('post', 'comments'));
     }
 

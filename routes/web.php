@@ -50,6 +50,7 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/followees', [UserController::class, 'followees'])->name('followees');
     Route::get('/{name}/monsters', [UserController::class, 'monsters'])->name('monsters');
     Route::get('/{name}/battles', [UserController::class, 'battles'])->name('battles');
+    Route::get('/{name}/comments', [UserController::class, 'comments'])->name('comments');
 });
 
 // ガチャ

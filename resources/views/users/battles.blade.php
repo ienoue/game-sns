@@ -18,6 +18,7 @@
                 @include('inc.tabs', [
                     'postsPage' => false,
                     'likesPage' => false,
+                    'commentsPage' => false,
                     'battlesPage' => true,
                     'monstersPage' => false,
                     'followeePage' => false,
