@@ -69,7 +69,7 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <textarea class="form-control" rows="3" name="text"
-                                    placeholder="コメントを投稿してみよう">{{ $comment->text ?? old('text') }}</textarea>
+                                    placeholder="コメント">{{ $comment->text ?? old('text') }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">

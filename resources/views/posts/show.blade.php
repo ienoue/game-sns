@@ -20,6 +20,16 @@
                 ])
                 {{-- /投稿内容 --}}
 
+                <form class="d-flex mb-4" method="POST" action="{{ route('posts.comments.store', ['post' => $post->id]) }}">
+                    @csrf
+                    <div class="flex-grow-1 me-3">
+                        <textarea class="form-control" rows="1" name="text" placeholder="コメント">{{ old('text') }}</textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-primary">返信する</button>
+                    </div>
+                </form>
+
                 <div class="mb-4 px-3 mb-1">
                     <i class="fa-solid fa-comments fa-fw"></i>
                     コメント

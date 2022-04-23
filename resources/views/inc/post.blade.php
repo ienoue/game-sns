@@ -169,41 +169,13 @@
         {{-- /いいねボタン --}}
 
         {{-- コメントボタン --}}
-        <button type="button" class="text-muted btn outline-0" data-bs-toggle="modal"
-            data-bs-target="#modalComment_{{ $post->id }}">
+        <a role="button" class="text-muted btn outline-0" href="{{ route('posts.show', ['post' => $post]) }}">
             <i class="fa-solid fa-comment-dots"></i>
             <span class="ms-2">
                 {{ $post->comments->count() }}
             </span>
-        </button>
+        </a>
         {{-- /コメントボタン --}}
-
-        {{-- コメント用モーダル --}}
-        <div class="modal fade" id="modalComment_{{ $post->id }}" tabindex="-1"
-            aria-labelledby="modalCommentLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCommentLabel">コメント</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <form method="POST" action="{{ route('posts.comments.store', ['post' => $post->id]) }}">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <textarea class="form-control" rows="3" name="text" placeholder="コメントを投稿してみよう">{{ old('text') }}</textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                            <button type="submit" class="btn btn-primary text-white">コメントする</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        {{-- /コメント用モーダル --}}
 
     </div>
 </div>
