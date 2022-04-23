@@ -21,8 +21,6 @@
                     'commentsPage' => false,
                     'battlesPage' => true,
                     'monstersPage' => false,
-                    'followeePage' => false,
-                    'followerPage' => false,
                 ]) {{-- /タブ --}}
 
                 {{-- 対戦履歴一覧 --}}

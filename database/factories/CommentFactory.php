@@ -19,7 +19,7 @@ class CommentFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first(),
             'post_id' => $post,
-            'text' => preg_replace("/。/", "。\n", $this->faker->realText($this->faker->numberBetween(30, 200), 5)),
+            'text' => preg_replace("/。/", "。\n", $this->faker->realText($this->faker->numberBetween(10, 100), 5)),
             'created_at' => $this->faker->dateTimeBetween($post->updated_at, '0days'),
             'updated_at' => $this->faker->dateTimeBetween($post->updated_at, '0days'),
         ];
