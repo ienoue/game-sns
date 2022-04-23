@@ -29,6 +29,11 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'likes')->withTimestamps();
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->oldest('created_at');
+    }
+
     /**
      * 引数のユーザによっていいねされているかどうかを返す
      */

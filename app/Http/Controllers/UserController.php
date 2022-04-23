@@ -24,7 +24,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->posts()->with('tags', 'user', 'likes')->paginate(10)->onEachSide(2);
+        $posts = $user->posts()->with('tags', 'user', 'likes', 'comments')->paginate(10)->onEachSide(2);
 
         return view('users.index', compact('user', 'posts'));
     }
@@ -42,7 +42,7 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('posts.index');
         }
-        $posts = $user->likes()->with('tags', 'user', 'likes', 'user.partner')->paginate(10)->onEachSide(2);
+        $posts = $user->likes()->with('tags', 'user', 'likes', 'user.partner', 'comments')->paginate(10)->onEachSide(2);
 
         return view('users.likes', compact('user', 'posts'));
     }
@@ -87,6 +87,7 @@ class UserController extends Controller
     /**
      * 特定ユーザのモンスター一覧を表示
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  String  $post
      * @return \Illuminate\Http\Response
      */
@@ -109,7 +110,7 @@ class UserController extends Controller
      * @param  String  $post
      * @return \Illuminate\Http\Response
      */
-    public function battles(Request $request, string $name)
+    public function battles(string $name)
     {
         $user = User::where('name', $name)->first();
 
@@ -119,5 +120,23 @@ class UserController extends Controller
 
         $battles = $user->battles()->with('postMonster', 'post.user', 'userMonster', 'user', 'winUser')->paginate(10)->onEachSide(2);
         return view('users.battles', compact('user', 'battles'));
+    }
+
+    /**
+     * 特定ユーザのコメント一覧を表示
+     *
+     * @param  String  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function comments(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        if (!$user) {
+            return redirect()->route('posts.index');
+        }
+
+        $comments = $user->comments()->with('user', 'post')->paginate(10)->onEachSide(2);
+        return view('users.comments', compact('user', 'comments'));
     }
 }

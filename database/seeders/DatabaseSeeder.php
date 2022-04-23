@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Battle;
+use App\Models\Comment;
 use App\Models\Monster;
 use App\Models\Post;
 use App\Models\Tag;
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(20)->create()->each(function ($user) use ($monsters) {
             Post::factory(rand(2, 3))->create(['user_id' => $user]);
-
+            
             // 特定のレア度のgacha_resultsテーブルのレコードをランダムに作成
             $user->monsters()->attach($monsters->where('rarity_id', '<=', 2)->random(rand(5, 9))->pluck('id')->toArray());
         });
@@ -60,6 +61,8 @@ class DatabaseSeeder extends Seeder
             // post_tagテーブルのレコードをランダムに作成
             $post->tags()->attach($tags->random(rand(0, 3))->pluck('id')->toArray());
         });
+
+        Comment::factory(100)->create();
 
         User::first()->update([
             'name' => 'ゲストユーザー',

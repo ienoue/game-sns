@@ -3,8 +3,8 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill',
-        'text-sm-center',
+        'flex-lg-fill',
+        'text-lg-center',
         'text-reset' => !$postsPage,
         'active' => $postsPage,
     ]) href="{{ route('users.index', ['name' => $user->name]) }}">
@@ -14,8 +14,8 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill',
-        'text-sm-center',
+        'flex-lg-fill',
+        'text-lg-center',
         'text-reset' => !$likesPage,
         'active' => $likesPage,
     ]) href="{{ route('users.likes', ['name' => $user->name]) }}">
@@ -25,6 +25,19 @@
 
     <a @class([
         'nav-link',
+        'flex-lg-fill',
+        'text-lg-center',
+        'text-reset' => !$commentsPage,
+        'active' => $commentsPage,
+    ]) href="{{ route('users.comments', ['name' => $user->name]) }}">
+        <i class="fa-solid fa-comments fa-fw"></i>
+        コメント
+    </a>
+
+    <a @class([
+        'nav-link',
+        'flex-lg-fill',
+        'text-lg-center',
         'text-reset' => !$battlesPage,
         'active' => $battlesPage,
     ]) href="{{ route('users.battles', ['name' => $user->name]) }}" tabindex="-1"
@@ -35,6 +48,8 @@
 
     <a @class([
         'nav-link',
+        'flex-lg-fill',
+        'text-lg-center',
         'text-reset' => !$monstersPage,
         'active' => $monstersPage,
     ]) href="{{ route('users.monsters', ['name' => $user->name]) }}" tabindex="-1"
@@ -45,8 +60,8 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill',
-        'text-sm-center',
+        'flex-lg-fill',
+        'text-lg-center',
         'text-reset' => !$followeePage,
         'active' => $followeePage,
     ]) href="{{ route('users.followees', ['name' => $user->name]) }}" tabindex="-1"
@@ -57,8 +72,8 @@
 
     <a @class([
         'nav-link',
-        'flex-sm-fill',
-        'text-sm-center',
+        'flex-lg-fill',
+        'text-lg-center',
         'text-reset' => !$followerPage,
         'active' => $followerPage,
     ]) href="{{ route('users.followers', ['name' => $user->name]) }}" tabindex="-1"

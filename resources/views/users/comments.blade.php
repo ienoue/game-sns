@@ -18,25 +18,24 @@
                 @include('inc.tabs', [
                     'postsPage' => false,
                     'likesPage' => false,
-                    'commentsPage' => false,
+                    'commentsPage' => true,
                     'battlesPage' => false,
                     'monstersPage' => false,
-                    'followeePage' => true,
+                    'followeePage' => false,
                     'followerPage' => false,
-                ]) {{-- /タブ --}}
+                ])
+                {{-- /タブ --}}
 
-                {{-- フォロワー一覧 --}}
-                <ul class="list-group mb-3">
-                    @foreach ($followees as $usr)
-                        @include('inc.followListItem', [
-                            'followBtn' => $usr->followBtnStatus(),
-                        ])
-                    @endforeach
-                </ul>
-                {{-- /フォロワー一覧 --}}
+                {{-- いいねした投稿内容一覧 --}}
+                @foreach ($comments as $comment)
+                    @include('inc.comment', [
+                        'stretchedLink' => true,
+                    ])
+                @endforeach
+                {{-- /いいねした投稿内容一覧 --}}
 
                 {{-- ページネーション --}}
-                {{ $followees->links() }}
+                {{ $comments->links() }}
                 {{-- /ページネーション --}}
 
             </div>

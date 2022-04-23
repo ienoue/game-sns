@@ -6,9 +6,12 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
+                {{-- エラー表示 --}}
+                @include('inc.error')
+                {{-- /エラー表示 --}}
+
                 <div class="card">
                     <div class="card-body text-center">
-                        @include('inc.error')
                         <form name="gacha" action="{{ route('gacha.index') }}" method="POST" id="formGacha">
                             @csrf
                             <button type="submit" class="btn position-relative">

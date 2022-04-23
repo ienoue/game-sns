@@ -8,6 +8,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-9">
+                {{-- エラー表示 --}}
+                @include('inc.error')
+                {{-- /エラー表示 --}}
 
                 {{-- ユーザ情報 --}}
                 @include('inc.userInfo', [
@@ -19,6 +22,7 @@
                 @include('inc.tabs', [
                     'postsPage' => false,
                     'likesPage' => true,
+                    'commentsPage' => false,
                     'battlesPage' => false,
                     'monstersPage' => false,
                     'followeePage' => false,

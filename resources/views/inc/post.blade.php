@@ -129,7 +129,7 @@
     <div class="card-body">
 
         {{-- 投稿内容 --}}
-        <div class="card-text position-relative">
+        <div class="position-relative">
             <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $post]) }}"></a>
             <p @class([
                 'card-text',
@@ -143,7 +143,7 @@
         {{-- /投稿内容 --}}
 
         {{-- タグ --}}
-        <div id="postTag_{{ $post->id }}" class="card-text">
+        <div id="postTag_{{ $post->id }}">
             @if ($post->tags->count() >= 1)
                 <div class="{{ App\Models\Tag::tagBtnStatus()['containerVisual'] }}">
                     @foreach ($post->tags as $tag)
@@ -159,7 +159,7 @@
     </div>
     <div class="card-footer text-muted d-flex align-items-baseline bg-white p-0">
         {{-- いいねボタン --}}
-        <button type="button" class="text-muted btn btn-like outline-0" href="#" data-post-id="{{ $post->id }}"
+        <button type="button" class="text-muted btn btn-like outline-0" data-post-id="{{ $post->id }}"
             @cannot('toggle-like', $post) disabled @endcannot>
             <i class="{{ $likeBtn['btnVisual'] }}"></i>
             <span class="ms-2" id="likecount_{{ $post->id }}">
@@ -167,6 +167,15 @@
             </span>
         </button>
         {{-- /いいねボタン --}}
+
+        {{-- コメントボタン --}}
+        <a role="button" class="text-muted btn outline-0" href="{{ route('posts.show', ['post' => $post]) }}">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span class="ms-2">
+                {{ $post->comments->count() }}
+            </span>
+        </a>
+        {{-- /コメントボタン --}}
 
     </div>
 </div>
