@@ -14,7 +14,7 @@
 
                 {{-- ガチャ --}}
                 @auth
-                    <div class="card mb-4 text-center">
+                    <div class="card mb-4 text-center shadow-sm">
                         <div class="card-body d-flex justify-content-around">
                             <img src="/images/monsters/regular/fountain_guardian.png" class="img-fluid" alt="モンスター"
                                 style="width:5rem;height:5rem;">
@@ -46,7 +46,7 @@
 
                 {{-- 投稿フォーム --}}
                 @auth
-                    <div class="card mb-4">
+                    <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <form action="{{ route('posts.store') }}" method="POST" id="formNewPost">
                                 @csrf
@@ -64,7 +64,7 @@
                                 {{-- /入力欄：タグ --}}
 
                                 <div class="text-end">
-                                    <button type="submit" class="btn btn-primary text-white">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="fa-solid fa-pen-to-square fa-fw"></i>投稿する
                                     </button>
                                 </div>

@@ -1,5 +1,5 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #f8f9fa;
 
 // Typography
 $font-family-sans-serif: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
@@ -20,21 +20,19 @@ $kbd-bg: #546e7a;
 // フォントカラー Muted（弱め）
 $text-muted: #adb5bd;
 
-
 // ボタンの丸み
-$btn-border-radius:           50rem;
-$btn-border-radius-sm:        50rem;
-$btn-border-radius-lg:        50rem;
+$btn-border-radius: 50rem;
+$btn-border-radius-sm: 50rem;
+$btn-border-radius-lg: 50rem;
 
 // nabタブの丸み
-$nav-tabs-border-radius:            50rem;
-$nav-pills-border-radius:           50rem;
+$nav-tabs-border-radius: 50rem;
+$nav-pills-border-radius: 50rem;
 
 // ページネーションの丸み
-$pagination-border-radius:          50rem;
-$pagination-border-radius-sm:       50rem;
-$pagination-border-radius-lg:       50rem;
-
+$pagination-border-radius: 50rem;
+$pagination-border-radius-sm: 50rem;
+$pagination-border-radius-lg: 50rem;
 
 // モーダルのパディング
 // $modal-inner-padding: 1.5rem;
@@ -42,3 +40,12 @@ $pagination-border-radius-lg:       50rem;
 // テーブルのパディング
 $table-cell-padding-y: 0.75rem;
 $table-cell-padding-x: 0.5rem;
+
+// インプットの背景
+$input-bg: #fff;
+
+// ボタンの文字色を自動的に白か黒に判定する基準値
+$min-contrast-ratio: 3.5;
+
+// カードの線幅
+$card-border-width: 0;

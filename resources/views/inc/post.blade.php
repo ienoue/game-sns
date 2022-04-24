@@ -1,7 +1,7 @@
 {{-- 投稿 --}}
-<div class="card mb-4">
-    <div class="card-header bg-white">
-        <div class="d-flex justify-content-between align-items-center">
+<div class="card mb-4 shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
             <div class="d-flex align-items-center">
                 {{-- モンスター画像 --}}
                 <a href="{{ route('monsters.show', ['monster' => $post->user->partner]) }}">
@@ -86,7 +86,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary btn-edit text-white"
+                                <button type="button" class="btn btn-primary btn-edit"
                                     data-post-id="{{ $post->id }}">更新する
                                 </button>
                             </div>
@@ -125,8 +125,6 @@
                 {{-- /削除用モーダル --}}
             @endif
         </div>
-    </div>
-    <div class="card-body">
 
         {{-- 投稿内容 --}}
         <div class="position-relative">

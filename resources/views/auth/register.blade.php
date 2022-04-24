@@ -57,7 +57,7 @@
 
         <div class="mb-0">
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary text-white btn-lg">
+                <button type="submit" class="btn btn-primary btn-lg">
                     {{ __('Register') }}
                 </button>
             </div>

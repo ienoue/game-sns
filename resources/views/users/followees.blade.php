@@ -22,13 +22,11 @@
                 {{-- /フォロータブ --}}
 
                 {{-- フォロワー一覧 --}}
-                <ul class="list-group mb-3">
-                    @foreach ($followees as $usr)
-                        @include('inc.followListItem', [
-                            'followBtn' => $usr->followBtnStatus(),
-                        ])
-                    @endforeach
-                </ul>
+                @foreach ($followees as $usr)
+                    @include('inc.followListItem', [
+                        'followBtn' => $usr->followBtnStatus(),
+                    ])
+                @endforeach
                 {{-- /フォロワー一覧 --}}
 
                 {{-- ページネーション --}}

@@ -1,7 +1,7 @@
 {{-- ユーザ情報 --}}
-<div class="card mb-4">
+<div class="card mb-4 shadow-sm">
     <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center mb-3">
 
             <div class="d-flex justify-content-between align-items-center">
                 {{-- モンスター画像 --}}
@@ -28,25 +28,23 @@
             {{-- /フォローボタン --}}
         </div>
 
-    </div>
-    <ul class="list-group list-group-flush">
+        {{-- フォロー数 --}}
+        <div class="mb-2">
+            <a href="{{ route('users.followees', ['name' => $user->name]) }}"
+                class="text-reset text-decoration-none me-3">
+                <span class="text-muted me-1">フォロー中</span>
+                <span class="fw-bold">{{ $user->followees->count() }}</span>
+            </a>
 
-        <li class="list-group-item">
-                <a href="{{ route('users.followees', ['name' => $user->name]) }}"
-                    class="text-reset text-decoration-none me-3">
-                    <span class="text-muted me-1">フォロー中</span>
-                    <span class="fw-bold">{{ $user->followees->count() }}</span>
-                </a>
+            <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-reset text-decoration-none">
+                <span class="text-muted me-1">フォロワー</span>
+                <span class="fw-bold">{{ $user->followers->count() }}</span>
+            </a>
+        </div>
+        {{-- /フォロー数 --}}
 
-                <a href="{{ route('users.followers', ['name' => $user->name]) }}"
-                    class="text-reset text-decoration-none">
-                    <span class="text-muted me-1">フォロワー</span>
-                    <span class="fw-bold">{{ $user->followers->count() }}</span>
-                </a>
-        </li>
-
-        <li class="list-group-item">
-            
+        {{-- 相棒モンスター --}}
+        <div>
             <a href="{{ route('monsters.show', ['monster' => $user->partner]) }}"
                 class="text-reset text-decoration-none">
                 <span class="text-muted me-1">相棒モンスター</span>
@@ -54,7 +52,9 @@
                     {{ $user->partner->name }}
                 </span>
             </a>
-        </li>
-    </ul>
+        </div>
+        {{-- /相棒モンスター --}}
+
+    </div>
 </div>
 {{-- /ユーザ情報 --}}

@@ -25,7 +25,7 @@
 
                 {{-- モンスター一覧 --}}
                 <div class="table-responsive">
-                    <table class="table bg-white border align-middle text-nowrap text-center table_border_radius">
+                    <table class="table bg-white align-middle text-nowrap text-center table_border_radius shadow-sm">
                         <thead>
                             <tr>
                                 <th scope="col"></th>

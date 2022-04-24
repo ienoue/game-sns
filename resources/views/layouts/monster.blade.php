@@ -6,7 +6,7 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body">
 
                         <div class="d-flex justify-content-between align-items-center mb-4">
