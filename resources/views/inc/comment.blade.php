@@ -74,7 +74,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-                            <button type="submit" class="btn btn-primary text-white">更新する</button>
+                            <button type="submit" class="btn btn-primary">更新する</button>
                         </div>
                     </form>
                 </div>
@@ -114,7 +114,7 @@
 </div>
 
 
-<div class="card mb-4 border-0 position-relative shadow-sm">
+<div class="card mb-5 position-relative shadow-sm">
 
     <div class="card-body position-relative">
         <a @class(['stretched-link' => $stretchedLink]) href="{{ route('posts.show', ['post' => $comment->post]) }}"></a>

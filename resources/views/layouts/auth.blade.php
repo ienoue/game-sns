@@ -10,7 +10,7 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
 

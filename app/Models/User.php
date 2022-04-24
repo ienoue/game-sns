@@ -139,7 +139,7 @@ class User extends Authenticatable
     public function followBtnStatus()
     {
         if ($this->isFollowedBy(Auth::user())) {
-            $btnVisual = 'btn btn-follow btn-primary text-white';
+            $btnVisual = 'btn btn-follow btn-primary';
             $btnText = 'フォロー中';
         } else {
             $btnVisual = 'btn btn-follow btn-outline-primary';
@@ -177,12 +177,12 @@ class User extends Authenticatable
     {
         return [
             'active' => [
-                'btnVisual' => 'btn btn-partner btn-primary text-white text-truncate',
-                'btnText' => '相棒',
+                'btnVisual' => 'btn btn-partner btn-primary',
+                'btnText' => '現在の相棒',
                 'btnDisabled' => 'disabled',
             ],
             'inactive' => [
-                'btnVisual' => 'btn btn-partner btn-outline-primary text-truncate',
+                'btnVisual' => 'btn btn-partner btn-outline-primary',
                 'btnText' => '相棒にする',
                 'btnDisabled' => '',
             ]

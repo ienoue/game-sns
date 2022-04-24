@@ -41,8 +41,8 @@ class Tag extends Model
      */
     public static function tagBtnStatus()
     {
-        $btnVisual = 'btn btn-outline-secondary btn-sm py-0 me-1 mb-2 text-truncate mw-150px';
-        $containerVisual = 'mt-3';
+        $btnVisual = 'btn btn-outline-secondary btn-sm py-0 me-1 mt-2';
+        $containerVisual = '';
         return compact('btnVisual', 'containerVisual');
     }
 }

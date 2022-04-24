@@ -10,7 +10,7 @@
                 @include('inc.error')
                 {{-- /エラー表示 --}}
 
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body text-center">
                         <form name="gacha" action="{{ route('gacha.index') }}" method="POST" id="formGacha">
                             @csrf
