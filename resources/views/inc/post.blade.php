@@ -13,7 +13,7 @@
                 <div>
                     {{-- 名前 --}}
                     <a class="fw-bold text-reset text-decoration-none me-2"
-                        href="{{ route('users.index', ['name' => $post->user->name]) }}">{{ $post->user->name }}
+                        href="{{ route('users.index', ['user' => $post->user->name]) }}">{{ $post->user->name }}
                     </a>
                     {{-- /名前 --}}
 

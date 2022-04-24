@@ -34,7 +34,7 @@ Route::get('/Search', [SearchController::class, 'index'])->name('search');
 Route::post('/like/{post}', [LikeController::class, 'toggle'])->name('like')->middleware('auth');
 
 // フォロー
-Route::post('/follow/{name}', [FollowController::class, 'toggle'])->name('follow')->middleware('auth');
+Route::post('/follow/{user}', [FollowController::class, 'toggle'])->name('follow')->middleware('auth');
 
 // 認証
 Auth::routes([
@@ -44,13 +44,13 @@ Route::get('/login/guest', [LoginController::class, 'guestLogin'])->name('login.
 
 // マイページ
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/{name}', [UserController::class, 'index'])->name('index');
-    Route::get('/{name}/likes', [UserController::class, 'likes'])->name('likes');
-    Route::get('/{name}/followers', [UserController::class, 'followers'])->name('followers');
-    Route::get('/{name}/followees', [UserController::class, 'followees'])->name('followees');
-    Route::get('/{name}/monsters', [UserController::class, 'monsters'])->name('monsters');
-    Route::get('/{name}/battles', [UserController::class, 'battles'])->name('battles');
-    Route::get('/{name}/comments', [UserController::class, 'comments'])->name('comments');
+    Route::get('/{user}', [UserController::class, 'index'])->name('index');
+    Route::get('/{user}/likes', [UserController::class, 'likes'])->name('likes');
+    Route::get('/{user}/followers', [UserController::class, 'followers'])->name('followers');
+    Route::get('/{user}/followees', [UserController::class, 'followees'])->name('followees');
+    Route::get('/{user}/monsters', [UserController::class, 'monsters'])->name('monsters');
+    Route::get('/{user}/battles', [UserController::class, 'battles'])->name('battles');
+    Route::get('/{user}/comments', [UserController::class, 'comments'])->name('comments');
 });
 
 // ガチャ

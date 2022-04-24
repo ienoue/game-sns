@@ -12,7 +12,7 @@
         <div>
             {{-- 名前 --}}
             <a class="fw-bold text-reset text-decoration-none me-2"
-                href="{{ route('users.index', ['name' => $comment->user->name]) }}">{{ $comment->user->name }}
+                href="{{ route('users.index', ['user' => $comment->user->name]) }}">{{ $comment->user->name }}
             </a>
             {{-- /名前 --}}
 

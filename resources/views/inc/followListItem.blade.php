@@ -12,7 +12,7 @@
                 {{-- /モンスター画像 --}}
 
                 {{-- 名前 --}}
-                <a href="{{ route('users.index', ['name' => $usr->name]) }}"
+                <a href="{{ route('users.index', ['user' => $usr->name]) }}"
                     class="text-reset text-decoration-none align-middle fw-bold">
                     {{ $usr->name }}
                 </a>

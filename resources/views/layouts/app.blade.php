@@ -70,14 +70,14 @@
                         @else
                             <li class="nav-item">
                                 <a class="nav-link"
-                                    href="{{ route('gacha.index', ['name' => Auth::user()->name]) }}">
+                                    href="{{ route('gacha.index', ['user' => Auth::user()->name]) }}">
                                     <i class="fa-solid fa-gem fa-fw"></i>
                                     ガチャ
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
-                                    href="{{ route('users.index', ['name' => Auth::user()->name]) }}">
+                                    href="{{ route('users.index', ['user' => Auth::user()->name]) }}">
                                     <i class="fa-solid fa-user fa-fw"></i>
                                     マイページ
                                 </a>

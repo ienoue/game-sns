@@ -6,7 +6,7 @@
     <ul class="pagination justify-content-center flex-md-row flex-column">
         <li class="mb-3">
             <a class="btn page-link flex-fill"
-                href="{{ route('users.monsters', ['name' => Auth::user()->name]) }}">所有モンスター
+                href="{{ route('users.monsters', ['user' => Auth::user()->name]) }}">所有モンスター
             </a>
         </li>
         <li class="mx-md-4 mb-3">
