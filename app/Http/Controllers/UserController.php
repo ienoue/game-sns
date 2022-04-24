@@ -11,19 +11,11 @@ class UserController extends Controller
     /**
      * 特定ユーザの投稿一覧を表示
      *
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function index(string $name)
+    public function index(User $user)
     {
-        // paginateを使用するために途中でposts()とする必要があるので以下はEagerロードが効かない
-        // $user = User::where('name', $name)->first()
-        //     ?->load('posts.tags', 'posts.user', 'posts.likes');
-
-        $user = User::where('name', $name)->first();
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
         $posts = $user->posts()->with('tags', 'user', 'likes', 'comments')->paginate(10)->onEachSide(2);
 
         return view('users.index', compact('user', 'posts'));
@@ -32,16 +24,11 @@ class UserController extends Controller
     /**
      * 特定ユーザのいいねした記事一覧を表示
      *
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function likes(string $name)
+    public function likes(User $user)
     {
-        $user = User::where('name', $name)->first();
-
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
         $posts = $user->likes()->with('tags', 'user', 'likes', 'user.partner', 'comments')->paginate(10)->onEachSide(2);
 
         return view('users.likes', compact('user', 'posts'));
@@ -50,17 +37,11 @@ class UserController extends Controller
     /**
      * 特定ユーザのフォロワー一覧を表示
      *
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function followers(string $name)
+    public function followers(User $user)
     {
-        $user = User::where('name', $name)->first();
-
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
-
         $followers = $user->followers()->with('followers', 'partner')->paginate(10)->onEachSide(2);
 
         return view('users.followers', compact('user', 'followers'));
@@ -69,16 +50,11 @@ class UserController extends Controller
     /**
      * 特定ユーザがフォローしているユーザ一覧を表示
      *
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function followees(string $name)
+    public function followees(User $user)
     {
-        $user = User::where('name', $name)->first();
-
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
         $followees = $user->followees()->with('followers', 'partner')->paginate(10)->onEachSide(2);
 
         return view('users.followees', compact('user', 'followees'));
@@ -88,16 +64,11 @@ class UserController extends Controller
      * 特定ユーザのモンスター一覧を表示
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function monsters(Request $request, string $name)
+    public function monsters(Request $request, User $user)
     {
-        $user = User::where('name', $name)->first();
-
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
         $sort = $request->sort;
 
         $monsters = $user->monstersSortedBy($sort)->with('rarity')->paginate(10)->onEachSide(2);
@@ -107,17 +78,11 @@ class UserController extends Controller
     /**
      * 特定ユーザの対戦履歴一覧を表示
      *
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function battles(string $name)
+    public function battles(User $user)
     {
-        $user = User::where('name', $name)->first();
-
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
-
         $battles = $user->battles()->with('postMonster', 'post.user', 'userMonster', 'user', 'winUser')->paginate(10)->onEachSide(2);
         return view('users.battles', compact('user', 'battles'));
     }
@@ -125,17 +90,11 @@ class UserController extends Controller
     /**
      * 特定ユーザのコメント一覧を表示
      *
-     * @param  String  $post
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function comments(string $name)
+    public function comments(User $user)
     {
-        $user = User::where('name', $name)->first();
-
-        if (!$user) {
-            return redirect()->route('posts.index');
-        }
-
         $comments = $user->comments()->with('user', 'post')->paginate(10)->onEachSide(2);
         return view('users.comments', compact('user', 'comments'));
     }

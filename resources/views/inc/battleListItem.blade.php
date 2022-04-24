@@ -31,7 +31,7 @@
                 {{-- /モンスター画像 --}}
 
                 {{-- 名前 --}}
-                <a href="{{ route('users.index', ['name' => $battle->user->name]) }}"
+                <a href="{{ route('users.index', ['user' => $battle->user->name]) }}"
                     class="text-reset text-decoration-none fw-bold me-2">
                     {{ $battle->user->name }}
                 </a>
@@ -56,7 +56,7 @@
                 {{-- /モンスター画像 --}}
 
                 {{-- 名前 --}}
-                <a href="{{ route('users.index', ['name' => $battle->postUser()->name]) }}"
+                <a href="{{ route('users.index', ['user' => $battle->postUser()->name]) }}"
                     class="text-reset text-decoration-none fw-bold me-2">
                     {{ $battle->postUser()->name }}
                 </a>

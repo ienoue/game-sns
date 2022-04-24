@@ -12,12 +12,11 @@ class FollowController extends Controller
     /**
      * フォローの状態を切り替える
      *
-     * @param  String  $name
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function toggle(String $name)
+    public function toggle(User $user)
     {
-        $user = User::where('name', $name)->first();
         abort_if(!Gate::allows('toggle-follow', $user), 403);
 
         if ($user->isFollowedBy(Auth::user())) {
@@ -30,7 +29,7 @@ class FollowController extends Controller
         $state = $user->followBtnStatus();
 
         return [
-            'name' => $name,
+            'name' => $user->name,
             'visual' => $state['btnVisual'],
             'text' => $state['btnText'],
         ];

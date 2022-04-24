@@ -12,7 +12,7 @@
                 {{-- /モンスター画像 --}}
 
                 {{-- 名前 --}}
-                <a href="{{ route('users.index', ['name' => $user->name]) }}"
+                <a href="{{ route('users.index', ['user' => $user->name]) }}"
                     class="text-reset text-decoration-none fs-5 fw-bold">
                     {{ $user->name }}
                 </a>
@@ -30,13 +30,13 @@
 
         {{-- フォロー数 --}}
         <div class="mb-2">
-            <a href="{{ route('users.followees', ['name' => $user->name]) }}"
+            <a href="{{ route('users.followees', ['user' => $user->name]) }}"
                 class="text-reset text-decoration-none me-3">
                 <span class="text-muted me-1">フォロー中</span>
                 <span class="fw-bold">{{ $user->followees->count() }}</span>
             </a>
 
-            <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-reset text-decoration-none">
+            <a href="{{ route('users.followers', ['user' => $user->name]) }}" class="text-reset text-decoration-none">
                 <span class="text-muted me-1">フォロワー</span>
                 <span class="fw-bold">{{ $user->followers->count() }}</span>
             </a>

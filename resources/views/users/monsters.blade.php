@@ -30,16 +30,16 @@
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col"><a
-                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'name']) }}">名前</a>
+                                        href="{{ route('users.monsters', ['user' => $user->name, 'sort' => 'name']) }}">名前</a>
                                 </th>
                                 <th scope="col"><a
-                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'rarity']) }}">レア</a>
+                                        href="{{ route('users.monsters', ['user' => $user->name, 'sort' => 'rarity']) }}">レア</a>
                                 </th>
                                 <th scope="col"><a
-                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'attack']) }}">攻撃力</a>
+                                        href="{{ route('users.monsters', ['user' => $user->name, 'sort' => 'attack']) }}">攻撃力</a>
                                 </th>
                                 <th scope="col"><a
-                                        href="{{ route('users.monsters', ['name' => $user->name, 'sort' => 'updated']) }}">取得日</a>
+                                        href="{{ route('users.monsters', ['user' => $user->name, 'sort' => 'updated']) }}">取得日</a>
                                 </th>
                                 <th scope="col"></th>
                             </tr>
