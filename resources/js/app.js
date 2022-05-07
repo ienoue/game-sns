@@ -7,3 +7,4 @@ require('./follow');
 require('./partner');
 require('./disableSubmit');
 require('./battle');
+require('./scrollTop');
