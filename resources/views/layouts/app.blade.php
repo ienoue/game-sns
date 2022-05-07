@@ -48,7 +48,7 @@
                                     ゲストログイン
                                 </a>
                             </li>
-                            
+
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">
@@ -106,6 +106,16 @@
             @yield('content')
         </main>
     </div>
+    {{-- ページ上部に戻るボタン --}}
+    <div id="scrollTop" style="display: none; z-index: 1020;" class="position-fixed bottom-0 end-0 mb-4 me-4">
+        <a role="button" class="btn btn-secondary rounded-circle opacity-50 position-relative"
+            style="width:3.5rem;height:3.5rem;">
+            <span class="text-white position-absolute top-50 start-50 translate-middle text-nowrap">
+                <i class="fa-solid fa-angle-up fa-3x"></i>
+            </span>
+        </a>
+    </div>
+    {{-- /ページ上部に戻るボタン --}}
 </body>
 
 </html>
