@@ -60,6 +60,10 @@ SNSを使ってもなかなか人と繋がれない、SNSでいいねが貰え�
 * 連続投稿防止機能
 * ユニットテスト
 
+# 制作期間
+
+１ヶ月半
+
 # ER図
 
 ![ER図](https://user-images.githubusercontent.com/39022092/165082933-92e933ff-e4f3-4eae-a5fa-27c0044d5260.png)
@@ -94,3 +98,7 @@ SNSを使ってもなかなか人と繋がれない、SNSでいいねが貰え�
   * [Git： もう怖くないGit！チーム開発で必要なGitを完全マスター](https://www.udemy.com/course/unscared_git/)
 * Linux
   * [もう怖くないLinuxコマンド。手を動かしながらLinuxコマンドラインを5日間で身に付けよう](https://www.udemy.com/course/unscared_linux/)
+
+# 投稿記事
+
+https://qiita.com/ienoue
